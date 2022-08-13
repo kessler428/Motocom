@@ -1,4 +1,4 @@
-import { fetchConToken } from "../../../components/helpers/fecth";
+import { fetchConToken } from "../../../helpers/fecth";
 import { setListInventory, setPaginationInventory } from "./inventorySlices";
 
 export const getAllInventory = () => {
