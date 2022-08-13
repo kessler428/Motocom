@@ -2,8 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
+import { inventorySlice } from "./slices/inventory/inventorySlices";
 
-const reducers = combineReducers({});
+const reducers = combineReducers({
+  inventory: inventorySlice.reducer
+});
 
 const rootPersistConfig = {
   key:'root',
