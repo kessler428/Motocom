@@ -7,8 +7,8 @@ import { NavLink } from 'react-router-dom';
 const AddProduct = () => {
   return (
     <>
-        <Header/>
         <SideBar/>
+        <Header/>
 
         <hr />
 

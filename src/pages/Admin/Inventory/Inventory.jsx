@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import pedidos from "../../../img/pedidos.png";
 import { useDispatch, useSelector } from 'react-redux'
-import { GridSearchBar } from '../../../components/admin/inventory/GridSearch'
 import {SideBar} from '../../../components/admin/SideBar'
 import {Header} from '../../../components/header/Header'
 import { getAllInventory } from '../../../redux/slices/inventory/thunks'
@@ -15,14 +14,14 @@ const Inventory = () => {
 
     useEffect(() => {
         dispatch(getAllInventory())
-    },[])
+    },[dispatch])
 
     const { listInventory } = useSelector((state) => state.inventory)
     
     return (
         <>
-            <Header />
             <SideBar />
+            <Header />
 
             <hr />
 
@@ -36,9 +35,6 @@ const Inventory = () => {
                             Agregar Producto
                         </NavLink>
                     </div>
-                
-
-                    <GridSearchBar />
 
                     {listInventory.length === 0 ? (
                         <div className="flex flex-col mt-10 justify-center ml-20">
@@ -56,12 +52,7 @@ const Inventory = () => {
                             </div>
                         </div>
                         ) : (
-                        <div className='text-7xl font-bold text-center mt-20 uppercase'>
-                            <h1>Y Aqui Hubiera data</h1>
-                            <h1>Si el back end hubiera</h1>
-                            <h1>Trabajado.</h1>
-                        </div>
-                        // <TableData />
+                        <TableData />
                     )}
                 </div>
             </div>

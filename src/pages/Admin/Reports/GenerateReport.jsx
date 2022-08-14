@@ -5,8 +5,8 @@ import { Header } from '../../../components/header/Header'
 const GenerateReport = () => {
     return (
         <>
-            <Header/>
             <SideBar/>
+            <Header/>
     
             <hr />
     
