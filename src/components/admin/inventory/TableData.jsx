@@ -47,7 +47,7 @@ export const TableData = () => {
       name: "Acciones",
       cell: row =>
         <div className='flex flex-row gap-4 items-center justify-center'>
-          <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(row.id) }><FaPencilAlt className='w-5 h-5' /></button>
+          <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(`cualquiercosa${row.id}`) }><FaPencilAlt className='w-5 h-5' /></button>
           <button className='text-red-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(row.id) }><RiDeleteBin5Line className='w-5 h-5' /></button>
         </div>
     },
