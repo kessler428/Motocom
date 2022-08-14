@@ -27,7 +27,7 @@ export const SideBar = () => {
         <SideBarIcon icon={<FaTh size="20" />} text="Inventario" />
       </NavLink>
       <NavLink
-        to="/asistentes"
+        to="/credits"
         className={({ isActive }) =>
           isActive
             ? "bg-orange mb-3 p-3 text-white rounded mx-2"
