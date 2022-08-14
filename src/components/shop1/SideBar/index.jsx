@@ -8,7 +8,7 @@ export const SideBar = () => {
     <div className="fixed pt-[63px] hidden lg:flex top-0 left-0 h-screen w-16 m-0 flex-col bg-dark-blue text-black border-r">
      
       <NavLink
-        to="/inventory"
+        to="/level1/inventory"
         className={({ isActive }) =>
           isActive
             ? "bg-orange mb-3 p-3 text-white rounded mx-2"

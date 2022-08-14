@@ -14,6 +14,7 @@ const Credits = lazy(() => import('../pages/Admin/Credits/Credits'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
+const InventoryLevel1 =lazy(()=> import('../pages/shop1/Inventario/Products'))
 
 export const App = () => {
   return (
@@ -31,6 +32,7 @@ export const App = () => {
 
           {/* Level 1 */}
           <Route path='level1/index' element={ <Level1Index/> } />
+          <Route path='level1/inventory' element={<InventoryLevel1/>}/>
         </Routes>
       </BrowserRouter>
     </Suspense>
