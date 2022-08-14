@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import pedidos from "../../../img/pedidos.png";
 import { useDispatch, useSelector } from 'react-redux'
 import {SideBar} from '../../../components/admin/SideBar'
-import {Header} from '../../../components/header/Header'
+import {Header} from '../../../components/admin/header/Header'
 import { getAllInventory } from '../../../redux/slices/inventory/thunks'
 import { TableData } from '../../../components/admin/inventory/TableData';
 

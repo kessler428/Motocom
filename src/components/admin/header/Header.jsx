@@ -1,4 +1,4 @@
-import "../../index.css";
+import "../../../index.css";
 import { NavLink } from 'react-router-dom';
 
 import { BiLogOut, BiMenu } from "react-icons/bi";

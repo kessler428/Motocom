@@ -1,6 +1,6 @@
 import React from 'react'
 import {SideBar} from '../../components/admin/SideBar'
-import {Header} from '../../components/header/Header'
+import {Header} from '../../components/admin/header/Header'
 import { FaWarehouse, FaUsers, FaCashRegister, FaMoneyBillWave } from 'react-icons/fa'
 
 const Index = () => {

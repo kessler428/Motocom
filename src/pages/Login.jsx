@@ -18,6 +18,8 @@ const Login = () => {
 
         if (email === 'ktorres@polpocr.com' && password === 'holamundo') {
             Navigate('/index')
+        }else if (email === 'obed@gmail.com' && password === 'holamundo') {
+            Navigate('/level1/index')
         }
         
     };
