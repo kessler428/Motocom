@@ -33,7 +33,7 @@ const AddProduct = () => {
                     </div>
                     <div className='w-1/3'>
                         <label className='text-center flex flex-col'>Codigo 1
-                            <input className='border rounded-lg border-black py-1 px-2 font-normal ' type="text" />
+                            <input className='border rounded-lg border-black py-1 px-2 font-normal ' min={0} type="text" />
                         </label>
                     </div>
                     <div className='w-1/3'>
@@ -45,17 +45,17 @@ const AddProduct = () => {
                 <div className='flex flex-row gap-8 font-bold mt-2'>
                     <div className='w-1/3'>
                         <label className='text-center flex flex-col'>Precio de compra
-                            <input className='border rounded-lg border-black py-1 px-2 font-light ' type="number" />
+                            <input className='border rounded-lg border-black py-1 px-2 font-light ' min={0} type="number" />
                         </label>
                     </div>
                     <div className='w-1/3'>
                         <label className='text-center flex flex-col'>Precio de venta
-                            <input className='border rounded-lg border-black py-1 px-2 font-light ' type="number" />
+                            <input className='border rounded-lg border-black py-1 px-2 font-light ' min={0} type="number" />
                         </label>
                     </div>
                     <div className='w-1/3'>
                         <label className='text-center flex flex-col'>Stock
-                            <input className='border rounded-lg border-black py-1 px-2 font-light ' type="number" />
+                            <input className='border rounded-lg border-black py-1 px-2 font-light ' min={0} type="number" />
                         </label>
                     </div>
                 </div>

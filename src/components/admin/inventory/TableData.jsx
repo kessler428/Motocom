@@ -1,18 +1,45 @@
 // import { PaginationInventory } from "./Pagination";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import DataTable from 'react-data-table-component'
 import { useState } from 'react';
-import { GridSearchBar } from './GridSearch';
+import { GridSearchBar } from '../GridSearch';
 
 import { FaPencilAlt } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { deleteProductById } from '../../../redux/slices/inventory/thunks';
+import Swal from 'sweetalert2';
+import { SpinerLoading } from '../../SnpinnerLoading';
+import { setIsLoading } from '../../../redux/slices/ui/uiSlices';
 
 
 export const TableData = () => {
+  const dispatch = useDispatch();
 
   const { listInventory } = useSelector((state) => state.inventory);
+  const { isLoading } = useSelector((state) => state.ui)
   const [searchProduct, setSearchProduct] = useState('');
+
+  const deleteProduct = (id) => {
+    Swal.fire({
+      title: '¿Esta Seguro de eliminar este producto?',
+      icon: 'warning',
+      confirmButtonText: 'Si',
+      showDenyButton: true,
+      DenyButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProductById(id))
+        dispatch(setIsLoading(true))
+      } else if (result.isDenied) {
+        Swal.fire('No se elimino el producto.!', '', 'info')
+      }
+    })
+  }
+
+  const editProduct = (id) => {
+
+  }
 
   const columns = [
     {
@@ -47,8 +74,8 @@ export const TableData = () => {
       name: "Acciones",
       cell: row =>
         <div className='flex flex-row gap-4 items-center justify-center'>
-          <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(`cualquiercosa${row.id}`) }><FaPencilAlt className='w-5 h-5' /></button>
-          <button className='text-red-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(row.id) }><RiDeleteBin5Line className='w-5 h-5' /></button>
+          <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => editProduct(row.id) }><FaPencilAlt className='w-5 h-5' /></button>
+          <button className='text-red-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => deleteProduct(row.id) }><RiDeleteBin5Line className='w-5 h-5' /></button>
         </div>
     },
   ]
@@ -66,16 +93,20 @@ export const TableData = () => {
   
   return (
     <>
+      {
+        isLoading ? <SpinerLoading /> : (
+          <>
+            <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
 
-      <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
-
-      <DataTable
-       columns={columns}
-       data={ filteredItems }
-       pagination
-       paginationComponentOptions={paginationComponentOptions}
-      />
-      {/* <PaginationInventory itemsPerPage={5} /> */}
+            <DataTable
+            columns={columns}
+            data={ filteredItems }
+            pagination
+            paginationComponentOptions={paginationComponentOptions}
+            />
+          </>
+        )
+      }
     </>
   );
 };
