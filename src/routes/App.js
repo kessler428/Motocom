@@ -2,6 +2,7 @@ import React from 'react';
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SpinerLoading } from '../components/SnpinnerLoading';
+import { PrivateRoutes } from './PrivateRoutes';
 
 const Login = lazy(() => import('../pages/Login'));
 
@@ -30,21 +31,74 @@ export const App = () => {
           <Route path='/' element={ <Login/> } />
 
           {/* Admin */}
-          <Route path='index' element={ <IndexAdmin/> } />
-          <Route path='inventory' element={ <Inventory/> } />
-          <Route path='add_product' element={ <AddProduct/> } />
-          <Route path='edit_product/:productId' element={ <EditProduct/> } />
-          <Route path='generate_report' element={ <GenerateReport/> } />
-          <Route path='generate_report/report' element={ <Reports/> } />
-          <Route path='credits' element={ <Credits/> } />
-          <Route path='closed_credits' element={ <ClosedCredits/> } />
-          <Route path='exchange' element={ <Exchange/> } />
+          <Route path='index' element={
+              <PrivateRoutes>
+                <IndexAdmin/>
+              </PrivateRoutes>
+            }
+          />
+          <Route path='inventory' element={
+            <PrivateRoutes>
+              <Inventory/> 
+            </PrivateRoutes>
+          }/>
+          <Route path='add_product' element={
+            <PrivateRoutes>
+              <AddProduct/>
+            </PrivateRoutes>
+          }/>
+          <Route path='edit_product/:productId' element={
+            <PrivateRoutes>
+              <EditProduct/>
+            </PrivateRoutes>
+          }/>
+          <Route path='generate_report' element={
+            <PrivateRoutes>
+              <GenerateReport/>
+            </PrivateRoutes>
+          }/>
+          <Route path='generate_report/report' element={
+            <PrivateRoutes>
+              <Reports/> 
+            </PrivateRoutes>
+          }/>
+          <Route path='credits' element={
+            <PrivateRoutes>
+              <Credits/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='closed_credits' element={
+            <PrivateRoutes>
+              <ClosedCredits/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='exchange' element={
+            <PrivateRoutes>
+              <Exchange/>
+            </PrivateRoutes> 
+          }/>
 
           {/* Level 1 */}
-          <Route path='level1/index' element={ <Level1Index/> } />
-          <Route path='level1/inventory' element={<InventoryLevel1/>}/>
-          <Route path='level1/bills' element={<Level1Facturas/>}/>
-          <Route path='level1/details_bills' element={<Level1DetallesFacturas/>}/>
+          <Route path='level1/index' element={
+            <PrivateRoutes>
+              <Level1Index/>
+            </PrivateRoutes>
+          }/>
+          <Route path='level1/inventory' element={
+            <PrivateRoutes>
+              <InventoryLevel1/>
+            </PrivateRoutes>
+          }/>
+          <Route path='level1/bills' element={
+            <PrivateRoutes>
+              <Level1Facturas/>
+            </PrivateRoutes>
+          }/>
+          <Route path='level1/details_bills' element={
+            <PrivateRoutes>
+              <Level1DetallesFacturas/>
+            </PrivateRoutes>
+          }/>
         </Routes>
       </BrowserRouter>
     </Suspense>

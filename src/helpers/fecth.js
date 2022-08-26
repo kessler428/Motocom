@@ -1,4 +1,4 @@
-const baseUrl = 'http://lubricantesjulianys.com/innova/api';
+const baseUrl = process.env.REACT_APP_API_URL;
 
 const fetchSinToken = (endpoint, data, method = "GET") => {
 
