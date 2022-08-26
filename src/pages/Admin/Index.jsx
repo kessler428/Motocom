@@ -53,6 +53,76 @@ const Index = () => {
             </div>
           </div>
         </div>
+        <div>
+          <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold mt-16">
+            Tiendas
+          </h1>
+          <div>
+            <div className='bg-dark-blue text-white p-4 rounded-lg mt-4'>
+              <h3 className='text-xl font-bold'>Tienda #1</h3>
+              <div className='flex flex-wrap justify-between m-2 gap-4'>
+                <div className='bg-red-700 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Ventas Realizadas:</p>
+                  <p> 20</p>
+                </div>
+                <div className='bg-yellow-400 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Dinero en caja: </p>
+                  <p>C$23,000</p>
+                </div>
+                <div className='bg-green-700 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Inventario: </p>
+                  <p>20</p>
+                </div>
+                <div className='bg-blue-600 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Facturas pendientes</p>
+                  <p>5</p>
+                </div>
+              </div>
+            </div>
+            <div className='bg-dark-blue text-white p-4 rounded-lg mt-4'>
+              <h3 className='text-xl font-bold'>Tienda #2</h3>
+              <div className='flex flex-wrap justify-between m-2 gap-4'>
+                <div className='bg-red-700 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Ventas Realizadas:</p>
+                  <p> 20</p>
+                </div>
+                <div className='bg-yellow-400 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Dinero en caja: </p>
+                  <p>C$23,000</p>
+                </div>
+                <div className='bg-green-700 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Inventario: </p>
+                  <p>20</p>
+                </div>
+                <div className='bg-blue-600 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Facturas pendientes</p>
+                  <p>5</p>
+                </div>
+              </div>
+            </div>
+            <div className='bg-dark-blue text-white p-4 rounded-lg mt-4'>
+              <h3 className='text-xl font-bold'>Tienda #3</h3>
+              <div className='flex flex-wrap gap-4 justify-between m-2'>
+                <div className='bg-red-700 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Ventas Realizadas:</p>
+                  <p> 20</p>
+                </div>
+                <div className='bg-yellow-400 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Dinero en caja: </p>
+                  <p>C$23,000</p>
+                </div>
+                <div className='bg-green-700 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Inventario: </p>
+                  <p>20</p>
+                </div>
+                <div className='bg-blue-600 p-4 rounded-lg font-bold text-lg w-60'>
+                  <p>Facturas pendientes</p>
+                  <p>5</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

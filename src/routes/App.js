@@ -14,6 +14,7 @@ const GenerateReport = lazy(() => import('../pages/Admin/Reports/GenerateReport'
 const Reports = lazy(() => import('../pages/Admin/Reports/Reports'))
 const Credits = lazy(() => import('../pages/Admin/Credits/Credits'))
 const ClosedCredits = lazy(() => import('../pages/Admin/Credits/ClosedCredits'))
+const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
@@ -37,6 +38,7 @@ export const App = () => {
           <Route path='generate_report/report' element={ <Reports/> } />
           <Route path='credits' element={ <Credits/> } />
           <Route path='closed_credits' element={ <ClosedCredits/> } />
+          <Route path='exchange' element={ <Exchange/> } />
 
           {/* Level 1 */}
           <Route path='level1/index' element={ <Level1Index/> } />

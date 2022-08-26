@@ -32,7 +32,7 @@ export const TableData = () => {
         dispatch(deleteProductById(id))
         dispatch(setIsLoading(true))
       } else if (result.isDenied) {
-        Swal.fire('No se elimino el producto.!', '', 'info')
+        Swal.fire('', 'No se elimino el producto.!', 'info')
       }
     })
   }

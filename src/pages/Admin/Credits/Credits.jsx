@@ -24,7 +24,7 @@ const Credits = () => {
 
             <div className="mx-auto w-10/12 sm:pl-12 py-24">
                 <div className='w-full flex flex-row justify-between'>
-                    <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold">
+                    <h1 className="text-2xl sm:text-4xl md:text-4xl font-bold">
                         Creditos
                     </h1>
                     <NavLink to='/closed_credits' className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>

@@ -18,7 +18,7 @@ export const Header = () => {
           </button>
         </div>
         <NavLink to='/index' className="">
-          <p className='text-orange text-5xl pl-14 font-semibold'>OUMURS</p>
+          <p className='text-orange text-5xl pl-14 font-semibold'>MOTOCOM</p>
         </NavLink>
         <div className=" w-auto flex justify-center items-center mr-4">
           <button>

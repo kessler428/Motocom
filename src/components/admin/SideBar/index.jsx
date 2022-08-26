@@ -37,7 +37,7 @@ export const SideBar = () => {
         <SideBarIcon icon={<FaMoneyBillWave size="20" />} text="Creditos" />
       </NavLink>
       <NavLink
-        to="/asistentes"
+        to="/exchange"
         className={({ isActive }) =>
           isActive
             ? "bg-orange mb-3 p-3 text-white rounded mx-2"
