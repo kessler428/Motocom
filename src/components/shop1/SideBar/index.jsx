@@ -1,4 +1,4 @@
-import { FaFileInvoiceDollar, FaClipboardList, FaMoneyBillWave, FaElementor} from 'react-icons/fa'
+import { FaFileInvoiceDollar, FaClipboardList, FaElementor} from 'react-icons/fa'
 
 import "../../../index.css";
 import { NavLink } from "react-router-dom";
@@ -16,16 +16,6 @@ export const SideBar = () => {
         }
       >
         <SideBarIcon icon={<FaClipboardList size="20" />} text="Inventario" />
-      </NavLink>
-      <NavLink
-        to="/asistentes"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange mb-3 p-3 text-white rounded mx-2"
-            : "mb-3 p-4 text-white hover:bg-hover-orange"
-        }
-      >
-        <SideBarIcon icon={<FaMoneyBillWave size="20" />} text="Creditos" />
       </NavLink>
       <NavLink
         to="/Level1/bills"

@@ -1,11 +1,12 @@
 //Librerias
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/auth/thunks";
 
 
 const Login = () => {
 
-    const Navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -16,10 +17,7 @@ const Login = () => {
     const onsubmit = (data) => {
         const { email, password } = data;
 
-        if (email === 'ktorres@polpocr.com' && password === 'holamundo') {
-            Navigate('/index')
-        }
-        
+        dispatch(login(email, password));
     };
 
     return (

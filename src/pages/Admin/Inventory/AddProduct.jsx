@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SideBar } from '../../../components/admin/SideBar'
 import { Header } from '../../../components/admin/header/Header'
 
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { addProducts, getCatalogStock } from '../../../redux/slices/inventory/thunks';
 
 const AddProduct = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(getCatalogStock());
+    }, [dispatch])
+
+    const { typeOfStock } = useSelector(state => state.inventory);    
 
     const [datos, setDatos] = useState({
         nombreArticulo: '',
@@ -15,14 +25,60 @@ const AddProduct = () => {
         precioVenta: '',
         precioCompra: '',
         notas: '',
-        stock: [],
+        stock: '',
     })
+
+    const [typeStock, setTypeStock] = useState('');
 
     const handleChange = (e) => {
         setDatos({
             ...datos,
             [e.target.name]: e.target.value
         })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        
+        const values = {
+            nombreArticulo: datos.nombreArticulo,
+            codigoUno: datos.codigoUno,
+            codigoDos: datos.codigoDos,
+            modelo: datos.modelo,
+            marca: datos.marca,
+            precioVenta: Number(datos.precioVenta),
+            precioCompra: Number(datos.precioCompra),
+            notas: datos.notas,
+            stock: Number(datos.stock),
+        }
+
+        const {
+            nombreArticulo,
+            codigoUno,
+            codigoDos,
+            modelo,
+            marca,
+            precioVenta,
+            precioCompra,
+            notas,
+            stock,
+        } = values
+        
+        dispatch(
+            addProducts(
+                nombreArticulo,
+                codigoUno,
+                codigoDos,
+                modelo,
+                marca,
+                precioVenta,
+                precioCompra,
+                notas,
+                stock,
+                Number(typeStock)
+            )
+        )
+
     }
 
     return (
@@ -39,25 +95,27 @@ const AddProduct = () => {
                 >
                     {'< Regresar'}
                 </NavLink>
-                <form 
+                <form
+                    onSubmit={handleSubmit}
                     className=' rounded-3xl px-6 mt-14 bg-white'
                 >
                     <div className='text-4xl py-4 text-orange font-bold'>
                         <h1>Agregar Producto</h1>
                     </div>
-                    <div className='flex flex-row gap-8 font-bold mt-2'>
-                        <div className='w-1/3'>
+                    <div className='flex flex-wrap gap-4 font-bold justify-around mt-10 px-12'>
+                        <div className='w-full md:w-[300px]'>
                             <label className='flex flex-col my-2 text-lg'>Nombre del producto
                                 <input
                                     type="text"
                                     name='nombreArticulo'
                                     onChange={handleChange}
                                     value={datos.nombreArticulo}
-                                    className='border rounded-lg border-black py-2 px-3 text-lg font-normal'
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    required
                                 />
                             </label>
                         </div>
-                        <div className='w-1/3'>
+                        <div className='w-full md:w-[300px]'>
                             <label className='flex flex-col my-2 text-lg'>Codigo 1
                                 <input
                                     min={0}
@@ -65,24 +123,45 @@ const AddProduct = () => {
                                     name='codigoUno'
                                     onChange={handleChange}
                                     value={datos.codigoUno}
-                                    className='border rounded-lg border-black py-2 px-3 text-lg font-normal'
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    required
                                 />
                             </label>
                         </div>
-                        <div className='w-1/3'>
+                        <div className='w-full md:w-[300px]'>
                             <label className='flex flex-col my-2 text-lg'>Codigo 2
                                 <input
                                     type="text"
                                     name='codigoDos'
                                     onChange={handleChange}
                                     value={datos.codigoDos}
-                                    className='border rounded-lg border-black py-2 px-3 text-lg font-normal'
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
                                 />
                             </label>
                         </div>
-                    </div>
-                    <div className='flex flex-row gap-8 font-bold mt-2'>
-                        <div className='w-1/3'>
+                        <div className='w-full md:w-[300px]'>
+                            <label className='flex flex-col my-2 text-lg'>Marca
+                                <input
+                                    type='text'
+                                    name='marca'
+                                    value={datos.marca}
+                                    onChange={handleChange}
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                />
+                            </label>
+                        </div>
+                        <div className='w-full md:w-[300px]'>
+                            <label className='flex flex-col my-2 text-lg'>Modelo / Presentacion
+                                <input
+                                    type="text"
+                                    name='modelo'
+                                    onChange={handleChange}
+                                    value={datos.modelo}
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                />
+                            </label>
+                        </div>
+                        <div className='w-full md:w-[300px]'>
                             <label className='flex flex-col my-2 text-lg'>Precio de compra
                                 <input
                                     min={0}
@@ -90,11 +169,12 @@ const AddProduct = () => {
                                     name='precioCompra'
                                     onChange={handleChange}
                                     value={datos.precioCompra}
-                                    className='border rounded-lg border-black py-1 px-2 font-light '
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    required
                                 />
                             </label>
                         </div>
-                        <div className='w-1/3'>
+                        <div className='w-full md:w-[300px]'>
                             <label className='flex flex-col my-2 text-lg'>Precio de venta
                                 <input
                                     min={0}
@@ -102,11 +182,33 @@ const AddProduct = () => {
                                     name='precioVenta'
                                     onChange={handleChange}
                                     value={datos.precioVenta}
-                                    className='border rounded-lg border-black py-1 px-2 font-light '
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    required
                                 />
                             </label>
                         </div>
-                        <div className='w-1/3'>
+                        <div className='w-full md:w-[300px]'>
+                            <label className='flex flex-col my-2 text-lg'>Tipo de stock
+                                <select
+                                    name='typeStock'
+                                    onChange={(e) => setTypeStock(e.target.value)}
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                >
+                                    <option value='none'>Seleccione un tipo</option>
+                                    {
+                                        typeOfStock?.map((item) => (
+                                            <option
+                                                key={item.id}
+                                                value={item.id}
+                                            >
+                                                {item.nombre}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                            </label>
+                        </div>
+                        <div className='w-full md:w-[300px]'>
                             <label className='flex flex-col my-2 text-lg'>Stock
                                 <input
                                     min={0}
@@ -114,47 +216,24 @@ const AddProduct = () => {
                                     name='stock'
                                     onChange={handleChange}
                                     value={datos.stock}
-                                    className='border rounded-lg border-black py-1 px-2 font-light '
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    required
                                 />
                             </label>
                         </div>
-                    </div>
-                    <div className='flex flex-row gap-8 font-bold mt-2 mb-8'>
-                        <div className='w-1/3'>
-                            <label className='flex flex-col my-2 text-lg'>Marca
-                                <input
-                                    type='text'
-                                    name='marca'
-                                    value={datos.marca}
-                                    onChange={handleChange}
-                                    className='border rounded-lg border-black py-1 px-2 font-normal'
-                                />
-                            </label>
-                        </div>
-                        <div className='w-1/3'>
-                            <label className='flex flex-col my-2 text-lg'>Modelo / Presentacion
-                                <input
-                                    type="text"
-                                    name='modelo'
-                                    onChange={handleChange}
-                                    value={datos.modelo}
-                                    className='border rounded-lg border-black py-2 px-3 text-lg font-normal'
-                                />
-                            </label>
-                        </div>
-                        <div className='w-1/3'>
+                        <div className='w-full md:w-full'>
                             <label className='flex flex-col my-2 text-lg'>Comentario
                                 <input
                                     type="text"
                                     name='notas'
                                     value={datos.notas}
                                     onChange={handleChange}
-                                    className='border rounded-lg border-black py-2 px-3 text-lg font-normal'
+                                    className='border rounded-lg border-black py-2 px-3 font-normal'
                                 />
                             </label>
                         </div>
                     </div>
-                    <div className='flex justify-center my-6'>
+                    <div className='flex justify-end py-6'>
                         <button className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>
                             Agregar
                         </button>

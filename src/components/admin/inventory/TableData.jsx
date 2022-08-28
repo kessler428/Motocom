@@ -9,7 +9,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { deleteProductById } from '../../../redux/slices/inventory/thunks';
 import Swal from 'sweetalert2';
-import { SpinerLoading } from '../../SnpinnerLoading';
+import { SpinerLoading } from '../../SpinnerLoading';
 import { setIsLoading } from '../../../redux/slices/ui/uiSlices';
 
 
@@ -26,7 +26,7 @@ export const TableData = () => {
       icon: 'warning',
       confirmButtonText: 'Si',
       showDenyButton: true,
-      DenyButtonText: 'Cancelar'
+      denyButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteProductById(id))
@@ -38,17 +38,17 @@ export const TableData = () => {
   }
 
   const editProduct = (id) => {
-
+    
   }
 
   const columns = [
     {
       name: "Nombre",
-      selector: row => row.nombre_articulo
+      selector: row => row.nombreArticulo
     },
     {
       name: "Codigo 1",
-      selector: row => row.codigo1
+      selector: row => row.codigoUno
     },
     {
       name: "Marca",
@@ -60,15 +60,15 @@ export const TableData = () => {
     },
     {
       name: "Precio de compra",
-      selector: row => row.precio_compra
+      selector: row => row.precioCompra
     },
     {
       name: "Precio de venta",
-      selector: row => row.precio_venta
+      selector: row => row.precioVenta
     },
     {
       name: "Stock",
-      selector: row => row.Stock
+      selector: row => row.stock[0].stock
     },
     {
       name: "Acciones",
@@ -81,7 +81,7 @@ export const TableData = () => {
   ]
 
   const filteredItems = listInventory.filter(
-		item => item.nombre_articulo.includes(searchProduct) || item.codigo1.includes(searchProduct) || item.modelo.includes(searchProduct),
+		item => item.nombreArticulo.includes(searchProduct) || item.codigoUno.includes(searchProduct) || item.modelo.includes(searchProduct),
 	);
 
   const paginationComponentOptions = {
