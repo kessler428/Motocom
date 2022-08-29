@@ -1,9 +1,20 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { SideBar } from '../../components/shop1/SideBar'
 import { Header } from '../../components/shop1/header/Header'
 import { NavLink } from 'react-router-dom'
+import { getIndexInfo } from '../../redux/slices/shop/thunks'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Index = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIndexInfo())
+  }, [dispatch])
+
+  const { index } = useSelector(state => state.shop);
+  const { dineroDelDia, facturasDelDia, nombreArticulo } = index;
+  
   return (
     <>
       <SideBar />
@@ -16,15 +27,15 @@ const Index = () => {
             <p>Nueva factura</p>
           </NavLink>
           <NavLink to='/level1/inventory' className=' flex justify-between flex-col text-start w-80 lg:w-64 border-4 border-cyan-800 h-28 bg-cyan-800 p-4 rounded-lg hover:bg-cyan-900'>  
-            <h3 className='text-2xl font-bold'>Productos</h3>
+            <h3 className=''>{nombreArticulo}</h3>
             <p>Producto mas vendido</p>
           </NavLink>
           <NavLink to='/level1/inventory' className='flex justify-between flex-col text-start w-80 lg:w-64 border-4 border-yellow-500 h-28 bg-yellow-500 p-4 rounded-lg hover:bg-yellow-600'>
-            <h3 className='text-2xl font-bold'>Facturas</h3>
+            <h3 className='text-2xl font-bold'>{facturasDelDia}</h3>
             <p>facturas realizadas</p>
           </NavLink>
           <div className='flex justify-between flex-col  text-start w-80 lg:w-64 border-4 border-red-900 h-28 bg-red-800 p-4 rounded-lg hover:bg-red-900'> 
-            <h3 className='text-2xl font-bold'>Dinero</h3>
+            <h3 className='text-2xl font-bold'>{dineroDelDia}</h3>
             <p>Dinero en caja</p>
           </div>
         </div>

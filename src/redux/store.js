@@ -9,10 +9,12 @@ import { uiSlice } from "./slices/ui/uiSlices";
 import { authSlice } from "./slices/auth/authSlice";
 import { billSlice } from "./slices/bills/billsSlice";
 import { clientSlice } from "./slices/clients/clientSlice";
+import { shopSlice } from "./slices/shop/shopSlice";
 
 const reducers = combineReducers({
   ui: uiSlice.reducer,
   auth: authSlice.reducer,
+  shop: shopSlice.reducer,
   inventory: inventorySlice.reducer,
   credits : creditsSlice.reducer,
   reports: reportsSlice.reducer,
