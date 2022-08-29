@@ -34,7 +34,7 @@ export const TableData = () => {
     },
     {
       name: "Stock",
-      selector: row => row.stock[0].stock
+      selector: row => row.stock?.[0].stock
     }
   ]
 

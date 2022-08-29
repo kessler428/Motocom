@@ -15,23 +15,19 @@ export const TableData = () => {
   const columns = [
     {
       name: "Nombre",
-      selector: row => row.nombres
-    },
-    {
-      name: "Numero RUC",
-      selector: row => row.ruc
+      selector: row => row.cliente
     },
     {
       name: "Monto Abonado",
-      selector: row => row.SumaAbonos
+      selector: row => row.deudaTotal
     },
     {
       name: "Monto Restante",
-      selector: row => row.resta
+      selector: row => row.dinerAbonado
     },
     {
       name: "Deuda Total",
-      selector: row => row.total
+      selector: row => row.fecha
     },
     {
       name: "",
@@ -44,8 +40,8 @@ export const TableData = () => {
     },
   ]
 
-  const filteredItems = listCredits.filter(
-		item => item.nombres.includes(searchProduct) || item.ruc.includes(searchProduct) ,
+  const filteredItems = listCredits?.filter(
+		item => item.cliente.includes(searchProduct) || item.deudaTotal.includes(searchProduct) ,
 	);
 
   const paginationComponentOptions = {

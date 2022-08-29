@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Index = () => {
   const dispatch = useDispatch();
+  const { Access } = useSelector(state => state.auth)
 
   useEffect(() => {
-    dispatch(getIndexInfo())
-  }, [dispatch])
+    dispatch(getIndexInfo(Access.almacenId))
+  }, [Access.almacenId, dispatch])
 
   const { index } = useSelector(state => state.shop);
   const { dineroDelDia, facturasDelDia, nombreArticulo } = index;
@@ -35,7 +36,7 @@ const Index = () => {
             <p>facturas realizadas</p>
           </NavLink>
           <div className='flex justify-between flex-col  text-start w-80 lg:w-64 border-4 border-red-900 h-28 bg-red-800 p-4 rounded-lg hover:bg-red-900'> 
-            <h3 className='text-2xl font-bold'>{dineroDelDia}</h3>
+            <h3 className='text-2xl font-bold'>{parseFloat(dineroDelDia).toFixed(2)}</h3>
             <p>Dinero en caja</p>
           </div>
         </div>

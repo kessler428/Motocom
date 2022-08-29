@@ -3,16 +3,17 @@ import pedidos from "../../../img/pedidos.png";
 import { useDispatch, useSelector } from 'react-redux'
 import {SideBar} from '../../../components/shop1/SideBar'
 import {Header} from '../../../components/shop1/header/Header'
-import { getAllInventory } from '../../../redux/slices/inventory/thunks'
+import { getAllInventoryIndex } from '../../../redux/slices/inventory/thunks'
 import { TableData } from '../../../components/shop1/inventory/TableData';
 
 const Inventory = () => {
 
   const dispatch = useDispatch();
+  const { Access } = useSelector(state => state.auth)
 
   useEffect(() => {
-    dispatch(getAllInventory())
-  },[dispatch])
+    dispatch(getAllInventoryIndex(Access.almacenId))
+  },[Access.almacenId, dispatch])
 
   const { listInventory } = useSelector((state) => state.inventory)
     

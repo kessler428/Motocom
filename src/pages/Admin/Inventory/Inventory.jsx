@@ -3,7 +3,7 @@ import pedidos from "../../../img/pedidos.png";
 import { useDispatch, useSelector } from 'react-redux'
 import {SideBar} from '../../../components/admin/SideBar'
 import {Header} from '../../../components/admin/header/Header'
-import { getAllInventory } from '../../../redux/slices/inventory/thunks'
+import { getAllInventoryAdmin } from '../../../redux/slices/inventory/thunks'
 import { TableData } from '../../../components/admin/inventory/TableData';
 
 import { NavLink } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Inventory = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllInventory())
+        dispatch(getAllInventoryAdmin())
     },[dispatch])
 
     const { listInventory } = useSelector((state) => state.inventory)
@@ -23,7 +23,7 @@ const Inventory = () => {
             <SideBar />
             <Header />
 
-            <div className="mx-auto w-10/12 sm:pl-12 py-24">
+            <div className="mx-auto w-11/12 sm:pl-12 py-24">
                 <div className='w-full flex flex-row justify-between'>
                     <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold">
                         Inventario

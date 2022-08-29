@@ -25,6 +25,7 @@ export const login = (email, password) => {
                setLoginAuth({
                   token: body.accessToken,
                   id: body.user.id,
+                  almacenId: body.almacen.id,
                   correo: body.user.email,
                   name: body.user.nombres,
                   rol: body.user.rol,

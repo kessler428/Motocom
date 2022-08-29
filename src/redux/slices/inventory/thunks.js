@@ -1,17 +1,57 @@
 import Swal from 'sweetalert2';
 import { fetchConToken } from "../../../helpers/fecth";
 import { setIsLoading } from '../ui/uiSlices';
-import { setButtonState, setListInventory, setOneProduct, setTypeOfStock } from "./inventorySlices";
+import {
+    setButtonState,
+    setListInventory,
+    setOneProduct,
+    setTypeOfStock
+} from "./inventorySlices";
 
-export const getAllInventory = () => {
+export const getAllInventory = (id) => {
+    console.log(id)
     return async (dispatch) => {
         try {
-            let resp = await fetchConToken('almacen');
+            const resp = await fetchConToken(`almacen?tipoAlmacenId=${id}&stockValidos=1`);
+            const body = await resp.json();
+
+            console.log(body)
+    
+            if (resp.status === 200) {
+                dispatch(setListInventory(body.almacenes));
+                dispatch(setIsLoading(false));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+;
+export const getAllInventoryIndex = (id) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken(`almacen?tipoAlmacenId=${id}`);
             const body = await resp.json();
     
             if (resp.status === 200) {
                 dispatch(setListInventory(body.almacenes));
-                dispatch(setIsLoading(false))
+                dispatch(setIsLoading(false));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
+;
+export const getAllInventoryAdmin = () => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken(`almacen`);
+            const body = await resp.json();
+    
+            if (resp.status === 200) {
+                dispatch(setListInventory(body.almacenes));
+                dispatch(setIsLoading(false));
             }
         } catch (error) {
             console.log(error);
@@ -85,7 +125,7 @@ export const addProducts = (
                 dispatch(setIsLoading(false))
             }
             if (resp.status === 400) {
-                Swal.fire( 'Error', body.message, 'error' )
+                Swal.fire( 'Error', body.message, 'error' );
             }
         } catch (error) {
             console.log(error);
@@ -152,8 +192,7 @@ export const deleteProductById = (id) => {
         try {
             const resp = await fetchConToken(
                 `almacen/${id}`,
-                { 
-                },
+                {},
                 "DELETE"
             );
     

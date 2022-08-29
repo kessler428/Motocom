@@ -34,7 +34,7 @@ export const TableData = () => {
     },
   ]
 
-  const filteredItems = closedCreditsList.filter(
+  const filteredItems = closedCreditsList?.filter(
 		item => item.cliente.includes(searchProduct) || item.fecha.includes(searchProduct) ,
 	);
 

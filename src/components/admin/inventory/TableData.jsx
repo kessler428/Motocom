@@ -20,6 +20,8 @@ export const TableData = () => {
   const { isLoading } = useSelector((state) => state.ui)
   const [searchProduct, setSearchProduct] = useState('');
 
+  console.log(listInventory);
+
   const deleteProduct = (id) => {
     Swal.fire({
       title: '¿Esta Seguro de eliminar este producto?',
@@ -67,8 +69,20 @@ export const TableData = () => {
       selector: row => row.precioVenta
     },
     {
-      name: "Stock",
-      selector: row => row.stock[0].stock
+      name: "Almacen 1",
+      selector: row => row.stock?.[0].stock
+    },
+    {
+      name: "Almacen 2",
+      selector: row => row.stock?.[1].stock
+    },
+    {
+      name: "Almacen 3",
+      selector: row => row.stock?.[2].stock
+    },
+    {
+      name: "Almacen 4",
+      selector: row => row.stock?.[3].stock
     },
     {
       name: "Acciones",

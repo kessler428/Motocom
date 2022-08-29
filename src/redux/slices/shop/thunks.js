@@ -3,7 +3,7 @@ import { setIndex } from "./shopSlice";
 
 export const getIndexInfo = (id) => async (dispatch) => {
     try {
-        const resp = await fetchConToken(`usuario/?almacen=2`);
+        const resp = await fetchConToken(`usuario/?almacen=${id}`);
         const data = await resp.json();
 
         if(data.success === true) {

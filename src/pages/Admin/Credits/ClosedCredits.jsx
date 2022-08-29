@@ -35,7 +35,7 @@ const ClosedCredits = () => {
                     </h1>
                 </div>
 
-                {closedCreditsList.length === 0 ? (
+                {closedCreditsList === [] ? (
                     <div className="flex flex-col mt-10 justify-center ml-20">
                         <div className="flex justify-center">
                             <img

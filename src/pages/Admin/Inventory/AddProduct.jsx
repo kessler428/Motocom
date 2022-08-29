@@ -167,6 +167,7 @@ const AddProduct = () => {
                                     min={0}
                                     type="number"
                                     name='precioCompra'
+                                    step='0.01'
                                     onChange={handleChange}
                                     value={datos.precioCompra}
                                     className='border rounded-lg border-black py-2 px-3 font-normal'
@@ -180,6 +181,7 @@ const AddProduct = () => {
                                     min={0}
                                     type="number"
                                     name='precioVenta'
+                                    step='0.01'
                                     onChange={handleChange}
                                     value={datos.precioVenta}
                                     className='border rounded-lg border-black py-2 px-3 font-normal'

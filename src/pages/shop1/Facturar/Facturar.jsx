@@ -5,7 +5,7 @@ import Select from "react-select";
 import { Table } from "../../../components/shop1/Bills/Table";
 import { Header } from "../../../components/shop1/header/Header";
 import { SideBar } from "../../../components/shop1/SideBar";
-import { getOneProduct } from "../../../redux/slices/inventory/thunks";
+import { getAllInventory, getOneProduct } from "../../../redux/slices/inventory/thunks";
 import { createBill } from "../../../redux/slices/bills/thunks";
 import { setButtonState } from "../../../redux/slices/inventory/inventorySlices";
 import { getAllClients } from "../../../redux/slices/clients/thunks";
@@ -16,12 +16,18 @@ const Facturar = () => {
   useEffect(() => {
     dispatch(getAllClients());
   }, [dispatch])
+
   
   // Traer informacion de la store del redux
   const { listInventory, oneProduct, buttonState } = useSelector((state) => state.inventory);
   const { Access } = useSelector((state) => state.auth);
   const { listClients } = useSelector((state) => state.clients);
   const { precioVenta, precioCompra, stock, tipoStock } = oneProduct;
+
+
+  useEffect(() => {
+    dispatch(getAllInventory(Access.almacenId));
+  }, [Access.almacenId, dispatch])
 
   // Arrays para guardar los productos seleccionados
   const [data, setData] = useState([]);
@@ -61,7 +67,7 @@ const Facturar = () => {
   useEffect(() => {
     if (products.productId !== "") {
       setPrecioDeVenta(precioVenta);
-      setStock(stock[0].stock);
+      setStock(stock?.[0].stock);
     }
   }, [precioVenta, products.productId, stock]);
 
@@ -84,11 +90,11 @@ const Facturar = () => {
   };
 
   const options = listClients.map((item) => {
-    return { value: `${item.id}`, label: `${item.nombres}` };
+    return { value: `${item.id}`, label: `${item.nombres} ${item.apellidos} / ${item.ruc}` };
   });
 
   const options2 = listInventory.map((item) => {
-    return { value: `${item.id}`, label: `${item.nombreArticulo}` };
+    return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno} / ${item.marca}` };
   });
 
   const handleClientChange = (e) => {
