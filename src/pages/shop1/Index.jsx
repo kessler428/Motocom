@@ -11,7 +11,7 @@ const Index = () => {
       <div className='w-10/12 flex flex-col justify-center mx-auto mt-20 '>
         <h1 className='text-4xl font-bold'>Tablero Principal</h1>
         <div className='flex flex-wrap  gap-8 my-10 text-white'>
-          <NavLink to='/level1/inventory'  className='flex justify-between flex-col text-start w-80 lg:w-72 border-4 border-teal-700 h-28 bg-teal-700 p-4 rounded-lg hover:bg-teal-800'>
+          <NavLink to='/level1/bills'  className='flex justify-between flex-col text-start w-80 lg:w-72 border-4 border-teal-700 h-28 bg-teal-700 p-4 rounded-lg hover:bg-teal-800'>
             <h3 className='text-2xl font-bold '>Facturar</h3>
             <p>Nueva factura</p>
           </NavLink>

@@ -1,6 +1,6 @@
 import { fetchConToken } from "../../../helpers/fecth";
 
-export const createBill = (total, montoPagado, tipoFacturaId, usuarioId, tipoAlmacenId, detalles) => {
+export const createBill = (total, montoPagado, tipoFacturaId, clienteId, usuarioId, tipoAlmacenId, descuento, subTotal, detalles) => {
     return async (dispatch) => {
         try {
             const resp = await fetchConToken(
@@ -9,8 +9,8 @@ export const createBill = (total, montoPagado, tipoFacturaId, usuarioId, tipoAlm
                     total,
                     montoPagado,
                     tipoFacturaId,
-                    clienteId: 4,
-                    descuento: 0,
+                    clienteId,
+                    descuento,
                     subTotal: total,
                     usuarioId,
                     tipoAlmacenId
@@ -32,7 +32,8 @@ export const createBill = (total, montoPagado, tipoFacturaId, usuarioId, tipoAlm
                     "POST"
                 );
 
-                console.log(fact);
+                const bodyFact = await fact.json();
+                console.log(bodyFact);
             }
             
         } catch (error) {
