@@ -1,6 +1,5 @@
-// import { PaginationInventory } from "./Pagination";
 import { useSelector } from 'react-redux'
-
+import moment from 'moment';
 import DataTable from 'react-data-table-component'
 import { useState } from 'react';
 import { GridSearchBar } from '../../GridSearch';
@@ -14,16 +13,20 @@ export const TableData = () => {
 
   const columns = [
     {
-      name: "Nombre",
-      selector: row => row.nombres
+      name: "Cliente",
+      selector: row => row.cliente
     },
     {
-      name: "Numero RUC",
-      selector: row => row.ruc
+      name: "Deuda total",
+      selector: row => row.deudaTotal
     },
     {
-      name: "Deuda Cancelada",
-      selector: row => row.total
+      name: "Dinero Abonado",
+      selector: row => row.dinerAbonado
+    },
+    {
+      name: "Fecha",
+      cell: row => <p>{moment(row.fecha).format('LLL')}</p>
     },
     {
       name: "Historial de abonos",
@@ -32,7 +35,7 @@ export const TableData = () => {
   ]
 
   const filteredItems = closedCreditsList.filter(
-		item => item.nombres.includes(searchProduct) || item.ruc.includes(searchProduct) ,
+		item => item.cliente.includes(searchProduct) || item.fecha.includes(searchProduct) ,
 	);
 
   const paginationComponentOptions = {

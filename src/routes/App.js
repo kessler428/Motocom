@@ -21,7 +21,9 @@ const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
 const InventoryLevel1 =lazy(()=> import('../pages/shop1/Inventario/Products'))
 const Level1Facturas = lazy(() => import('../pages/shop1/Facturar/Facturar'))
-const Level1DetallesFacturas = lazy(() => import('../pages/shop1/Facturar/DetallesFacturas'))
+const DetallesFacturas = lazy(() => import('../pages/shop1/Facturar/DetallesFacturas'))
+const DetailOneFact = lazy(() => import('../pages/shop1/Facturar/DetailOneFact'))
+const Ticket = lazy(() => import('../pages/shop1/Facturar/Ticket'))
 
 export const App = () => {
   return (
@@ -89,14 +91,24 @@ export const App = () => {
               <InventoryLevel1/>
             </PrivateRoutes>
           }/>
-          <Route path='level1/bills' element={
+          <Route path='bills' element={
             <PrivateRoutes>
               <Level1Facturas/>
             </PrivateRoutes>
           }/>
-          <Route path='level1/details_bills' element={
+          <Route path='details_bills' element={
             <PrivateRoutes>
-              <Level1DetallesFacturas/>
+              <DetallesFacturas/>
+            </PrivateRoutes>
+          }/>
+          <Route path='detail_of_one_bill' element={
+            <PrivateRoutes>
+              <DetailOneFact/>
+            </PrivateRoutes>
+          }/>
+          <Route path='ticket' element={
+            <PrivateRoutes>
+              <Ticket/>
             </PrivateRoutes>
           }/>
         </Routes>

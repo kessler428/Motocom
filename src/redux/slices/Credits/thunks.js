@@ -19,11 +19,11 @@ export const getAllCredits = () => {
 export const getAllClosedCredits = () => {
     return async (dispatch) => {
         try {
-            let resp = await fetchConToken("abonos/cancelados");
+            let resp = await fetchConToken("abono?completado=true");
             const body = await resp.json();
     
             if (resp.status === 200) {
-                dispatch(setClosedCreditsList(body.creditos));
+                dispatch(setClosedCreditsList(body.facturasAbonos));
             }
         } catch (error) {
             console.log(error);

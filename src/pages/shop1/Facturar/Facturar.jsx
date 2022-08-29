@@ -7,34 +7,21 @@ import { Header } from "../../../components/shop1/header/Header";
 import { SideBar } from "../../../components/shop1/SideBar";
 import { getOneProduct } from "../../../redux/slices/inventory/thunks";
 import { createBill } from "../../../redux/slices/bills/thunks";
-import { setIsLoading } from "../../../redux/slices/ui/uiSlices";
 import { setButtonState } from "../../../redux/slices/inventory/inventorySlices";
-
-const clients = [
-  {
-    nombres: "Victor Cliente",
-    id: 4,
-  },
-  {
-    nombres: "Kessler torres",
-    id: 5,
-  },
-  {
-    nombres: "Obed Estrada",
-    id: 5,
-  },
-];
+import { getAllClients } from "../../../redux/slices/clients/thunks";
 
 const Facturar = () => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getAllClients());
+  }, [dispatch])
+  
   // Traer informacion de la store del redux
-  const { listInventory, oneProduct, buttonState } = useSelector(
-    (state) => state.inventory
-  );
+  const { listInventory, oneProduct, buttonState } = useSelector((state) => state.inventory);
   const { Access } = useSelector((state) => state.auth);
-
-  const { precioVenta, precioCompra, stock } = oneProduct;
+  const { listClients } = useSelector((state) => state.clients);
+  const { precioVenta, precioCompra, stock, tipoStock } = oneProduct;
 
   // Arrays para guardar los productos seleccionados
   const [data, setData] = useState([]);
@@ -53,6 +40,7 @@ const Facturar = () => {
   const [products, setProducts] = useState({
     cantidad: "",
     productId: "",
+    productName: "",
     descuento: 0,
   });
 
@@ -85,17 +73,6 @@ const Facturar = () => {
     });
   };
 
-  // Funcion para obtener los productos seleccionados
-  const handleSelectChange = (e) => {
-    dispatch(getOneProduct(e.target.value));
-    dispatch(setIsLoading(true));
-
-    setProducts({
-      ...products,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   // Funcion para eliminar un producto del carrito
   const deleteProduct = (id, subtotal) => {
     const filteredProducts = list.filter((item) => item.id !== id);
@@ -105,6 +82,36 @@ const Facturar = () => {
 
     setSubTotal(Number(subTotal) - subtotal);
   };
+
+  const options = listClients.map((item) => {
+    return { value: `${item.id}`, label: `${item.nombres}` };
+  });
+
+  const options2 = listInventory.map((item) => {
+    return { value: `${item.id}`, label: `${item.nombreArticulo}` };
+  });
+
+  const handleClientChange = (e) => {
+    setClientesId(e.value);
+    setClientes(e);
+  };
+
+  const handleProductChange = (e) => {
+    dispatch(setButtonState(false));
+    dispatch(getOneProduct(e.value));
+
+    setProducts({
+      ...products,
+      productId: e.value,
+      productName: e.label,
+    });
+  }
+
+  useEffect(() => {
+    if (total !== 0 && totalRecibido !== 0 && tipoFac !== "" && clientesId !== "") {
+      setFacButton(true);
+    }
+  }, [clientesId, tipoFac, total, totalRecibido]);
 
   // Funcion para agregar productos al array de productos seleccionados
   const addProducts = (products) => {
@@ -189,21 +196,6 @@ const Facturar = () => {
     );
   };
 
-  const options = clients.map((item) => {
-    return { value: `${item.id}`, label: `${item.nombres}` };
-  });
-
-  const handleClientChange = (e) => {
-    setClientesId(e.value);
-    setClientes(e);
-  };
-
-  useEffect(() => {
-    if (total !== 0 && totalRecibido !== 0 && tipoFac !== "") {
-      setFacButton(true);
-    }
-  }, [tipoFac, total, totalRecibido]);
-
   return (
     <>
       <SideBar />
@@ -222,7 +214,7 @@ const Facturar = () => {
               <div className="flex flex-col w-full">
                 <label>Clientes</label>
                 <Select
-                  value={clientes}
+                  value={ clientes }
                   options={options}
                   onChange={handleClientChange}
                 />
@@ -232,7 +224,7 @@ const Facturar = () => {
           <div className="mt-8">
             <h4 className="text-2xl font-bold mb-6">Seleccione productos</h4>
             <div className="flex flex-row gap-6 items-end">
-              <div className="w-28">
+              <div className="w-24">
                 <label className="flex flex-col">
                   Unidades
                   <input
@@ -246,7 +238,7 @@ const Facturar = () => {
                   />
                 </label>
               </div>
-              <div className="w-28">
+              <div className="w-24">
                 <label className="flex flex-col">
                   Stock
                   <input
@@ -257,23 +249,26 @@ const Facturar = () => {
                   />
                 </label>
               </div>
+              <div className="w-24">
+                <label className="flex flex-col">
+                  Tipo stock
+                  <input
+                    type="text"
+                    className="border-2 rounded-lg p-2 mt-1"
+                    value={tipoStock}
+                    disabled
+                  />
+                </label>
+              </div>
               <div className="w-full">
                 <label className="flex flex-col">Producto</label>
-                <select
-                  name="productId"
-                  id="productId"
-                  onChange={handleSelectChange}
-                  className="border-2 rounded-lg p-2 mt-1 w-full"
-                >
-                  <option value="none">Seleccione un producto</option>
-                  {listInventory.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.nombreArticulo}
-                    </option>
-                  ))}
-                </select>
+                <Select
+                  value={ products.productName.label }
+                  options={options2}
+                  onChange={handleProductChange}
+                />
               </div>
-              <div className="w-1/5">
+              <div className="w-24">
                 <label className="flex flex-col">
                   Precio
                   <input
@@ -287,7 +282,7 @@ const Facturar = () => {
                   />
                 </label>
               </div>
-              <div className="w-1/5">
+              <div className="w-24">
                 <label className="flex flex-col">
                   Total
                   <input
@@ -354,8 +349,8 @@ const Facturar = () => {
                         onChange={(e) => setTipoFac(e.target.value)}
                       >
                         <option value="none">Seleccione un tipo de pago</option>
-                        <option value="1">Efectivo</option>
-                        <option value="2">Credito</option>
+                        <option value="1">Credito</option>
+                        <option value="2">Efectivo</option>
                         <option value="3">Tarjeta o deposito</option>
                       </select>
                     </div>

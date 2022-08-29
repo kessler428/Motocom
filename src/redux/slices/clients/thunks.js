@@ -2,10 +2,10 @@ import { fetchConToken } from "../../../helpers/fecth";
 import { setListClients } from "./clientSlice";
 
 export const getAllClients = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         try {
-            const resp = fetchConToken('cliente')
-            const data = resp.json();
+            const resp = await fetchConToken('cliente')
+            const data = await resp.json();
 
             if(resp.status === 200) {
                 dispatch(setListClients(data.data));

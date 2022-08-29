@@ -18,7 +18,7 @@ export const SideBar = () => {
         <SideBarIcon icon={<FaClipboardList size="20" />} text="Inventario" />
       </NavLink>
       <NavLink
-        to="/Level1/bills"
+        to="/bills"
         className={({ isActive }) =>
           isActive
             ? "bg-orange mb-3 p-3 text-white rounded mx-2"
@@ -28,7 +28,7 @@ export const SideBar = () => {
         <SideBarIcon icon={<FaFileInvoiceDollar size="20" />} text="Facturar" />
       </NavLink>
       <NavLink
-        to="/Level1/details_bills"
+        to="/details_bills"
         className={({ isActive }) =>
           isActive
             ? "bg-orange mb-3 p-3 text-white rounded mx-2"

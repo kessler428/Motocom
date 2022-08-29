@@ -8,6 +8,7 @@ import { reportsSlice } from "./slices/reports/reportSlices";
 import { uiSlice } from "./slices/ui/uiSlices";
 import { authSlice } from "./slices/auth/authSlice";
 import { billSlice } from "./slices/bills/billsSlice";
+import { clientSlice } from "./slices/clients/clientSlice";
 
 const reducers = combineReducers({
   ui: uiSlice.reducer,
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   inventory: inventorySlice.reducer,
   credits : creditsSlice.reducer,
   reports: reportsSlice.reducer,
+  clients: clientSlice.reducer,
   bill: billSlice.reducer,
 });
 
