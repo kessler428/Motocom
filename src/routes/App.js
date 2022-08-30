@@ -19,6 +19,10 @@ const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
 const Clients = lazy(() => import('../pages/Admin/Clients/Clients'))
 const AddClient = lazy(() => import('../pages/Admin/Clients/AddClient'))
 const EditClient = lazy(() => import('../pages/Admin/Clients/EditClient'))
+const Shop1 = lazy(() => import('../pages/Admin/shop/Shop1'))
+const Shop2 = lazy(() => import('../pages/Admin/shop/Shop2'))
+const Shop3 = lazy(() => import('../pages/Admin/shop/Shop3'))
+const Shop4 = lazy(() => import('../pages/Admin/shop/Shop4'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
@@ -95,6 +99,26 @@ export const App = () => {
           <Route path='clients/edit_client/:clientId' element={
             <PrivateRoutes>
               <EditClient />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_one' element={
+            <PrivateRoutes>
+              <Shop1 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_two' element={
+            <PrivateRoutes>
+              <Shop2 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_three' element={
+            <PrivateRoutes>
+              <Shop3 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_four' element={
+            <PrivateRoutes>
+              <Shop4 />
             </PrivateRoutes> 
           }/>
 
