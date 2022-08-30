@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { fetchConToken, fetchSinToken } from "../../../helpers/fecth";
+import { setIsLoading } from "../ui/uiSlices";
 import { setLoginAuth, setLogout } from "./authSlice";
 
 export const login = (email, password) => {
@@ -15,14 +16,12 @@ export const login = (email, password) => {
           );
  
           const body = await resp.json();
-
-          console.log(body)
  
           if (body.success === true) {
-            localStorage.setItem("token", body.accessToken);
-
+             localStorage.setItem("token", body.accessToken);
+             
             dispatch(
-               setLoginAuth({
+                setLoginAuth({
                   token: body.accessToken,
                   id: body.user.id,
                   almacenId: body.almacen.id,
@@ -31,6 +30,7 @@ export const login = (email, password) => {
                   rol: body.user.rol,
                })
             );
+            dispatch(setIsLoading(false));
             
             if(body.user.rol === "Administrador"){
                window.location = '/index';

@@ -16,6 +16,9 @@ const Reports = lazy(() => import('../pages/Admin/Reports/Reports'))
 const Credits = lazy(() => import('../pages/Admin/Credits/Credits'))
 const ClosedCredits = lazy(() => import('../pages/Admin/Credits/ClosedCredits'))
 const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
+const Clients = lazy(() => import('../pages/Admin/Clients/Clients'))
+const AddClient = lazy(() => import('../pages/Admin/Clients/AddClient'))
+const EditClient = lazy(() => import('../pages/Admin/Clients/EditClient'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
@@ -77,6 +80,21 @@ export const App = () => {
           <Route path='exchange' element={
             <PrivateRoutes>
               <Exchange/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='clients' element={
+            <PrivateRoutes>
+              <Clients/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='add_client' element={
+            <PrivateRoutes>
+              <AddClient />
+            </PrivateRoutes> 
+          }/>
+          <Route path='clients/edit_client/:clientId' element={
+            <PrivateRoutes>
+              <EditClient />
             </PrivateRoutes> 
           }/>
 

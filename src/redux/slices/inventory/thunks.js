@@ -111,7 +111,7 @@ export const addProducts = (
 
             const body = await resp.json();
 
-            if (resp.status === 200) {
+            if (resp.status === 201) {
                 Swal.fire({
                     title: 'Producto agregado',
                     text: 'El producto se ha agregado correctamente',

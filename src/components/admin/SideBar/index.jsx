@@ -47,7 +47,7 @@ export const SideBar = () => {
         <SideBarIcon icon={<FaTelegramPlane size="20" />} text="Enviar" />
       </NavLink>
       <NavLink
-        to="/scanner"
+        to="/clients"
         className={({ isActive }) =>
           isActive
             ? "bg-orange mb-3 p-3 text-white rounded mx-2"
