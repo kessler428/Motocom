@@ -52,7 +52,7 @@ export const App = () => {
               <AddProduct/>
             </PrivateRoutes>
           }/>
-          <Route path='edit_product/:productId' element={
+          <Route path='inventory/edit_product/:productId' element={
             <PrivateRoutes>
               <EditProduct/>
             </PrivateRoutes>

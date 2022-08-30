@@ -102,20 +102,20 @@ const AddProduct = () => {
                     <div className='text-4xl py-4 text-orange font-bold'>
                         <h1>Agregar Producto</h1>
                     </div>
-                    <div className='flex flex-wrap gap-4 font-bold justify-around mt-10 px-12'>
-                        <div className='w-full md:w-[300px]'>
+                    <div className='flex flex-wrap font-semibold justify-around mt-10 px-12'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Nombre del producto
                                 <input
                                     type="text"
                                     name='nombreArticulo'
                                     onChange={handleChange}
                                     value={datos.nombreArticulo}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                     required
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Codigo 1
                                 <input
                                     min={0}
@@ -123,45 +123,45 @@ const AddProduct = () => {
                                     name='codigoUno'
                                     onChange={handleChange}
                                     value={datos.codigoUno}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                     required
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Codigo 2
                                 <input
                                     type="text"
                                     name='codigoDos'
                                     onChange={handleChange}
                                     value={datos.codigoDos}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Marca
                                 <input
                                     type='text'
                                     name='marca'
                                     value={datos.marca}
                                     onChange={handleChange}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Modelo / Presentacion
                                 <input
                                     type="text"
                                     name='modelo'
                                     onChange={handleChange}
                                     value={datos.modelo}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Precio de compra
                                 <input
                                     min={0}
@@ -170,12 +170,12 @@ const AddProduct = () => {
                                     step='0.01'
                                     onChange={handleChange}
                                     value={datos.precioCompra}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                     required
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Precio de venta
                                 <input
                                     min={0}
@@ -184,17 +184,17 @@ const AddProduct = () => {
                                     step='0.01'
                                     onChange={handleChange}
                                     value={datos.precioVenta}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                     required
                                 />
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Tipo de stock
                                 <select
                                     name='typeStock'
                                     onChange={(e) => setTypeStock(e.target.value)}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                 >
                                     <option value='none'>Seleccione un tipo</option>
                                     {
@@ -210,7 +210,7 @@ const AddProduct = () => {
                                 </select>
                             </label>
                         </div>
-                        <div className='w-full md:w-[300px]'>
+                        <div className='w-full'>
                             <label className='flex flex-col my-2 text-lg'>Stock
                                 <input
                                     min={0}
@@ -218,7 +218,7 @@ const AddProduct = () => {
                                     name='stock'
                                     onChange={handleChange}
                                     value={datos.stock}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                     required
                                 />
                             </label>
@@ -230,15 +230,18 @@ const AddProduct = () => {
                                     name='notas'
                                     value={datos.notas}
                                     onChange={handleChange}
-                                    className='border rounded-lg border-black py-2 px-3 font-normal'
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                 />
                             </label>
                         </div>
-                    </div>
-                    <div className='flex justify-end py-6'>
-                        <button className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>
-                            Agregar
-                        </button>
+                        <div className='flex justify-end gap-6 py-6 w-full'>
+                            <NavLink to='/inventory' className='bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-lg text-white font-bold'>
+                                Regresar
+                            </NavLink>
+                            <button className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>
+                                Agregar
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

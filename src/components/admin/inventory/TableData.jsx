@@ -11,16 +11,16 @@ import { deleteProductById } from '../../../redux/slices/inventory/thunks';
 import Swal from 'sweetalert2';
 import { SpinerLoading } from '../../SpinnerLoading';
 import { setIsLoading } from '../../../redux/slices/ui/uiSlices';
+import { useNavigate } from 'react-router-dom';
 
 
 export const TableData = () => {
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const { listInventory } = useSelector((state) => state.inventory);
   const { isLoading } = useSelector((state) => state.ui)
   const [searchProduct, setSearchProduct] = useState('');
-
-  console.log(listInventory);
 
   const deleteProduct = (id) => {
     Swal.fire({
@@ -40,7 +40,7 @@ export const TableData = () => {
   }
 
   const editProduct = (id) => {
-    
+    Navigate(`edit_product/${id}`);
   }
 
   const columns = [
@@ -87,7 +87,7 @@ export const TableData = () => {
     {
       name: "Acciones",
       cell: row =>
-        <div className='flex flex-row gap-4 items-center justify-center'>
+        <div className='flex flex-row gap-4 justify-start w-80'>
           <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => editProduct(row.id) }><FaPencilAlt className='w-5 h-5'/></button>
           <button className='text-red-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => deleteProduct(row.id) }><RiDeleteBin5Line className='w-5 h-5'/></button>
         </div>

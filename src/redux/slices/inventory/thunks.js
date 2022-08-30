@@ -134,6 +134,7 @@ export const addProducts = (
 }
 
 export const editProducts = (
+    productId,
     nombreArticulo,
     codigoUno,
     codigoDos,
@@ -142,12 +143,13 @@ export const editProducts = (
     precioVenta,
     precioCompra,
     notas,
-    stock
+    stock,
+    tipoStockId
     ) => { 
     return async (dispatch) => {
         try {
             const resp = await fetchConToken(
-            'almacen',
+            `almacen/${productId}`,
                 {
                     nombreArticulo,
                     codigoUno,
@@ -159,19 +161,16 @@ export const editProducts = (
                     precioRutaUno: 0,
                     precioRutaDos: 0,
                     notas,
-                    stock
+                    stock,
+                    tipoStockId
                 },
-            'POST'
+            'PUT'
             );
-            
-            const body = await resp.json();
-
-            console.log(body);
 
             if (resp.status === 200) {
                 Swal.fire({
-                    title: 'Producto agregado',
-                    text: 'El producto se ha agregado correctamente',
+                    title: 'Producto editado.!',
+                    text: 'El producto se ha editado correctamente',
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 }).then((result) => {

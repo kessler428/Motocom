@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { fetchConToken } from "../../../helpers/fecth";
+import { setIsLoading } from "../ui/uiSlices";
 import { setListClients, setOneClient } from "./clientSlice";
 
 export const getAllClients = () => {
@@ -100,6 +101,7 @@ export const getOneClient = (id) => {
 
             if(resp.status === 200) {
                 dispatch(setOneClient(data.data));
+                dispatch(setIsLoading(false));
             }
             
         } catch (error) {
