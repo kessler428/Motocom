@@ -4,7 +4,7 @@ import { Header } from '../../../components/admin/header/Header'
 import { SideBar } from '../../../components/admin/SideBar'
 import { useSelector } from 'react-redux'
 import { TableData } from '../../../components/admin/reports/TableData';
-import { SpinerLoading } from '../../../components/SnpinnerLoading';
+import { SpinerLoading } from '../../../components/SpinnerLoading';
 
 const Reports = () => {
 

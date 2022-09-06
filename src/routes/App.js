@@ -1,7 +1,8 @@
 import React from 'react';
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { SpinerLoading } from '../components/SnpinnerLoading';
+import { SpinerLoading } from '../components/SpinnerLoading';
+import { PrivateRoutes } from './PrivateRoutes';
 
 const Login = lazy(() => import('../pages/Login'));
 
@@ -15,12 +16,21 @@ const Reports = lazy(() => import('../pages/Admin/Reports/Reports'))
 const Credits = lazy(() => import('../pages/Admin/Credits/Credits'))
 const ClosedCredits = lazy(() => import('../pages/Admin/Credits/ClosedCredits'))
 const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
+const Clients = lazy(() => import('../pages/Admin/Clients/Clients'))
+const AddClient = lazy(() => import('../pages/Admin/Clients/AddClient'))
+const EditClient = lazy(() => import('../pages/Admin/Clients/EditClient'))
+const Shop1 = lazy(() => import('../pages/Admin/shop/Shop1'))
+const Shop2 = lazy(() => import('../pages/Admin/shop/Shop2'))
+const Shop3 = lazy(() => import('../pages/Admin/shop/Shop3'))
+const Shop4 = lazy(() => import('../pages/Admin/shop/Shop4'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
 const InventoryLevel1 =lazy(()=> import('../pages/shop1/Inventario/Products'))
 const Level1Facturas = lazy(() => import('../pages/shop1/Facturar/Facturar'))
-const Level1DetallesFacturas = lazy(() => import('../pages/shop1/Facturar/DetallesFacturas'))
+const DetallesFacturas = lazy(() => import('../pages/shop1/Facturar/DetallesFacturas'))
+const DetailOneFact = lazy(() => import('../pages/shop1/Facturar/DetailOneFact'))
+const Ticket = lazy(() => import('../pages/shop1/Facturar/Ticket'))
 
 export const App = () => {
   return (
@@ -30,21 +40,119 @@ export const App = () => {
           <Route path='/' element={ <Login/> } />
 
           {/* Admin */}
-          <Route path='index' element={ <IndexAdmin/> } />
-          <Route path='inventory' element={ <Inventory/> } />
-          <Route path='add_product' element={ <AddProduct/> } />
-          <Route path='edit_product/:productId' element={ <EditProduct/> } />
-          <Route path='generate_report' element={ <GenerateReport/> } />
-          <Route path='generate_report/report' element={ <Reports/> } />
-          <Route path='credits' element={ <Credits/> } />
-          <Route path='closed_credits' element={ <ClosedCredits/> } />
-          <Route path='exchange' element={ <Exchange/> } />
+          <Route path='index' element={
+              <PrivateRoutes>
+                <IndexAdmin/>
+              </PrivateRoutes>
+            }
+          />
+          <Route path='inventory' element={
+            <PrivateRoutes>
+              <Inventory/> 
+            </PrivateRoutes>
+          }/>
+          <Route path='add_product' element={
+            <PrivateRoutes>
+              <AddProduct/>
+            </PrivateRoutes>
+          }/>
+          <Route path='inventory/edit_product/:productId' element={
+            <PrivateRoutes>
+              <EditProduct/>
+            </PrivateRoutes>
+          }/>
+          <Route path='generate_report' element={
+            <PrivateRoutes>
+              <GenerateReport/>
+            </PrivateRoutes>
+          }/>
+          <Route path='generate_report/report' element={
+            <PrivateRoutes>
+              <Reports/> 
+            </PrivateRoutes>
+          }/>
+          <Route path='credits' element={
+            <PrivateRoutes>
+              <Credits/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='closed_credits' element={
+            <PrivateRoutes>
+              <ClosedCredits/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='exchange' element={
+            <PrivateRoutes>
+              <Exchange/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='clients' element={
+            <PrivateRoutes>
+              <Clients/>
+            </PrivateRoutes> 
+          }/>
+          <Route path='add_client' element={
+            <PrivateRoutes>
+              <AddClient />
+            </PrivateRoutes> 
+          }/>
+          <Route path='clients/edit_client/:clientId' element={
+            <PrivateRoutes>
+              <EditClient />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_one' element={
+            <PrivateRoutes>
+              <Shop1 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_two' element={
+            <PrivateRoutes>
+              <Shop2 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_three' element={
+            <PrivateRoutes>
+              <Shop3 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_four' element={
+            <PrivateRoutes>
+              <Shop4 />
+            </PrivateRoutes> 
+          }/>
 
           {/* Level 1 */}
-          <Route path='level1/index' element={ <Level1Index/> } />
-          <Route path='level1/inventory' element={<InventoryLevel1/>}/>
-          <Route path='level1/bills' element={<Level1Facturas/>}/>
-          <Route path='level1/details_bills' element={<Level1DetallesFacturas/>}/>
+          <Route path='level1/index' element={
+            <PrivateRoutes>
+              <Level1Index/>
+            </PrivateRoutes>
+          }/>
+          <Route path='level1/inventory' element={
+            <PrivateRoutes>
+              <InventoryLevel1/>
+            </PrivateRoutes>
+          }/>
+          <Route path='bills' element={
+            <PrivateRoutes>
+              <Level1Facturas/>
+            </PrivateRoutes>
+          }/>
+          <Route path='details_bills' element={
+            <PrivateRoutes>
+              <DetallesFacturas/>
+            </PrivateRoutes>
+          }/>
+          <Route path='detail_of_one_bill' element={
+            <PrivateRoutes>
+              <DetailOneFact/>
+            </PrivateRoutes>
+          }/>
+          <Route path='ticket' element={
+            <PrivateRoutes>
+              <Ticket/>
+            </PrivateRoutes>
+          }/>
         </Routes>
       </BrowserRouter>
     </Suspense>
