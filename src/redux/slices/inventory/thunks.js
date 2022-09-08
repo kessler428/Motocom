@@ -9,13 +9,10 @@ import {
 } from "./inventorySlices";
 
 export const getAllInventory = (id) => {
-    console.log(id)
     return async (dispatch) => {
         try {
             const resp = await fetchConToken(`almacen?tipoAlmacenId=${id}&stockValidos=1`);
             const body = await resp.json();
-
-            console.log(body)
     
             if (resp.status === 200) {
                 dispatch(setListInventory(body.almacenes));

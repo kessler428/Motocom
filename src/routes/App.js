@@ -31,6 +31,7 @@ const Level1Facturas = lazy(() => import('../pages/shop1/Facturar/Facturar'))
 const DetallesFacturas = lazy(() => import('../pages/shop1/Facturar/DetallesFacturas'))
 const DetailOneFact = lazy(() => import('../pages/shop1/Facturar/DetailOneFact'))
 const Ticket = lazy(() => import('../pages/shop1/Facturar/Ticket'))
+const Baucher = lazy(() => import('../pages/shop1/Facturar/Baucher'))
 
 export const App = () => {
   return (
@@ -151,6 +152,11 @@ export const App = () => {
           <Route path='ticket' element={
             <PrivateRoutes>
               <Ticket/>
+            </PrivateRoutes>
+          }/>
+          <Route path='baucher' element={
+            <PrivateRoutes>
+              <Baucher/>
             </PrivateRoutes>
           }/>
         </Routes>

@@ -38,6 +38,7 @@ const Facturar = () => {
   const [subTotal, setSubTotal] = useState("");
   const [totalRecibido, setTotalRecibido] = useState(0);
   const [tipoFac, setTipoFac] = useState("");
+  const [tipoFactura, setTipoFactura] = useState("");
   const [stockView, setStock] = useState(0);
   const [facButton, setFacButton] = useState(false);
   const [clientes, setClientes] = useState("");
@@ -114,10 +115,10 @@ const Facturar = () => {
   }
 
   useEffect(() => {
-    if (total !== 0 && totalRecibido !== 0 && tipoFac !== "" && clientesId !== "") {
+    if (total !== 0 && totalRecibido !== 0 && tipoFac !== "" && clientesId !== "" && tipoFactura !== "") {
       setFacButton(true);
     }
-  }, [clientesId, tipoFac, total, totalRecibido]);
+  }, [clientesId, tipoFac, tipoFactura, total, totalRecibido]);
 
   // Funcion para agregar productos al array de productos seleccionados
   const addProducts = (products) => {
@@ -197,7 +198,8 @@ const Facturar = () => {
         tipoAlmacenId,
         subTotal,
         descuento,
-        data
+        data,
+        Number(tipoFactura),
       )
     );
   };
@@ -381,6 +383,19 @@ const Facturar = () => {
                         value={totalRecibido}
                         onChange={(e) => setTotalRecibido(e.target.value)}
                       />
+                    </div>
+                    <div className=" mb-2">
+                      <label className="text-xl font-semibold">
+                        Tipo de factura
+                      </label>
+                      <select
+                        className="border-2 p-2 rounded-lg w-full mt-1"
+                        onChange={(e) => setTipoFactura(e.target.value)}
+                      >
+                        <option value="none">Seleccione un tipo de factura</option>
+                        <option value="1">Baucher</option>
+                        <option value="2">Factura</option>
+                      </select>
                     </div>
                   </div>
                   <div className="w-80 border p-4 rounded-3xl">
