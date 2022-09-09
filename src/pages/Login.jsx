@@ -1,120 +1,108 @@
 //Librerias
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { SpinerLoading } from "../components/SpinnerLoading";
+import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/auth/thunks";
-import { setIsLoading } from "../redux/slices/ui/uiSlices";
-
 
 const Login = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-    const { isLoading } = useSelector(state => state.ui)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const onsubmit = (data) => {
+    const { email, password } = data;
+    dispatch(login(email, password));
+  };
 
-    const onsubmit = (data) => {
-        const { email, password } = data;
-        dispatch(login(email, password));
-        dispatch(setIsLoading(true));
-    };
+  return (
+    <>
+      <div className="flex w-full bg-gradient-to-r from-[#53869c] to-[#2c0950]">
+        <div className="w-full h-screen flex items-center justify-center">
+          <div className="w-4/5 sm:w-2/3 md:w-1/2 lg:w-1/3 border-2 p-6 rounded-xl">
+            <h1 className="text-3xl lg:text-4xl text-center font-bold pb-8 text-white">
+              MOTOCOM DE NICARAGUA
+            </h1>
+            <form
+              onSubmit={handleSubmit(onsubmit)}
+              className="justify-center items-center  flex flex-col"
+            >
+              <div className="mb-6 w-full border pt-1 bg-white rounded-lg">
+                <label className="block text-gray-500 text-sm ml-3">
+                  Direccion de correo electronico
+                </label>
+                <input
+                  className="w-full text-gray-700 px-4 outline-none pb-2 rounded-3xl"
+                  type="email"
+                  autoComplete="off"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Escribe tu correo",
+                    },
 
-    return (
-        <>
-            {
-                isLoading ? <SpinerLoading /> :
-                (
-                    <div className="flex w-full bg-gradient-to-r from-[#53869c] to-[#2c0950]">
-                        <div className="w-full h-screen flex items-center justify-center">
-                            <div className="w-4/5 sm:w-2/3 md:w-1/2 lg:w-1/3 border-2 p-6 rounded-xl">
-                                <h1 className="text-3xl lg:text-4xl text-center font-bold pb-8 text-white">
-                                    MOTOCOM DE NICARAGUA
-                                </h1>
-                            <form
-                                onSubmit={handleSubmit(onsubmit)}
-                                className="justify-center items-center  flex flex-col"
-                            >
-                                <div className="mb-6 w-full border pt-1 bg-white rounded-lg">
-                                <label className="block text-gray-500 text-sm ml-3">
-                                    Direccion de correo electronico
-                                </label>
-                                <input
-                                    className="w-full text-gray-700 px-4 outline-none pb-2 rounded-3xl"
-                                    type="email"
-                                    autoComplete="off"
-                                    {...register("email", {
-                                    required: {
-                                        value: true,
-                                        message: "Escribe tu correo",
-                                    },
-            
-                                    maxLength: {
-                                        value: 40,
-                                        message: "Maximo de caracteres 40",
-                                    },
-            
-                                    minLength: {
-                                        value: 2,
-                                        message: "Minimo de caracteres 2",
-                                    },
-            
-                                    pattern: {
-                                        value: /^\S+@\S+$/i,
-                                        message: "Escribe un correo valido",
-                                    },
-                                    })}
-                                />
-                                <p className="text-red-900 text-1s absolute">
-                                    {errors.email && errors.email.message}
-                                </p>
-                                </div>
-                                <div className="mb-6 w-full border pt-1 bg-white rounded-lg">
-                                <label className="block text-gray-500 text-sm ml-3">
-                                    Contraseña
-                                </label>
-                                <input
-                                    className="w-full text-gray-700 px-4 pb-2 outline-none rounded-3xl"
-                                    autoComplete="off"
-                                    type="password"
-                                    {...register("password", {
-                                    required: {
-                                        value: true,
-                                        message: "Escribe tu contraseña",
-                                    },
-            
-                                    maxLength: {
-                                        value: 25,
-                                        message: "Maximo de caracteres 25",
-                                    },
-            
-                                    minLength: {
-                                        value: 2,
-                                        message: "Minimo de caracteres 2",
-                                    },
-                                    })}
-                                />
-                                <p className="text-red-900 text-1s absolute">
-                                    {errors.password && errors.password.message}
-                                </p>
-                                </div>
-                                <div className="w-full">
-                                <button className="px-4 w-full rounded-lg py-4 hover:bg-background border-2 border-white text-white font-bold">
-                                    Iniciar Sesión
-                                </button>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
-            
-        </>
-    );
+                    maxLength: {
+                      value: 40,
+                      message: "Maximo de caracteres 40",
+                    },
+
+                    minLength: {
+                      value: 2,
+                      message: "Minimo de caracteres 2",
+                    },
+
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Escribe un correo valido",
+                    },
+                  })}
+                />
+                <p className="text-red-900 text-1s absolute">
+                  {errors.email && errors.email.message}
+                </p>
+              </div>
+              <div className="mb-6 w-full border pt-1 bg-white rounded-lg">
+                <label className="block text-gray-500 text-sm ml-3">
+                  Contraseña
+                </label>
+                <input
+                  className="w-full text-gray-700 px-4 pb-2 outline-none rounded-3xl"
+                  autoComplete="off"
+                  type="password"
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "Escribe tu contraseña",
+                    },
+
+                    maxLength: {
+                      value: 25,
+                      message: "Maximo de caracteres 25",
+                    },
+
+                    minLength: {
+                      value: 2,
+                      message: "Minimo de caracteres 2",
+                    },
+                  })}
+                />
+                <p className="text-red-900 text-1s absolute">
+                  {errors.password && errors.password.message}
+                </p>
+              </div>
+              <div className="w-full">
+                <button className="px-4 w-full rounded-lg py-4 hover:bg-background border-2 border-white text-white font-bold">
+                  Iniciar Sesión
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Login;
