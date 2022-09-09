@@ -14,9 +14,14 @@ export const login = (email, password) => {
         "POST"
       );
 
+      alert('hola')
+
       const body = await resp.json();
 
+      console.log(body);
+
       if (body.success === true) {
+        alert('hola')
         localStorage.setItem("token", body.accessToken);
 
         dispatch(
