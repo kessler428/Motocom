@@ -19,6 +19,7 @@ const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
 const Clients = lazy(() => import('../pages/Admin/Clients/Clients'))
 const AddClient = lazy(() => import('../pages/Admin/Clients/AddClient'))
 const EditClient = lazy(() => import('../pages/Admin/Clients/EditClient'))
+const Shop = lazy(() => import('../pages/Admin/shop/Index'))
 const Shop1 = lazy(() => import('../pages/Admin/shop/Shop1'))
 const Shop2 = lazy(() => import('../pages/Admin/shop/Shop2'))
 const Shop3 = lazy(() => import('../pages/Admin/shop/Shop3'))
@@ -100,6 +101,11 @@ export const App = () => {
           <Route path='clients/edit_client/:clientId' element={
             <PrivateRoutes>
               <EditClient />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop' element={
+            <PrivateRoutes>
+              <Shop />
             </PrivateRoutes> 
           }/>
           <Route path='shop_one' element={

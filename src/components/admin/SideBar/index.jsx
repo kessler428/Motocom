@@ -1,4 +1,4 @@
-import { FaCalculator, FaTh, FaMoneyBillWave, FaUsers, FaTools, FaTelegramPlane } from 'react-icons/fa'
+import { FaCalculator, FaTh, FaMoneyBillWave, FaUsers, FaTools,FaShoppingCart, FaTelegramPlane } from 'react-icons/fa'
 
 import "../../../index.css";
 import { NavLink } from "react-router-dom";
@@ -25,6 +25,16 @@ export const SideBar = () => {
         }
       >
         <SideBarIcon icon={<FaTh size="20" />} text="Inventario" />
+      </NavLink>
+      <NavLink
+        to="/shop"
+        className={({ isActive }) =>
+          isActive
+            ? "bg-orange mb-3 p-3 text-white rounded mx-2"
+            : "mb-3 p-4 text-white hover:bg-hover-orange"
+        }
+      >
+        <SideBarIcon icon={<FaShoppingCart size="20" />} text="Tiendas" />
       </NavLink>
       <NavLink
         to="/credits"

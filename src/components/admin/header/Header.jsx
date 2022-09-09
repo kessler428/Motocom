@@ -10,6 +10,8 @@ import { Logout } from "../../../redux/slices/auth/thunks";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+import logo from '../../../img/motocom.jpg';
+
 export const Header = () => {
 
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ export const Header = () => {
           </button>
         </div>
         <NavLink to='/index' className="">
-          <p className='text-orange text-5xl pl-14 font-semibold'>MOTOCOM</p>
+          <img className="w-16 -mt-2" src={logo} alt="" />
         </NavLink>
         <div className=" w-auto flex justify-center items-center mr-4">
           <button onClick={closeSession}>

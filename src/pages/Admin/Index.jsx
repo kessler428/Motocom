@@ -4,7 +4,6 @@ import {Header} from '../../components/admin/header/Header'
 import { FaWarehouse, FaUsers, FaCashRegister, FaMoneyBillWave } from 'react-icons/fa'
 import SalesChart from '../../components/admin/shop/SalesChart'
 import DonutChart from '../../components/admin/shop/DonutChart'
-import { NavLink } from 'react-router-dom'
 
 const Index = () => {
   return (
@@ -60,43 +59,7 @@ const Index = () => {
           <SalesChart />
           <DonutChart />
         </div>
-        <h1 className="text-4xl sm:text-4xl md:text-4xl text-titleTextColor font-bold mt-8">
-          Tiendas
-        </h1>
-        <div className="mt-6 flex flex-row justify-between items-center p-4">
-          <div className="bg-dark-blue text-white p-4 rounded-lg border w-60">
-            <div className="flex flex-col justify-center items-center">
-              <h3 className="text-xl font-bold">Tienda #1</h3>
-              <NavLink to="/shop_one" className="bg-orange hover:bg-hover-orange p-2 rounded-lg mt-2">
-                Ir a la tienda
-              </NavLink>
-            </div>
-          </div>
-          <div className="bg-dark-blue text-white p-4 rounded-lg border w-60">
-            <div className="flex flex-col justify-between items-center">
-              <h3 className="text-xl font-bold">Tienda #2</h3>
-              <NavLink to="/shop_two" className="bg-orange hover:bg-hover-orange p-2 rounded-lg mt-2">
-                Ir a la tienda
-              </NavLink>
-            </div>
-          </div>
-          <div className="bg-dark-blue text-white p-4 rounded-lg border w-60">
-            <div className="flex flex-col justify-between items-center">
-              <h3 className="text-xl font-bold">Tienda #3</h3>
-              <NavLink to="/shop_three" className="bg-orange hover:bg-hover-orange p-2 rounded-lg mt-2">
-                Ir a la tienda
-              </NavLink>
-            </div>
-          </div>
-          <div className="bg-dark-blue text-white p-4 rounded-lg border w-60">
-            <div className="flex flex-col justify-between items-center">
-              <h3 className="text-xl font-bold">Tienda #4</h3>
-              <NavLink to="/shop_four" className="bg-orange hover:bg-hover-orange p-2 rounded-lg mt-2">
-                Ir a la tienda
-              </NavLink>
-            </div>
-          </div>
-          </div>
+        
       </div>
     </>
   )
