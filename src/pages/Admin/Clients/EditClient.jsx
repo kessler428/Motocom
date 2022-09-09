@@ -76,68 +76,68 @@ const EditClient = () => {
                         <SideBar />
                         <Header />
 
-                        <div className="mx-auto w-10/12 sm:pl-12 py-24">
+                        <div className="mx-auto w-11/12 sm:pl-56 py-24">
                             <div className='w-full flex flex-col'>
                                 <h1 className="text-2xl sm:text-4xl md:text-4xl font-bold">
                                     Editar cliente
                                 </h1>
                                 <form onSubmit={handleSubmit} className='bg-white mt-10 rounded-lg'>
-                                    <div className='flex flex-wrap py-20 justify-center gap-4'>
-                                        <div className='w-80 flex flex-col'>
+                                    <div className='flex flex-wrap p-10 justify-center gap-4'>
+                                        <div className='w-full flex flex-col'>
                                             <label className='font-semibold'>Nombres</label>
                                             <input
                                                 type="text"
-                                                className='border border-black rounded py-1 px-2'
+                                                className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                                 placeholder='Nombres'
                                                 value={datos.nombres}
                                                 onChange={(e) => setDatos({ ...datos, nombres: e.target.value })}
                                             />
                                         </div>
-                                        <div className='w-80 flex flex-col'>
+                                        <div className='w-full flex flex-col'>
                                             <label className='font-semibold'>Apellidos</label>
                                             <input
                                                 type="text"
-                                                className='border border-black rounded py-1 px-2'
+                                                className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                                 placeholder='Apellidos'
                                                 value={datos.apellidos}
                                                 onChange={(e) => setDatos({ ...datos, apellidos: e.target.value })}
                                             />
                                         </div>
-                                        <div className='w-80 flex flex-col'>
+                                        <div className='w-full flex flex-col'>
                                             <label className='font-semibold'>Numero Ruc o cedula</label>
                                             <input
                                                 type="text"
-                                                className='border border-black rounded py-1 px-2'
+                                                className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                                 placeholder='Numero Ruc o cedula'
                                                 value={datos.ruc}
                                                 onChange={(e) => setDatos({ ...datos, ruc: e.target.value })}
                                             />
                                         </div>
-                                        <div className='w-80 flex flex-col'>
+                                        <div className='w-full flex flex-col'>
                                             <label className='font-semibold'>Direccion</label>
                                             <input
                                                 type="text"
-                                                className='border border-black rounded py-1 px-2'
+                                                className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                                 placeholder='Direccion'
                                                 value={datos.direccion}
                                                 onChange={(e) => setDatos({ ...datos, direccion: e.target.value })}
                                             />
                                         </div>
-                                        <div className='w-80 flex flex-col'>
+                                        <div className='w-full flex flex-col'>
                                             <label className='font-semibold'>Telefono</label>
                                             <input
                                                 type="text"
-                                                className='border border-black rounded py-1 px-2'
+                                                className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                                 placeholder='Telefono'
                                                 value={datos.telefono}
                                                 onChange={(e) => setDatos({ ...datos, telefono: e.target.value })}
                                             />
                                         </div>
-                                        <div className='w-80 flex flex-col'>
+                                        <div className='w-full flex flex-col'>
                                             <label className='font-semibold'>Email</label>
                                             <input
                                                 type="text"
-                                                className='border border-black rounded py-1 px-2'
+                                                className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
                                                 placeholder='Email'
                                                 value={datos.email}
                                                 onChange={(e) => setDatos({ ...datos, email: e.target.value })}

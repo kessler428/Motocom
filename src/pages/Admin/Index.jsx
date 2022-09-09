@@ -7,13 +7,13 @@ import DonutChart from '../../components/admin/shop/DonutChart'
 
 const Index = () => {
   return (
-    <>
+    <div className='flex flex-row'>
       <SideBar />
       <Header />
 
       <hr />
 
-      <div className="mx-auto w-10/12 sm:pl-12 py-24">
+      <div className="mx-auto w-11/12 sm:pl-56 py-24">
         <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold">
           Tablero Principal
         </h1>
@@ -61,7 +61,7 @@ const Index = () => {
         </div>
         
       </div>
-    </>
+    </div>
   )
 }
 

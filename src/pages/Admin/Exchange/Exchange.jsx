@@ -32,10 +32,10 @@ const Exchange = () => {
     }
   };
   return (
-    <>
+    <div className='flex flex-row'>
       <SideBar />
       <Header />
-      <div className="mx-auto w-10/12 sm:pl-12 py-24">
+      <div className="mx-auto w-11/12 sm:pl-56 py-24">
         <div className="w-full flex flex-row justify-between">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold">
             Enviar productos
@@ -129,7 +129,7 @@ const Exchange = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

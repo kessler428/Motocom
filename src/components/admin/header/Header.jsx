@@ -1,5 +1,4 @@
 import "../../../index.css";
-import { NavLink } from 'react-router-dom';
 
 import { BiLogOut, BiMenu } from "react-icons/bi";
 import { useState } from "react";
@@ -9,8 +8,6 @@ import { useDispatch } from "react-redux";
 import { Logout } from "../../../redux/slices/auth/thunks";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
-import logo from '../../../img/motocom.jpg';
 
 export const Header = () => {
 
@@ -39,15 +36,13 @@ export const Header = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="w-full flex absolute flex-row h-16 justify-between py-2 bg-dark-blue border-none">
+      <div className="w-full flex absolute flex-row h-16 justify-end py-2 bg-dark-blue border-none">
         <div className="sm:hidden flex items-center justify-center">
           <button onClick={() => setModal(!modal)}>
             <BiMenu className="text-white h-6 w-6"/>
           </button>
         </div>
-        <NavLink to='/index' className="">
-          <img className="w-16 -mt-2" src={logo} alt="" />
-        </NavLink>
+        
         <div className=" w-auto flex justify-center items-center mr-4">
           <button onClick={closeSession}>
             <abbr title="Cerrar sesion">
