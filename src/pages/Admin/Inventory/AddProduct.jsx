@@ -82,13 +82,13 @@ const AddProduct = () => {
     }
 
     return (
-        <>
+        <div className='flex flex-row'>
             <SideBar/>
             <Header/>
 
             <hr />
 
-            <div className="mx-auto w-10/12 sm:pl-12 py-24">
+            <div className="mx-auto w-11/12 sm:pl-56 py-24">
                 <NavLink 
                     to='/inventory'
                     className='text-blue-600 hover:underline'
@@ -97,7 +97,7 @@ const AddProduct = () => {
                 </NavLink>
                 <form
                     onSubmit={handleSubmit}
-                    className=' rounded-3xl px-6 mt-14 bg-white'
+                    className=' rounded-3xl px-6 mt-6 bg-white'
                 >
                     <div className='text-4xl py-4 text-orange font-bold'>
                         <h1>Agregar Producto</h1>
@@ -245,7 +245,7 @@ const AddProduct = () => {
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 

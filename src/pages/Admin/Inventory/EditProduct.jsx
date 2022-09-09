@@ -163,13 +163,13 @@ const EditProduct = () => {
           <SideBar />
           <Header />
 
-          <div className="mx-auto w-10/12 sm:pl-12 py-24">
+          <div className="mx-auto w-11/12 sm:pl-56 py-24">
             <NavLink to="/inventory" className="text-blue-600 hover:underline">
               {"< Regresar"}
             </NavLink>
             <form
               onSubmit={handleSubmit}
-              className=" rounded-3xl px-14 py-8 mt-14 bg-white"
+              className=" rounded-3xl px-14 py-8 mt-6 bg-white"
             >
               <div className="text-4xl text-orange font-bold">
                 <h1>Editar Producto</h1>

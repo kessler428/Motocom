@@ -7,7 +7,12 @@ import { GridSearchBar } from '../../GridSearch';
 
 import { FaRegMoneyBillAlt, FaEye, FaClipboardList } from 'react-icons/fa';
 
+import moment from 'moment';
+import 'moment/locale/es';
+
 export const TableData = () => {
+
+  moment.locale('es');
 
   const { listCredits } = useSelector((state) => state.credits)
   const [searchProduct, setSearchProduct] = useState('');
@@ -18,24 +23,28 @@ export const TableData = () => {
       selector: row => row.cliente
     },
     {
-      name: "Monto Abonado",
+      name: "Deuda Total",
       selector: row => row.deudaTotal
     },
     {
-      name: "Monto Restante",
+      name: "Monto Abonado",
       selector: row => row.dinerAbonado
     },
     {
-      name: "Deuda Total",
-      selector: row => row.fecha
+      name: "Deuda Restante",
+      cell: row=> <p>{row.deudaTotal - row.dinerAbonado}</p>
     },
     {
-      name: "",
+      name: "Fecha",
+      cell: row => <p>{moment(row.fecha).format('LLL')}</p>
+    },
+    {
+      name: "Acciones",
       cell: row =>
-        <div className='flex flex-row gap-4 items-center justify-center'>
-          <button className='text-green-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(`cualquiercosa${row.id}`) }><FaRegMoneyBillAlt className='w-5 h-5' /></button>
-          <button className='text-blue-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(row.id) }><FaEye className='w-5 h-5' /></button>
-          <button className='text-yellow-500 hover:bg-gray-200 p-3 rounded-full' onClick={ () => alert(row.id) }><FaClipboardList className='w-5 h-5' /></button>
+        <div className="flex justify-start gap-3 w-80">
+          <button className='text-green-700 hover:bg-gray-200 w-9 h-9 flex items-center justify-center rounded-full' onClick={ () => alert(`cualquiercosa${row.id}`) }><FaRegMoneyBillAlt className='w-5 h-5' /></button>
+          <button className='text-blue-700 hover:bg-gray-200 w-9 h-9 flex items-center justify-center rounded-full' onClick={ () => alert(row.id) }><FaEye className='w-5 h-5' /></button>
+          <button className='text-yellow-500 hover:bg-gray-200 w-9 h-9 flex items-center justify-center rounded-full' onClick={ () => alert(row.id) }><FaClipboardList className='w-5 h-5' /></button>
         </div>
     },
   ]

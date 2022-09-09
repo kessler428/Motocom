@@ -10,7 +10,8 @@ export const createBill = (
   tipoAlmacenId,
   descuento,
   subTotal,
-  detalles
+  detalles,
+  tipoFact,
 ) => {
   return async (dispatch) => {
     try {
@@ -22,7 +23,7 @@ export const createBill = (
           tipoFacturaId,
           clienteId,
           descuento,
-          subTotal: total,
+          subTotal,
           usuarioId,
           tipoAlmacenId,
         },
@@ -46,7 +47,7 @@ export const createBill = (
         const bodyFact = await fact.json();
         if (bodyFact.success === true) {
           console.log(facturaId)
-          dispatch(getOneTicket(facturaId))
+          dispatch(getOneTicket(facturaId, tipoFact))
         }
       }
     } catch (error) {
@@ -87,7 +88,7 @@ export const getOneBill = (facturaId) => {
   }
 }
 
-export const getOneTicket = (facturaId) => {
+export const getOneTicket = (facturaId, tipoFact) => {
   return async (dispatch) => {
     try {
       const resp = await fetchConToken(`factura/historial/${facturaId}`);
@@ -95,7 +96,12 @@ export const getOneTicket = (facturaId) => {
 
       if (body.success === true) {
         dispatch(setOneBill(body.factura));
-        window.location = 'ticket/'
+
+        if(tipoFact === 1){
+          window.location = 'baucher'
+        }else if ( tipoFact === 2 ){
+          window.location = 'ticket'
+        }
       }
     } catch (error) {
       console.log(error);

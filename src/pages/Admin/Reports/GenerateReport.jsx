@@ -46,25 +46,25 @@ const GenerateReport = () => {
     }
 
     return (
-        <>
+        <div className='flex flex-row'>
             <SideBar/>
             <Header/>
     
             <hr />
     
-            <div className="mx-auto w-10/12 sm:pl-12 py-24">
+            <div className="mx-auto w-11/12 sm:pl-56 py-24">
                 <form 
-                    className='border-4 rounded-3xl border-orange px-6 mt-14 py-8'
+                    className='border rounded-3xl bg-white px-6 mt-14 py-8'
                     onSubmit={onsubmit}
                 >
-                    <div className='text-center text-4xl pb-6 text-orange font-bold'>
+                    <div className='text-4xl pb-6 font-bold'>
                         <h1>Generar reporte</h1>
                     </div>
-                    <div className='flex flex-row gap-8 font-bold mt-2'>
+                    <div className='flex flex-row gap-8 font-semibold mt-2'>
                         <div className='w-1/3'>
-                            <label className='text-center flex flex-col'>Fecha de inicio
+                            <label className='flex flex-col'>Fecha de inicio
                                 <input 
-                                    className='border-2 rounded-lg border-black py-1 px-2 font-normal my-2' 
+                                    className='border rounded-lg border-black py-1 px-2 font-normal my-2' 
                                     type="date"
                                     name='startDate'
                                     value={data.startDate}
@@ -74,9 +74,9 @@ const GenerateReport = () => {
                             </label>
                         </div>
                         <div className='w-1/3'>
-                            <label className='text-center flex flex-col'>Fecha final
+                            <label className='flex flex-col'>Fecha final
                                 <input 
-                                    className='border-2 rounded-lg border-black py-1 px-2 font-normal my-2' 
+                                    className='border rounded-lg border-black py-1 px-2 font-normal my-2' 
                                     type="date"
                                     name='finalDate'
                                     value={data.finalDate}
@@ -86,13 +86,13 @@ const GenerateReport = () => {
                             </label>
                         </div>
                         <div className='w-1/3'>
-                            <label className='text-center flex flex-col'>Tipo de reporte</label>
+                            <label className='flex flex-col'>Tipo de reporte</label>
                             <select 
                                 name="typeOfReport" 
                                 id="typeOfReport" 
                                 value={ data.typeOfReport }
                                 onChange={ handleInputChange }
-                                className='border-2 rounded-lg w-full border-black py-1 px-2 font-normal my-2'
+                                className='border rounded-lg w-full border-black py-1 px-2 font-normal my-2'
                                 required
                             >
                                 <option value="none">Seleccione una opcion</option>
@@ -103,14 +103,14 @@ const GenerateReport = () => {
                             </select>
                         </div>
                     </div>
-                    <div className='flex justify-center my-6'>
+                    <div className='flex justify-end my-6'>
                         <button className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>
                             Generar
                         </button>
                     </div>
                 </form>
             </div>
-        </>
+        </div>
       )
 }
 

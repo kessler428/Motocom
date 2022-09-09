@@ -19,7 +19,7 @@ export const TableData = () => {
   const Navigate = useNavigate();
 
   const { listInventory } = useSelector((state) => state.inventory);
-  const { isLoading } = useSelector((state) => state.ui)
+  const { isLoading } = useSelector((state) => state.ui);
   const [searchProduct, setSearchProduct] = useState('');
 
   const deleteProduct = (id) => {

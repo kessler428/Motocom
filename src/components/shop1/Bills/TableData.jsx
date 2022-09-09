@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { GridSearchBar } from '../GridSearch';
 import { getOneBill } from '../../../redux/slices/bills/thunks';
 import moment from 'moment';
+import 'moment/locale/es';
 
 
 export const TableData = () => {
@@ -15,6 +16,8 @@ export const TableData = () => {
   const handleClick = (id) => {
     dispatch(getOneBill(id))
   }
+
+  moment.locale('es');
 
   const columns = [
     {
