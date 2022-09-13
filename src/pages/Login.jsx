@@ -1,11 +1,13 @@
 //Librerias
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../redux/slices/auth/thunks";
-import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { Access } = useSelector((state) => state.auth);
 
   const {
@@ -19,7 +21,18 @@ const Login = () => {
     dispatch(login(email, password));
   };
 
-  return !!Access.accessToken ? <Navigate to="/index" /> : (
+  useEffect(() => {
+    if (Access.rol === 'Administrador') {
+      navigate("/index");
+    } else if (Access.rol === 'Vendedor') {
+      navigate("/shop/index");
+    }
+  }, [Access, navigate]);
+  
+
+  console.log(Access.rol)
+
+  return (
     <div className='h-screen flex flex-col justify-center items-center '>
         <div className='w-[400px] bg-white border p-9'>
             <p className='mt-4 text-3xl font-light'>Bienvenido!</p>

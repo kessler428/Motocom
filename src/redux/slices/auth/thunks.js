@@ -31,12 +31,7 @@ export const login = (email, password) => {
             rol: body.user.rol,
           })
         );
-
-        if (body.user.rol === "Administrador") {
-          window.location = "/index";
-        } else if (body.user.rol === "Vendedor") {
-          window.location = "/level1/index";
-        }
+        
       } else {
         Swal.fire({
           title: "error",
