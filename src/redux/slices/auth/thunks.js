@@ -61,7 +61,14 @@ export const Logout = () => {
     }
 
     if (resp.status === 406) {
-      dispacth(setLogout());
+      dispacth(setLogout({
+        token: '',
+        id: null,
+        almacenId: null,
+        correo: '',
+        name: '',
+        rol: '',
+      }));
       localStorage.clear();
     }
   };

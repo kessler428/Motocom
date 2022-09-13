@@ -28,7 +28,7 @@ const Credits = () => {
                         Creditos
                     </h1>
                     <NavLink to='/closed_credits' className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>
-                        Ver creditos cancelados
+                        Creditos cancelados
                     </NavLink>
                 </div>
 

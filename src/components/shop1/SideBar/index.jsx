@@ -1,49 +1,62 @@
 import { FaFileInvoiceDollar, FaClipboardList, FaElementor} from 'react-icons/fa'
-
+import logo from '../../../img/motocom.jpg'
 import "../../../index.css";
 import { NavLink } from "react-router-dom";
 
 export const SideBar = () => {
   return (
-    <div className="fixed pt-[63px] hidden lg:flex top-0 left-0 h-screen w-16 m-0 flex-col bg-dark-blue text-black border-r">
-     
-      <NavLink
-        to="/level1/inventory"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange mb-3 p-3 text-white rounded mx-2"
-            : "mb-3 p-4 text-white hover:bg-hover-orange"
-        }
-      >
-        <SideBarIcon icon={<FaClipboardList size="20" />} text="Inventario" />
-      </NavLink>
-      <NavLink
-        to="/bills"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange mb-3 p-3 text-white rounded mx-2"
-            : "mb-3 p-4 text-white hover:bg-hover-orange"
-        }
-      >
-        <SideBarIcon icon={<FaFileInvoiceDollar size="20" />} text="Facturar" />
-      </NavLink>
-      <NavLink
-        to="/details_bills"
-        className={({ isActive }) =>
-          isActive
-            ? "bg-orange mb-3 p-3 text-white rounded mx-2"
-            : "mb-3 p-4 text-white hover:bg-hover-orange"
-        }
-      >
-        <SideBarIcon icon={<FaElementor size="20" />} text="Facturar" />
-      </NavLink>
-    </div>
+    <aside className="w-56 h-screen fixed hidden lg:block" aria-label="Sidebar">
+      <div className="overflow-y-auto py-4 px-3 bg-dark-blue h-full pt-20">
+        <ul className="space-y-2">
+          <li>
+            <NavLink to='/shop/index' className="">
+              <img className="w-36 mx-auto mb-6 -mt-6" src={logo} alt="" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/shop/inventory"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
+                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              }
+              alt="sideBar"
+            >
+              <FaClipboardList size="18" />
+              <span className="ml-3">Inventario</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/bills"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
+                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              }
+              alt="sideBar"
+            >
+              <FaFileInvoiceDollar size="18 " />
+              <span className="flex-1 ml-3 whitespace-nowrap">Facturar</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/details_bills"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
+                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              }
+              alt="sideBar"
+            >
+              <FaElementor size="18" />
+              <span className="flex-1 ml-3 whitespace-nowrap">Detalle de facturas</span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+    </aside>
   );
 };
-
-const SideBarIcon = ({ icon, text }) => (
-  <div className="sideBarIcon group">
-    {icon}
-    <span className="sideBar-Tooltip group-hover:scale-100">{text}</span>
-  </div>
-);

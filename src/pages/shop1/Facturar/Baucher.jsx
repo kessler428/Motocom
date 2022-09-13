@@ -41,7 +41,7 @@ const Baucher = () => {
                     <div className='w-10 text-center'><p>Total</p></div>
                 </div>
                 {
-                    detalleFacturas.map((detalle) => (
+                    detalleFacturas?.map((detalle) => (
                         <div key={detalle.id} className='w-72 flex flex-row justify-between mt-2'>
                             <div className='w-10 text-center text-xs'><p>{detalle.unidades}</p></div>
                             <div className='w-10 text-center text-xs'><p>{detalle.TipoStock}</p></div>
