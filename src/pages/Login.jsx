@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { SpinerLoading } from "../components/SpinnerLoading";
 import { login } from "../redux/slices/auth/thunks";
+import { setIsLoading } from "../redux/slices/ui/uiSlices";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { Access } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.ui);
 
   const {
     register,
@@ -18,22 +21,21 @@ const Login = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
+    dispatch(setIsLoading(true));
     dispatch(login(email, password));
   };
 
   useEffect(() => {
-    if (Access.rol === 'Administrador') {
+    if (Access?.rol === 'Administrador') {
       navigate("/index");
-    } else if (Access.rol === 'Vendedor') {
+    } else if (Access?.rol === 'Vendedor') {
       navigate("/shop/index");
     }
   }, [Access, navigate]);
   
 
-  console.log(Access.rol)
-
-  return (
-    <div className='h-screen flex flex-col justify-center items-center '>
+  return isLoading ? <SpinerLoading /> : (
+    <div className='h-screen flex flex-col justify-center items-center'>
         <div className='w-[400px] bg-white border p-9'>
             <p className='mt-4 text-3xl font-light'>Bienvenido!</p>
             <h3 className='text-2xl text-gray-400 font-light'>Iniciar sesion para continuar</h3>

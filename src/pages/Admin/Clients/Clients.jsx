@@ -22,7 +22,7 @@ const Clients = () => {
             <SideBar/>
             <Header/>
 
-            <div className="mx-auto w-11/12 sm:pl-56 py-24">
+            <div className="mx-auto w-11/12 lg:pl-56 py-24">
                 <div className='w-full flex flex-row justify-between'>
                     <h1 className="text-2xl sm:text-4xl md:text-4xl font-bold">
                         Clientes

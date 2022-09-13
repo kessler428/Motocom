@@ -13,7 +13,7 @@ const DonutChart = () => {
       })
 
     return (
-      <div className='w-1/2'>
+      <div className='lg:w-1/2 w-full'>
         <h1 className='text-3xl text-center my-10'>Inventario por tiendas</h1>
         <Chart options={options} series={series} height={400} type="pie" />
       </div>

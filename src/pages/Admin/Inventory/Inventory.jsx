@@ -23,9 +23,9 @@ const Inventory = () => {
             <SideBar />
             <Header />
 
-            <div className="mx-auto w-11/12 sm:pl-56 py-24">
+            <div className="mx-auto w-11/12 lg:pl-56 py-24">
                 <div className='w-full flex flex-row justify-between'>
-                    <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold">
+                    <h1 className="text-4xl text-titleTextColor font-bold">
                         Inventario
                     </h1>
                     <NavLink to='/add_product' className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>

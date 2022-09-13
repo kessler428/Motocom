@@ -46,7 +46,6 @@ export const createBill = (
 
         const bodyFact = await fact.json();
         if (bodyFact.success === true) {
-          console.log(facturaId)
           dispatch(getOneTicket(facturaId, tipoFact))
         }
       }

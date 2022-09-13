@@ -19,7 +19,7 @@ const Reports = () => {
                         <SideBar/>
                         <Header/>
 
-                        <div className="mx-auto w-10/12 sm:pl-12 py-24">
+                        <div className="mx-auto w-11/12 lg:pl-56 py-24">
                             <div className='w-full flex flex-row justify-between'>
                                 <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold mb-10">
                                     Reporte de ventas
