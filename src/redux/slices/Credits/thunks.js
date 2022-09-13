@@ -6,8 +6,6 @@ export const getAllCredits = () => {
         try {
             const resp = await fetchConToken("abono?completado=false");
             const body = await resp.json();
-
-            console.log(body)
     
             if (resp.status === 200) {
                 dispatch(setListCredits(body.facturasAbonos));

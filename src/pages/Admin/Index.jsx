@@ -13,12 +13,12 @@ const Index = () => {
 
       <hr />
 
-      <div className="mx-auto w-11/12 sm:pl-56 py-24">
-        <h1 className="text-2xl sm:text-4xl md:text-4xl text-titleTextColor font-bold">
+      <div className="mx-auto w-11/12 lg:pl-52 py-24">
+        <h1 className="text-2xl sm:text-4xl lg:text-4xl text-titleTextColor font-bold">
           Tablero Principal
         </h1>
-        <div className='flex flex-row gap-6 mt-8'>
-          <div className='bg-dark-blue w-1/4 h-20 rounded-lg flex flex-row text-white'>
+        <div className='flex flex-wrap gap-6 mt-8'>
+          <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
             <div className='w-20 flex justify-center items-center'>
               <FaUsers className='bg-sky-400 w-16 h-16 p-4 rounded-lg' />
             </div>
@@ -27,7 +27,7 @@ const Index = () => {
               <p>0</p>
             </div>
           </div>
-          <div className='bg-dark-blue w-1/4 h-20 rounded-lg flex flex-row text-white'>
+          <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
             <div className='w-20 flex justify-center items-center'>
               <FaCashRegister className='bg-red-700 w-16 h-16 p-4 rounded-lg' />
             </div>
@@ -36,7 +36,7 @@ const Index = () => {
               <p>0</p>
             </div>
           </div>
-          <div className='bg-dark-blue w-1/4 h-20 rounded-lg flex flex-row text-white'>
+          <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
             <div className='w-20 flex justify-center items-center'>
               <FaWarehouse className='bg-yellow-400 w-16 h-16 p-4 rounded-lg' />
             </div>
@@ -45,7 +45,7 @@ const Index = () => {
               <p>0</p>
             </div>
           </div>
-          <div className='bg-dark-blue w-1/4 h-20 rounded-lg flex flex-row text-white'>
+          <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
             <div className='w-20 flex justify-center items-center'>
               <FaMoneyBillWave className='bg-green-700 w-16 h-16 p-4 rounded-lg' />
             </div>
@@ -55,7 +55,7 @@ const Index = () => {
             </div>
           </div>
         </div>
-        <div className='flex flex-row gap-8'>
+        <div className='flex flex-col items-center lg:flex-row lg:gap-8'>
           <SalesChart />
           <DonutChart />
         </div>

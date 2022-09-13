@@ -9,7 +9,7 @@ export const SideBar = () => {
   const [dropDown, setDropDown] = useState(false);
 
   return (
-    <aside className="w-56 h-screen fixed" aria-label="Sidebar">
+    <aside className="w-56 h-screen fixed hidden lg:block" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 bg-dark-blue h-full pt-20">
         <ul className="space-y-2">
           <li>

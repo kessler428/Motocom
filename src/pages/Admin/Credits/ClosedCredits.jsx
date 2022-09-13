@@ -22,7 +22,7 @@ const ClosedCredits = () => {
             <SideBar/>
             <Header/>
 
-            <div className="mx-auto w-11/12 sm:pl-56 py-24">
+            <div className="mx-auto w-11/12 lg:pl-56 py-24">
                 <NavLink 
                     to='/credits'
                     className='text-blue-600 hover:underline'

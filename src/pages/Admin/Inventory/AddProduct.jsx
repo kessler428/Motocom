@@ -88,7 +88,7 @@ const AddProduct = () => {
 
             <hr />
 
-            <div className="mx-auto w-11/12 sm:pl-56 py-24">
+            <div className="mx-auto w-11/12 lg:pl-56 py-24">
                 <NavLink 
                     to='/inventory'
                     className='text-blue-600 hover:underline'

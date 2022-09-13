@@ -50,9 +50,7 @@ const GenerateReport = () => {
             <SideBar/>
             <Header/>
     
-            <hr />
-    
-            <div className="mx-auto w-11/12 sm:pl-56 py-24">
+            <div className="mx-auto w-11/12 lg:pl-56 py-24">
                 <form 
                     className='border rounded-3xl bg-white px-6 mt-14 py-8'
                     onSubmit={onsubmit}

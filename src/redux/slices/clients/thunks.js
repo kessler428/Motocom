@@ -35,8 +35,6 @@ export const createClient = (nombres, apellidos, ruc, email, direccion, telefono
                 'POST',
             )
 
-            console.log(resp)
-
             if(resp.status === 201) {
                 Swal.fire({
                     title: 'Cliente creado',
@@ -71,8 +69,6 @@ export const editClient = (id, nombres, apellidos, ruc, email, direccion, telefo
                 },
                 'PUT',
             )
-
-            console.log(resp)
 
             if(resp.status === 200) {
                 Swal.fire({
