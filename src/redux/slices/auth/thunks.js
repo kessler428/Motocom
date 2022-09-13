@@ -14,14 +14,11 @@ export const login = (email, password) => {
         "POST"
       );
 
-      alert('hola')
-
       const body = await resp.json();
 
       console.log(body);
 
       if (body.success === true) {
-        alert('hola')
         localStorage.setItem("token", body.accessToken);
 
         dispatch(
@@ -35,7 +32,7 @@ export const login = (email, password) => {
           })
         );
 
-        if (body.user.rol === "Administrador") {
+        if (body.user.rol === "administrador") {
           window.location = "/index";
         } else if (body.user.rol === "Vendedor") {
           window.location = "/level1/index";
