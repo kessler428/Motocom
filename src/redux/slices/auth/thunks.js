@@ -32,7 +32,7 @@ export const login = (email, password) => {
           })
         );
 
-        if (body.user.rol === "administrador") {
+        if (body.user.rol === "Administrador") {
           window.location = "/index";
         } else if (body.user.rol === "Vendedor") {
           window.location = "/level1/index";
