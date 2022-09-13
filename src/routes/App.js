@@ -130,12 +130,12 @@ export const App = () => {
           }/>
 
           {/* Level 1 */}
-          <Route path='level1/index' element={
+          <Route path='shop/index' element={
             <PrivateRoutes>
               <Level1Index/>
             </PrivateRoutes>
           }/>
-          <Route path='level1/inventory' element={
+          <Route path='shop/inventory' element={
             <PrivateRoutes>
               <InventoryLevel1/>
             </PrivateRoutes>

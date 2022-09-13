@@ -9,9 +9,12 @@ import { getAllInventory, getOneProduct } from "../../../redux/slices/inventory/
 import { createBill } from "../../../redux/slices/bills/thunks";
 import { setButtonState } from "../../../redux/slices/inventory/inventorySlices";
 import { getAllClients } from "../../../redux/slices/clients/thunks";
+import { SpinerLoading } from "../../../components/SpinnerLoading";
+import { setIsLoading } from "../../../redux/slices/ui/uiSlices";
 
 const Facturar = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.ui);
 
   useEffect(() => {
     dispatch(getAllClients());
@@ -193,25 +196,26 @@ const Facturar = () => {
         total,
         montoPagado,
         tipoFacturaId,
-        clienteId,
         usuarioId,
         tipoAlmacenId,
-        subTotal,
         descuento,
+        subTotal,
+        clienteId,
         data,
         Number(tipoFactura),
       )
     );
+    dispatch(setIsLoading(true))
   };
 
-  return (
+  return isLoading ? <SpinerLoading /> : (
     <>
       <SideBar />
       <Header />
 
-      <div className="mx-auto w-11/12 lg:pl-12 py-24">
+      <div className="mx-auto w-11/12 lg:pl-56 py-24">
         <div className="w-full flex flex-row justify-between">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-orange">
+          <h1 className="text-4xl md:text-5xl font-bold text-orange">
             Facturar
           </h1>
         </div>
@@ -231,8 +235,16 @@ const Facturar = () => {
           </div>
           <div className="mt-8">
             <h4 className="text-2xl font-bold mb-6">Seleccione productos</h4>
-            <div className="flex flex-row gap-6 items-end">
-              <div className="w-24">
+            <div className="flex flex-col lg:flex-row gap-4 lg:items-end">
+              <div className="w-full">
+                <label className="flex flex-col">Producto</label>
+                <Select
+                  value={ products.productName.label }
+                  options={options2}
+                  onChange={handleProductChange}
+                />
+              </div>
+              <div className="w-full lg:w-24">
                 <label className="flex flex-col">
                   Unidades
                   <input
@@ -246,7 +258,7 @@ const Facturar = () => {
                   />
                 </label>
               </div>
-              <div className="w-24">
+              <div className="w-full lg:w-24">
                 <label className="flex flex-col">
                   Stock
                   <input
@@ -257,7 +269,7 @@ const Facturar = () => {
                   />
                 </label>
               </div>
-              <div className="w-24">
+              <div className="w-full lg:w-24">
                 <label className="flex flex-col">
                   Tipo stock
                   <input
@@ -268,15 +280,7 @@ const Facturar = () => {
                   />
                 </label>
               </div>
-              <div className="w-full">
-                <label className="flex flex-col">Producto</label>
-                <Select
-                  value={ products.productName.label }
-                  options={options2}
-                  onChange={handleProductChange}
-                />
-              </div>
-              <div className="w-24">
+              <div className="w-full lg:w-24">
                 <label className="flex flex-col">
                   Precio
                   <input
@@ -290,7 +294,7 @@ const Facturar = () => {
                   />
                 </label>
               </div>
-              <div className="w-24">
+              <div className="w-full lg:w-24">
                 <label className="flex flex-col">
                   Total
                   <input
@@ -321,13 +325,13 @@ const Facturar = () => {
           </div>
           <div className="mt-6">
             {list.length > 0 && (
-              <div className="border-2 rounded-lg p-8">
-                <h3 className="text-4xl mb-6 font-semibold">Factura</h3>
-                <div className="mb-6 text-2xl">
-                  <p className="font-semibold">Cliente: {clientes.label}</p>
+              <div className="border-2 rounded-lg p-4">
+                <h3 className="text-3xl mb-2 font-semibold">Factura</h3>
+                <div className="mb-6 text-xl">
+                  <p className="">Cliente: {clientes.label}</p>
                 </div>
                 <div className="border-2 rounded-xl p-2">
-                  <div className="flex flex-row gap-4 text-lg font-bold py-2 border-b-2">
+                  <div className="hidden sm:flex flex-row gap-4 text-lg font-bold py-2 border-b-2">
                     <div className="w-1/4 text-center">
                       <p>Unidades</p>
                     </div>
@@ -346,8 +350,8 @@ const Facturar = () => {
                   </div>
                   <Table deleteProduct={deleteProduct} list={list} />
                 </div>
-                <div className="flex flex-row my-6 px-4 justify-between">
-                  <div>
+                <div className="flex flex-col lg:flex-row my-6 gap-6 justify-between">
+                  <div className="w-full lg:w-80">
                     <div className=" mb-2">
                       <label className="text-xl font-semibold">
                         Tipo de pago
@@ -398,7 +402,7 @@ const Facturar = () => {
                       </select>
                     </div>
                   </div>
-                  <div className="w-80 border p-4 rounded-3xl">
+                  <div className="w-full lg:w-80 border p-4 rounded-3xl">
                     <h3 className="text-xl font-semibold py-2 text-center">
                       Detalles del pago
                     </h3>
@@ -412,12 +416,12 @@ const Facturar = () => {
                     </div>
                     <div className="flex flex-row justify-between border-b-2 py-2">
                       <p className="font-semibold">Total: </p>
-                      <span className="font-light">C${total}</span>
+                      <span className="font-light">C${parseFloat(total).toFixed(2)}</span>
                     </div>
                     <div className="py-2 flex flex-row justify-between">
                       <p className="font-semibold">Vuelto: </p>
                       <span className="font-light">
-                        C${totalRecibido - total}
+                        C${parseFloat(totalRecibido - total).toFixed(2)}
                       </span>
                     </div>
                   </div>

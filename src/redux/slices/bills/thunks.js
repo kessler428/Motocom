@@ -1,15 +1,16 @@
 import { fetchConToken } from "../../../helpers/fecth";
+import { setIsLoading } from "../ui/uiSlices";
 import { setHistoryOfBills, setOneBill } from "./billsSlice";
 
 export const createBill = (
   total,
   montoPagado,
   tipoFacturaId,
-  clienteId,
   usuarioId,
   tipoAlmacenId,
   descuento,
   subTotal,
+  clienteId,
   detalles,
   tipoFact,
 ) => {
@@ -21,11 +22,11 @@ export const createBill = (
           total,
           montoPagado,
           tipoFacturaId,
+          usuarioId,
+          tipoAlmacenId,
           clienteId,
           descuento,
           subTotal,
-          usuarioId,
-          tipoAlmacenId,
         },
         "POST"
       );
@@ -93,8 +94,11 @@ export const getOneTicket = (facturaId, tipoFact) => {
       const resp = await fetchConToken(`factura/historial/${facturaId}`);
       const body = await resp.json();
 
+      console.log(body.factura);
+
       if (body.success === true) {
         dispatch(setOneBill(body.factura));
+        dispatch(setIsLoading(false));
 
         if(tipoFact === 1){
           window.location = 'baucher'

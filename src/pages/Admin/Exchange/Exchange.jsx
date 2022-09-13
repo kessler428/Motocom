@@ -35,27 +35,15 @@ const Exchange = () => {
     <div className='flex flex-row'>
       <SideBar />
       <Header />
-      <div className="mx-auto w-11/12 sm:pl-56 py-24">
+      <div className="mx-auto w-11/12 lg:pl-56 py-24">
         <div className="w-full flex flex-row justify-between">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold">
             Enviar productos
           </h1>
         </div>
         <div className="mt-10 bg-white p-8 rounded-xl">
-          <div className="flex flex-row gap-6 items-end">
-            <div className="w-1/5">
-              <label className="flex flex-col">
-                Unidades
-                <input
-                  type="number"
-                  name="cantidad"
-                  value={products.cantidad}
-                  onChange={handleInputChange}
-                  className="border-2 rounded-lg p-2 mt-1"
-                />
-              </label>
-            </div>
-            <div className="w-full">
+          <div className="flex flex-col md:flex-row gap-6 items-end">
+          <div className="w-full">
               <label className="flex flex-col">
                 Seleccione un producto
                 <select
@@ -68,6 +56,18 @@ const Exchange = () => {
                   <option value="1">Producto 2</option>
                   <option value="2">Producto 3</option>
                 </select>
+              </label>
+            </div>
+            <div className="w-full md:w-1/5">
+              <label className="flex flex-col">
+                Unidades
+                <input
+                  type="number"
+                  name="cantidad"
+                  value={products.cantidad}
+                  onChange={handleInputChange}
+                  className="border-2 rounded-lg p-2 mt-1"
+                />
               </label>
             </div>
             <div className="">
@@ -103,21 +103,21 @@ const Exchange = () => {
                   </div>
                   {showTable}
                 </div>
-                <div className="flex items-end justify-end mt-10 gap-8">
-                  <div className="">
-                    <label className="flex flex-col">
-                      Seleccionar vehículo
+                <div className="flex flex-col md:flex-row md:items-end md:justify-end mt-10 gap-8">
+                  <div className="w-full">
+                    <label className="flex flex-col ">
+                      Tiendas
                     </label>
                     <select
                       name="productId"
                       id="productId"
                       onChange={handleInputChange}
-                      className="border-2 rounded-lg p-2 mt-1"
+                      className="border-2 rounded-lg p-2 mt-1 w-full"
                     >
-                      <option value="none">Seleccione un producto</option>
-                      <option value="1">Camion Placa M-202025</option>
-                      <option value="2">Camion Placa M-202025</option>
-                      <option value="3">Camion Placa M-202025</option>
+                      <option value="none">Seleccione una tienda</option>
+                      <option value="1">Tienda 2</option>
+                      <option value="2">Tienda 3</option>
+                      <option value="3">Tienda 4</option>
                     </select>
                   </div>
                   <button className="bg-orange hover:bg-hover-orange text-white font-bold py-[10px] px-4 rounded-lg">

@@ -58,8 +58,8 @@ const GenerateReport = () => {
                     <div className='text-4xl pb-6 font-bold'>
                         <h1>Generar reporte</h1>
                     </div>
-                    <div className='flex flex-row gap-8 font-semibold mt-2'>
-                        <div className='w-1/3'>
+                    <div className='flex flex-col sm:flex-row gap-2 font-semibold mt-2'>
+                        <div className='w-full sm:w-1/3'>
                             <label className='flex flex-col'>Fecha de inicio
                                 <input 
                                     className='border rounded-lg border-black py-1 px-2 font-normal my-2' 
@@ -71,7 +71,7 @@ const GenerateReport = () => {
                                 />
                             </label>
                         </div>
-                        <div className='w-1/3'>
+                        <div className='w-full sm:w-1/3'>
                             <label className='flex flex-col'>Fecha final
                                 <input 
                                     className='border rounded-lg border-black py-1 px-2 font-normal my-2' 
@@ -83,7 +83,7 @@ const GenerateReport = () => {
                                 />
                             </label>
                         </div>
-                        <div className='w-1/3'>
+                        <div className='w-full sm:w-1/3'>
                             <label className='flex flex-col'>Tipo de reporte</label>
                             <select 
                                 name="typeOfReport" 
