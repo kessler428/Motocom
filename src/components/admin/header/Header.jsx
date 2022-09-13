@@ -36,12 +36,12 @@ export const Header = () => {
     if(Access.rol === ''){
       Navigate('/')
     }
-  }, [Access])
+  }, [Access, Navigate])
   
 
   return (
     <div className="flex flex-col">
-      <div className="w-full flex absolute flex-row h-16 justify-between px-8 py-2 bg-dark-blue border-none">
+      <div className="w-full flex absolute flex-row h-16 justify-between lg:justify-end px-8 py-2 bg-dark-blue border-none">
         <div className="lg:hidden flex items-center justify-center">
           <button onClick={() => setModal(!modal)}>
             <BiMenu className="text-white h-6 w-6"/>
