@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Header } from "../../../components/admin/header/Header";
-import { SideBar } from "../../../components/admin/SideBar";
-import { getIndexInfo } from "../../../redux/slices/shop/thunks";
+import { Header } from "../../../../components/admin/header/Header";
+import { SideBar } from "../../../../components/admin/SideBar";
+import { getIndexInfo } from "../../../../redux/slices/shop/thunks";
 
 const Shop2 = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getIndexInfo(2));
+    dispatch(getIndexInfo(3));
   }, [dispatch]);
 
   const { index } = useSelector((state) => state.shop);

@@ -11,6 +11,7 @@ import { setButtonState } from "../../../redux/slices/inventory/inventorySlices"
 import { getAllClients } from "../../../redux/slices/clients/thunks";
 import { SpinerLoading } from "../../../components/SpinnerLoading";
 import { setIsLoading } from "../../../redux/slices/ui/uiSlices";
+import { fetchConToken } from "../../../helpers/fecth";
 
 const Facturar = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ const Facturar = () => {
   useEffect(() => {
     dispatch(getAllClients());
   }, [dispatch])
-
   
   // Traer informacion de la store del redux
   const { listInventory, oneProduct, buttonState } = useSelector((state) => state.inventory);
@@ -42,6 +42,7 @@ const Facturar = () => {
   const [totalRecibido, setTotalRecibido] = useState(0);
   const [tipoFac, setTipoFac] = useState("");
   const [tipoFactura, setTipoFactura] = useState("");
+  const [tipoDeFactura, setTipoDeFactura] = useState("");
   const [stockView, setStock] = useState(0);
   const [facButton, setFacButton] = useState(false);
   const [clientes, setClientes] = useState("");
@@ -116,6 +117,16 @@ const Facturar = () => {
       productName: e.label,
     });
   }
+
+  useEffect(() => {
+    const getTipoFactura = async() => {
+      const response = await fetchConToken('catalogo/tipo-factura');
+      const data = await response.json();
+      setTipoDeFactura(data.data);
+    }
+    getTipoFactura();
+  }, [])
+  
 
   useEffect(() => {
     if (total !== 0 && totalRecibido !== 0 && tipoFac !== "" && clientesId !== "" && tipoFactura !== "") {
@@ -361,9 +372,11 @@ const Facturar = () => {
                         onChange={(e) => setTipoFac(e.target.value)}
                       >
                         <option value="none">Seleccione un tipo de pago</option>
-                        <option value="1">Credito</option>
-                        <option value="2">Efectivo</option>
-                        <option value="3">Tarjeta o deposito</option>
+                        {
+                          tipoDeFactura.map((item) => (
+                            <option key={item.id} value={item.id}>{item.nombre}</option>
+                          ))
+                        }
                       </select>
                     </div>
                     <div className="flex flex-col mb-2">

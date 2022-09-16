@@ -19,11 +19,12 @@ const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
 const Clients = lazy(() => import('../pages/Admin/Clients/Clients'))
 const AddClient = lazy(() => import('../pages/Admin/Clients/AddClient'))
 const EditClient = lazy(() => import('../pages/Admin/Clients/EditClient'))
-const Shop = lazy(() => import('../pages/Admin/shop/Index'))
-const Shop1 = lazy(() => import('../pages/Admin/shop/Shop1'))
-const Shop2 = lazy(() => import('../pages/Admin/shop/Shop2'))
-const Shop3 = lazy(() => import('../pages/Admin/shop/Shop3'))
-const Shop4 = lazy(() => import('../pages/Admin/shop/Shop4'))
+const Shop1 = lazy(() => import('../pages/Admin/shop/shop1/Shop1'))
+const Shop1Inventory = lazy(() => import('../pages/Admin/shop/shop1/DetailsOfFact'))
+const DetailsOneFact = lazy(() => import('../pages/Admin/shop/shop1/DetailOneFact'))
+const Shop2 = lazy(() => import('../pages/Admin/shop/shop2/Shop2'))
+const Shop3 = lazy(() => import('../pages/Admin/shop/shop3/Shop3'))
+const Shop4 = lazy(() => import('../pages/Admin/shop/shop4/Shop4'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
@@ -103,14 +104,19 @@ export const App = () => {
               <EditClient />
             </PrivateRoutes> 
           }/>
-          <Route path='shop' element={
-            <PrivateRoutes>
-              <Shop />
-            </PrivateRoutes> 
-          }/>
           <Route path='shop_one' element={
             <PrivateRoutes>
               <Shop1 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_one/inventory' element={
+            <PrivateRoutes>
+              <Shop1Inventory />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_one/detail_of_one_bill/:id' element={
+            <PrivateRoutes>
+              <DetailsOneFact />
             </PrivateRoutes> 
           }/>
           <Route path='shop_two' element={

@@ -11,6 +11,8 @@ const Baucher = () => {
     const { oneBill } = useSelector((state) => state.bill);
     const { id, cliente, tipoFactura, createdAt, detalleFacturas, total, montoPagado, cambio } = oneBill;
 
+    console.log(oneBill);
+
     return (
         <div className='bg-white h-screen justify-center w-full flex'>
             <div key={id} className='w-80 flex flex-col justify-center items-center text-sm bg-white'>

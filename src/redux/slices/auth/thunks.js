@@ -32,11 +32,8 @@ export const login = (email, password) => {
         );
         
       } else {
-        Swal.fire({
-          title: "error",
-          text: "Usuario o contraseña incorrecta",
-          icon: "error",
-        });
+        dispatch(setIsLoading(false));
+        Swal.fire("error", "Usuario o contraseña incorrecta", "error",);
       }
     } catch (error) {
       console.log(error);

@@ -7,18 +7,22 @@ import { getAllInventoryAdmin } from '../../../redux/slices/inventory/thunks'
 import { TableData } from '../../../components/admin/inventory/TableData';
 
 import { NavLink } from 'react-router-dom';
+import { setIsLoading } from '../../../redux/slices/ui/uiSlices';
+import { SpinerLoading } from '../../../components/SpinnerLoading';
 
 const Inventory = () => {
 
     const dispatch = useDispatch();
+    const { isLoading } = useSelector(state => state.ui)
 
     useEffect(() => {
+        dispatch(setIsLoading(true));
         dispatch(getAllInventoryAdmin())
     },[dispatch])
 
     const { listInventory } = useSelector((state) => state.inventory)
     
-    return (
+    return isLoading ? <SpinerLoading /> : (
         <div className='flex flex-row'>
             <SideBar />
             <Header />
