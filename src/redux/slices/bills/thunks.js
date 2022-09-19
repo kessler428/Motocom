@@ -57,10 +57,10 @@ export const createBill = (
 };
 
 
-export const getHistoryOfBills = () => {
+export const getHistoryOfBills = (id) => {
   return async (dispatch) => {
     try {
-      const resp = await fetchConToken(`factura/historial`);
+      const resp = await fetchConToken(`factura/historial?tipoAlmacenId=${id}`);
       const body = await resp.json();
 
       if (body.success === true) {
@@ -92,9 +92,7 @@ export const getOneTicket = (facturaId, tipoFact) => {
   return async (dispatch) => {
     try {
       const resp = await fetchConToken(`factura/historial/${facturaId}`);
-      const body = await resp.json();
-
-      console.log(body.factura);
+      const body = await resp.json(); 
 
       if (body.success === true) {
         dispatch(setOneBill(body.factura));
@@ -105,6 +103,22 @@ export const getOneTicket = (facturaId, tipoFact) => {
         }else if ( tipoFact === 2 ){
           window.location = 'ticket'
         }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export const deleteOneBill = (facturaId, id) => {
+  return async (dispatch) => {
+    try {
+      const resp = await fetchConToken(`factura/${facturaId}`, {}, "DELETE");
+      const body = await resp.json();
+
+      if (body.success === true) {
+        dispatch(getHistoryOfBills(id));
+        dispatch(setIsLoading(false));
       }
     } catch (error) {
       console.log(error);

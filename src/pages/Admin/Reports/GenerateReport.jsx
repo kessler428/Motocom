@@ -62,7 +62,7 @@ const GenerateReport = () => {
                         <div className='w-full sm:w-1/3'>
                             <label className='flex flex-col'>Fecha de inicio
                                 <input 
-                                    className='border rounded-lg border-black py-1 px-2 font-normal my-2' 
+                                    className='border rounded-lg border-black py-1 px-2 font-normal my-2 w-full' 
                                     type="date"
                                     name='startDate'
                                     value={data.startDate}
@@ -74,7 +74,7 @@ const GenerateReport = () => {
                         <div className='w-full sm:w-1/3'>
                             <label className='flex flex-col'>Fecha final
                                 <input 
-                                    className='border rounded-lg border-black py-1 px-2 font-normal my-2' 
+                                    className='border rounded-lg border-black py-1 px-2 font-normal my-2 w-full' 
                                     type="date"
                                     name='finalDate'
                                     value={data.finalDate}

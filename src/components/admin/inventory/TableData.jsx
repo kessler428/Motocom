@@ -9,7 +9,6 @@ import { FaPencilAlt } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { deleteProductById } from '../../../redux/slices/inventory/thunks';
 import Swal from 'sweetalert2';
-import { SpinerLoading } from '../../SpinnerLoading';
 import { setIsLoading } from '../../../redux/slices/ui/uiSlices';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +18,6 @@ export const TableData = () => {
   const Navigate = useNavigate();
 
   const { listInventory } = useSelector((state) => state.inventory);
-  const { isLoading } = useSelector((state) => state.ui);
   const [searchProduct, setSearchProduct] = useState('');
 
   const deleteProduct = (id) => {
@@ -107,20 +105,14 @@ export const TableData = () => {
   
   return (
     <>
-      {
-        isLoading ? <SpinerLoading /> : (
-          <>
-            <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
+      <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
 
-            <DataTable
-            columns={columns}
-            data={ filteredItems }
-            pagination
-            paginationComponentOptions={paginationComponentOptions}
-            />
-          </>
-        )
-      }
+      <DataTable
+      columns={columns}
+      data={ filteredItems }
+      pagination
+      paginationComponentOptions={paginationComponentOptions}
+      />
     </>
   );
 };

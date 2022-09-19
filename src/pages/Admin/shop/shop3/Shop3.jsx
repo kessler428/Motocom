@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Header } from "../../../components/admin/header/Header";
-import { SideBar } from "../../../components/admin/SideBar";
-import { getIndexInfo } from "../../../redux/slices/shop/thunks";
+import { Header } from "../../../../components/admin/header/Header";
+import { SideBar } from "../../../../components/admin/SideBar";
+import { getIndexInfo } from "../../../../redux/slices/shop/thunks";
 
 const Shop2 = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Shop2 = () => {
       <Header />
       <div className="w-11/12 mx-auto pl-20 my-20">
         <h1 className="text-4xl sm:text-4xl md:text-4xl text-titleTextColor font-bold mt-16">
-          Tienda #4
+          Tienda #3
         </h1>
         <div className="flex flex-wrap gap-8 my-10 text-white">
           

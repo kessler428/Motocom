@@ -10,7 +10,7 @@ export const SideBar = () => {
 
   return (
     <aside className="w-56 h-screen fixed hidden lg:block" aria-label="Sidebar">
-      <div className="overflow-y-auto py-4 px-3 bg-dark-blue h-full pt-20">
+      <div className="overflow-y-auto py-4 px-3 bg-dark-blue text-white h-full pt-20">
         <ul className="space-y-2">
           <li>
             <NavLink to='/index' className="">
@@ -135,7 +135,7 @@ export const SideBar = () => {
               <ul id="dropdown-example" className="py-2 space-y-2">
                 <li>
                   <NavLink
-                    to="/"
+                    to="/shop_one"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     Tienda 1

@@ -10,6 +10,7 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import logo from "../../../img/logo.png";
 
 export const ModalMenu = ({ modal, setModal }) => {
 
@@ -30,7 +31,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   X
                 </button>
               </div>
-              <div className="flex flex-col gap-3 justify-between mt-4">
+              <div className="flex flex-col gap-3 mt-4">
+                <NavLink to='/index' className="">
+                  <img className="w-36 mx-auto mb-6" src={logo} alt="" />
+                </NavLink>
                 <div className="flex flex-col items-center justify-center">
                   <NavLink
                     to="/generate_report"

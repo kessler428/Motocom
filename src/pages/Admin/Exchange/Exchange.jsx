@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
 import { Table } from "../../../components/admin/exchange/Table";
 import { Header } from "../../../components/admin/header/Header";
 import { SideBar } from "../../../components/admin/SideBar";
+import { getAllInventory, getOneProduct } from "../../../redux/slices/inventory/thunks";
 
 const Exchange = () => {
+  const { listInventory } = useSelector((state) => state.inventory);
+
+  const dispatch = useDispatch();
+
   const [products, setProducts] = useState({
     cantidad: "",
+    productName: '',
     productId: "",
   });
+
+  console.log(listInventory);
 
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
@@ -16,12 +26,30 @@ const Exchange = () => {
     return <Table {...item} />;
   });
 
+  useEffect(() => {
+    dispatch(getAllInventory(2));
+  }, [dispatch]);
+
   const handleInputChange = (e) => {
     setProducts({
       ...products,
       [e.target.name]: e.target.value,
     });
   };
+
+  const options = listInventory.map((item) => {
+    return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno} / ${item.marca}` };
+  });
+
+  const handleProductChange = (e) => {
+    dispatch(getOneProduct(e.value));
+
+    setProducts({
+      ...products,
+      productId: e.value,
+      productName: e.label,
+    });
+  }
 
   const addProducts = (products) => {
     if (products.cantidad !== "" && products.productId !== "") {
@@ -46,16 +74,11 @@ const Exchange = () => {
           <div className="w-full">
               <label className="flex flex-col">
                 Seleccione un producto
-                <select
-                  name="productId"
-                  id="productId"
-                  onChange={handleInputChange}
-                  className="border-2 rounded-lg p-2 mt-1"
-                >
-                  <option value="none">Seleccione un producto</option>
-                  <option value="1">Producto 2</option>
-                  <option value="2">Producto 3</option>
-                </select>
+                <Select
+                  value={ products.productName.label }
+                  options={options}
+                  onChange={handleProductChange}
+                />
               </label>
             </div>
             <div className="w-full md:w-1/5">
