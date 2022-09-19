@@ -33,6 +33,10 @@ export const TableData = () => {
       selector: row => row.tipoFactura
     },
     {
+      name: "Total",
+      selector: row => row.total
+    },
+    {
       name: "Fecha",
       cell: row => <p>{moment(row.createdAt).format('LLL')}</p>
     },
