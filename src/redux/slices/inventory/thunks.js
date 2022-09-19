@@ -56,10 +56,10 @@ export const getAllInventoryAdmin = () => {
     };
 };
 
-export const getOneProduct = (id) => {
+export const getOneProduct = (id, almacenId) => {
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken(`almacen/${id}`);
+            const resp = await fetchConToken(`almacen/${id}?tipoAlmacenId=${almacenId}`);
             const body = await resp.json();
 
             if (body.success === true) {
