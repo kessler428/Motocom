@@ -24,8 +24,8 @@ export const ModalMenu = ({modal, setModal}) => {
                     to="/shop/inventory"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
                     }
                     alt="sideBar"
                   >
@@ -38,8 +38,8 @@ export const ModalMenu = ({modal, setModal}) => {
                     to="/bills"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
                     }
                     alt="sideBar"
                   >
@@ -54,8 +54,8 @@ export const ModalMenu = ({modal, setModal}) => {
                     to="/details_bills"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
                     }
                     alt="sideBar"
                   >
