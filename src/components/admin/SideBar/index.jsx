@@ -22,8 +22,8 @@ export const SideBar = () => {
               to="/generate_report"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
-                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
               }
               alt="sideBar"
             >
@@ -36,8 +36,8 @@ export const SideBar = () => {
               to="/inventory"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
-                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
               }
               alt="sideBar"
             >
@@ -50,8 +50,8 @@ export const SideBar = () => {
               to="/clients"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
-                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
               }
               alt="sideBar"
             >
@@ -64,8 +64,8 @@ export const SideBar = () => {
               to="/credits"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
-                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
               }
               alt="sideBar"
             >
@@ -78,8 +78,8 @@ export const SideBar = () => {
               to="/exchange"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
-                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
               }
               alt="sideBar"
             >
@@ -94,8 +94,8 @@ export const SideBar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 "
-                  : "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
               }
               alt="sideBar"
             >
@@ -108,7 +108,7 @@ export const SideBar = () => {
             <button
               type="button"
               onClick={() => setDropDown(!dropDown)}
-              className="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
             >
               <FaShoppingCart size="18 " />
               <span
@@ -136,7 +136,7 @@ export const SideBar = () => {
                 <li>
                   <NavLink
                     to="/shop_one"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
                   >
                     Tienda 1
                   </NavLink>
@@ -144,7 +144,7 @@ export const SideBar = () => {
                 <li>
                   <NavLink
                     to="/"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
                   >
                     Tienda 2
                   </NavLink>
@@ -152,7 +152,7 @@ export const SideBar = () => {
                 <li>
                   <NavLink
                     to="/"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
                   >
                     Tienda 3
                   </NavLink>
@@ -160,7 +160,7 @@ export const SideBar = () => {
                 <li>
                   <NavLink
                     to="/"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
                   >
                     Tienda 4
                   </NavLink>
