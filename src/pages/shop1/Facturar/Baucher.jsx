@@ -39,6 +39,7 @@ const Baucher = () => {
                     <div className='w-10 text-center'><p>Cant.</p></div>
                     <div className='w-10 text-center'><p>Piezas</p></div>
                     <div className='w-28 text-center'><p>Producto</p></div>
+                    <div className='w-28 text-center'><p>Código</p></div>
                     <div className='w-10 text-center'><p>Precio</p></div>
                     <div className='w-10 text-center'><p>Total</p></div>
                 </div>

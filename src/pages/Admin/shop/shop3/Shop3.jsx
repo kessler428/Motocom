@@ -5,7 +5,7 @@ import { Header } from "../../../../components/admin/header/Header";
 import { SideBar } from "../../../../components/admin/SideBar";
 import { getIndexInfo } from "../../../../redux/slices/shop/thunks";
 
-const Shop2 = () => {
+const Shop1 = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,47 +13,46 @@ const Shop2 = () => {
   }, [dispatch]);
 
   const { index } = useSelector((state) => state.shop);
-  const { dineroDelDia, facturasDelDia, nombreArticulo } = index;
+  const { dineroDelDia, facturasDelDia } = index;
+
   return (
     <>
       <SideBar />
       <Header />
-      <div className="w-11/12 mx-auto pl-20 my-20">
+      <div className="mx-auto w-11/12 lg:pl-56 py-10">
         <h1 className="text-4xl sm:text-4xl md:text-4xl text-titleTextColor font-bold mt-16">
           Tienda #3
         </h1>
         <div className="flex flex-wrap gap-8 my-10 text-white">
-          
-          <div
-            className=" flex justify-between flex-col text-start w-80 lg:w-64 border-4 border-cyan-800 h-28 bg-cyan-800 p-4 rounded-lg hover:bg-cyan-900"
-          >
-            <h3 className="text-xl">Producto mas vendido</h3>
-            <p className="">{nombreArticulo}</p>
-          </div>
           <NavLink
-            to="/level1/inventory"
-            className="flex justify-between flex-col text-start w-80 lg:w-64 border-4 border-yellow-500 h-28 bg-yellow-500 p-4 rounded-lg hover:bg-yellow-600"
+            to="inventory"
+            className="flex justify-between flex-col text-start w-80 border-4 border-yellow-500 h-28 bg-yellow-400 p-4 rounded-lg hover:bg-yellow-500"
           >
             <h3 className="text-2xl font-bold">facturas realizadas</h3>
             <p className="text-xl">{facturasDelDia}</p>
           </NavLink>
-          <div className="flex justify-between flex-col  text-start w-80 lg:w-64 border-4 border-red-900 h-28 bg-red-800 p-4 rounded-lg hover:bg-red-900">
+          <div className="flex justify-between flex-col  text-start w-80 border-4 border-red-900 h-28 bg-red-800 p-4 rounded-lg ">
             <p className="text-2xl font-bold">Dinero en caja</p>
             <h3 >
-              {parseFloat(dineroDelDia).toFixed(2)}
+              {
+                dineroDelDia === null ? (
+                  <p className="text-xl">0</p>
+                ) : (
+                  <p className="text-xl">{parseFloat(dineroDelDia).toFixed(2)}</p>
+                )
+              }
             </h3>
           </div>
-          <NavLink
-            to="/bills"
-            className="flex justify-between flex-col text-start w-80 lg:w-64 border-4 border-teal-700 h-28 bg-teal-700 p-4 rounded-lg hover:bg-teal-800"
+          <div
+            className="flex justify-between flex-col text-start w-80 border-4 border-teal-700 h-28 bg-teal-700 p-4 rounded-lg"
           >
-            <h3 className="text-2xl font-bold ">Inventario</h3>
+            <h3 className="text-2xl font-bold ">Inversion</h3>
             <p>Nueva factura</p>
-          </NavLink>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default Shop2;
+export default Shop1;

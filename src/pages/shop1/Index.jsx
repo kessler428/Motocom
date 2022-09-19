@@ -36,7 +36,17 @@ const Index = () => {
             <p>facturas realizadas</p>
           </NavLink>
           <div className='flex justify-between flex-col  text-start w-full sm:w-72 md:w-96 lg:w-60 border-4 border-red-900 h-28 bg-red-800 p-4 rounded-lg hover:bg-red-900'> 
-            <h3 className='text-2xl font-bold'>{parseFloat(dineroDelDia).toFixed(2)}</h3>
+            {
+              dineroDelDia === null ? (
+                <>
+                  <h3 className='text-2xl font-bold'>0</h3>
+                </>
+              ) : (
+                <>
+                  <h3 className='text-2xl font-bold'>{parseFloat(dineroDelDia).toFixed(2)}</h3>
+                </>
+              )
+            }
             <p>Dinero en caja</p>
           </div>
         </div>

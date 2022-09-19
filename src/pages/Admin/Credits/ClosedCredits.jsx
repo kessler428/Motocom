@@ -36,7 +36,7 @@ const ClosedCredits = () => {
                 </div>
 
                 {closedCreditsList === [] ? (
-                    <div className="flex flex-col mt-10 justify-center ml-20">
+                    <div className="flex flex-col mt-20 justify-center">
                         <div className="flex justify-center">
                             <img
                                 src={pedidos}

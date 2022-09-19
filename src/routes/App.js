@@ -23,8 +23,14 @@ const Shop1 = lazy(() => import('../pages/Admin/shop/shop1/Shop1'))
 const Shop1Inventory = lazy(() => import('../pages/Admin/shop/shop1/DetailsOfFact'))
 const DetailsOneFact = lazy(() => import('../pages/Admin/shop/shop1/DetailOneFact'))
 const Shop2 = lazy(() => import('../pages/Admin/shop/shop2/Shop2'))
+const Shop2Inventory = lazy(() => import('../pages/Admin/shop/shop2/DetailsOfFact'))
+const DetailsOneFact2 = lazy(() => import('../pages/Admin/shop/shop2/DetailOneFact'))
 const Shop3 = lazy(() => import('../pages/Admin/shop/shop3/Shop3'))
+const Shop3Inventory = lazy(() => import('../pages/Admin/shop/shop3/DetailsOfFact'))
+const DetailsOneFact3 = lazy(() => import('../pages/Admin/shop/shop3/DetailOneFact'))
 const Shop4 = lazy(() => import('../pages/Admin/shop/shop4/Shop4'))
+const Shop4Inventory = lazy(() => import('../pages/Admin/shop/shop4/DetailsOfFact'))
+const DetailsOneFact4 = lazy(() => import('../pages/Admin/shop/shop4/DetailOneFact'))
 
 // Level 1
 const Level1Index = lazy(() => import('../pages/shop1/Index'))
@@ -124,9 +130,29 @@ export const App = () => {
               <Shop2 />
             </PrivateRoutes> 
           }/>
+          <Route path='shop_two/inventory' element={
+            <PrivateRoutes>
+              <Shop2Inventory />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_two/detail_of_one_bill/:id' element={
+            <PrivateRoutes>
+              <DetailsOneFact2 />
+            </PrivateRoutes> 
+          }/>
           <Route path='shop_three' element={
             <PrivateRoutes>
               <Shop3 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_three/inventory' element={
+            <PrivateRoutes>
+              <Shop3Inventory />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_three/detail_of_one_bill/:id' element={
+            <PrivateRoutes>
+              <DetailsOneFact3 />
             </PrivateRoutes> 
           }/>
           <Route path='shop_four' element={
@@ -134,8 +160,18 @@ export const App = () => {
               <Shop4 />
             </PrivateRoutes> 
           }/>
+          <Route path='shop_four/inventory' element={
+            <PrivateRoutes>
+              <Shop4Inventory />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_four/detail_of_one_bill/:id' element={
+            <PrivateRoutes>
+              <DetailsOneFact4 />
+            </PrivateRoutes> 
+          }/>
 
-          {/* Level 1 */}
+          {/* Pantallas de las tiendas */}
           <Route path='shop/index' element={
             <PrivateRoutes>
               <Level1Index/>
@@ -171,6 +207,7 @@ export const App = () => {
               <Baucher/>
             </PrivateRoutes>
           }/>
+
         </Routes>
       </BrowserRouter>
     </Suspense>
