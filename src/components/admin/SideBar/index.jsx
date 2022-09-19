@@ -1,9 +1,17 @@
 import "../../../index.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import logo from '../../../img/logo.png';
+import logo from "../../../img/logo.png";
 
-import { FaCalculator, FaTh, FaMoneyBillWave, FaUsers, FaTools,FaShoppingCart, FaTelegramPlane } from 'react-icons/fa'
+import {
+  FaCalculator,
+  FaTh,
+  FaMoneyBillWave,
+  FaUsers,
+  FaTools,
+  FaShoppingCart,
+  FaTelegramPlane,
+} from "react-icons/fa";
 
 export const SideBar = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -13,7 +21,7 @@ export const SideBar = () => {
       <div className="overflow-y-auto py-4 px-3 bg-dark-blue text-white h-full pt-20">
         <ul className="space-y-2">
           <li>
-            <NavLink to='/index' className="">
+            <NavLink to="/index" className="">
               <img className="w-36 mx-auto mb-6 -mt-6" src={logo} alt="" />
             </NavLink>
           </li>
@@ -22,8 +30,8 @@ export const SideBar = () => {
               to="/generate_report"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -36,8 +44,8 @@ export const SideBar = () => {
               to="/inventory"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -50,8 +58,8 @@ export const SideBar = () => {
               to="/clients"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -64,8 +72,8 @@ export const SideBar = () => {
               to="/credits"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -78,8 +86,8 @@ export const SideBar = () => {
               to="/exchange"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -94,8 +102,8 @@ export const SideBar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 "
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -108,7 +116,7 @@ export const SideBar = () => {
             <button
               type="button"
               onClick={() => setDropDown(!dropDown)}
-              className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
+              className="flex items-center p-2 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 hover:text-dark-blue text-white"
             >
               <FaShoppingCart size="18 " />
               <span
@@ -136,31 +144,47 @@ export const SideBar = () => {
                 <li>
                   <NavLink
                     to="/shop_one"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
+                    }
                   >
                     Tienda 1
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
+                    to="/shop_two"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
+                    }
                   >
                     Tienda 2
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
+                    to="/shop_three"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
+                    }
                   >
                     Tienda 3
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/"
-                    className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white"
+                    to="/shop_four"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
+                    }
                   >
                     Tienda 4
                   </NavLink>

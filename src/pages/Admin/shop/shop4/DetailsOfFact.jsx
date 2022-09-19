@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react'
-import pedidos from "../../../img/pedidos.png";
-import { TableData } from '../../../components/shop1/Bills/TableData'
-import { Header } from '../../../components/shop1/header/Header'
-import { SideBar } from '../../../components/shop1/SideBar'
-import { useDispatch, useSelector } from 'react-redux'
-import { getHistoryOfBills } from '../../../redux/slices/bills/thunks';
+import React from 'react'
+import pedidos from "../../../../img/pedidos.png";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Header } from '../../../../components/admin/header/Header'
+import { SideBar } from '../../../../components/admin/SideBar'
+import { getHistoryOfBills } from '../../../../redux/slices/bills/thunks';
+import { TableData } from '../../../../components/admin/shop/shop1/TableData';
 
-const DetallesFacturas = () => {
+const DetailsOfFact = () => {
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
   const { historyOfBills } = useSelector((state) => state.bill);
-  const { Access } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getHistoryOfBills(Access.almacenId))
-  }, [Access.almacenId, dispatch])
-  
+    dispatch(getHistoryOfBills(5))
+  }, [dispatch])
 
   return (
     <>
@@ -29,7 +28,7 @@ const DetallesFacturas = () => {
           </h1>
 
           {historyOfBills?.length === 0 ? (
-            <div className="flex flex-col mt-20 justify-center">
+            <div className="flex flex-col mt-32 justify-center">
               <div className="flex justify-center">
                 <img
                   src={pedidos}
@@ -39,7 +38,7 @@ const DetallesFacturas = () => {
               </div>
               <div className="flex justify-center">
                 <p className="text-gray-600 font-bold">
-                  No hay facturas realizadas
+                  No se han realizado facturas
                 </p>
               </div>
             </div>
@@ -52,4 +51,4 @@ const DetallesFacturas = () => {
   )
 }
 
-export default DetallesFacturas
+export default DetailsOfFact

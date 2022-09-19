@@ -4,14 +4,26 @@ import {Header} from '../../components/admin/header/Header'
 import { FaWarehouse, FaUsers, FaCashRegister, FaMoneyBillWave } from 'react-icons/fa'
 import SalesChart from '../../components/admin/shop/SalesChart'
 import DonutChart from '../../components/admin/shop/DonutChart'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getInfoIndex } from '../../redux/slices/admin/thunks'
 
 const Index = () => {
+
+  const dispatch = useDispatch();
+  const {index} = useSelector((state) => state.admin);
+
+  
+  useEffect(() => {
+    dispatch(getInfoIndex());
+  }, [dispatch]);
+
+  const {dineroCaja, usuarios, } = index;
+
   return (
     <div className='flex flex-row'>
       <SideBar />
       <Header />
-
-      <hr />
 
       <div className="mx-auto w-11/12 lg:pl-52 py-24">
         <h1 className="text-2xl sm:text-4xl lg:text-4xl text-titleTextColor font-bold">
@@ -24,7 +36,7 @@ const Index = () => {
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Usuarios</p>
-              <p>0</p>
+              <p>{usuarios}</p>
             </div>
           </div>
           <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
@@ -42,7 +54,7 @@ const Index = () => {
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Dinero en caja</p>
-              <p>0</p>
+              <p>{dineroCaja}</p>
             </div>
           </div>
           <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
