@@ -10,10 +10,11 @@ const DetallesFacturas = () => {
 
   const dispatch = useDispatch();
   const { historyOfBills } = useSelector((state) => state.bill);
+  const { Access } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(getHistoryOfBills())
-  }, [dispatch])
+    dispatch(getHistoryOfBills(Access.almacenId))
+  }, [Access.almacenId, dispatch])
   
 
   return (

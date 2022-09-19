@@ -18,8 +18,8 @@ export const SideBar = () => {
               to="/shop/inventory"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100"
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -32,8 +32,8 @@ export const SideBar = () => {
               to="/bills"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100"
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
@@ -46,8 +46,8 @@ export const SideBar = () => {
               to="/details_bills"
               className={({ isActive }) =>
                 isActive
-                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100"
-                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100"
+                  ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white"
+                  : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
               }
               alt="sideBar"
             >
