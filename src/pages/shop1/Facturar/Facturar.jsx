@@ -27,7 +27,6 @@ const Facturar = () => {
   const { listClients } = useSelector((state) => state.clients);
   const { precioVenta, precioCompra, stock, tipoStock } = oneProduct;
 
-
   useEffect(() => {
     dispatch(getAllInventory(Access.almacenId));
   }, [Access.almacenId, dispatch])
@@ -109,7 +108,9 @@ const Facturar = () => {
 
   const handleProductChange = (e) => {
     dispatch(setButtonState(false));
-    dispatch(getOneProduct(e.value));
+    dispatch(getOneProduct(e.value, Access.almacenId));
+
+    console.log(e.value);
 
     setProducts({
       ...products,

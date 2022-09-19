@@ -75,7 +75,7 @@ export const TableData = () => {
       selector: row => row.stock?.[1].stock
     },
     {
-      name: "Almacen 3",
+      name: "Camion Miguel",
       selector: row => row.stock?.[2].stock
     },
     {
