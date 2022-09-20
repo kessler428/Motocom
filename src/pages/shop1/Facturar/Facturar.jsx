@@ -189,7 +189,7 @@ const Facturar = () => {
       montoPagado: Number(totalRecibido),
       tipoFacturaId: Number(tipoFac),
       usuarioId: Access.id,
-      tipoAlmacenId: 2,
+      tipoAlmacenId: Access.almacenId,
       clienteId: Number(clientesId),
       descuento: Number(products.descuento),
     };
