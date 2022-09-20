@@ -67,11 +67,11 @@ export const TableData = () => {
       selector: row => row.precioVenta
     },
     {
-      name: "Almacen 1",
+      name: "Almacen Principal",
       selector: row => row.stock?.[0].stock
     },
     {
-      name: "Almacen 2",
+      name: "Camion Marlon",
       selector: row => row.stock?.[1].stock
     },
     {
@@ -79,7 +79,7 @@ export const TableData = () => {
       selector: row => row.stock?.[2].stock
     },
     {
-      name: "Almacen 4",
+      name: "Camion Pokemon",
       selector: row => row.stock?.[3].stock
     },
     {

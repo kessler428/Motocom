@@ -50,16 +50,16 @@ const Index = () => {
           </div>
           <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
             <div className='w-20 flex justify-center items-center'>
-              <FaWarehouse className='bg-yellow-400 w-16 h-16 p-4 rounded-lg' />
+              <FaMoneyBillWave className='bg-green-700 w-16 h-16 p-4 rounded-lg' />
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Dinero en caja</p>
-              <p>{dineroCaja}</p>
+              <p>{parseFloat(dineroCaja).toFixed(2)}</p>
             </div>
           </div>
           <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
             <div className='w-20 flex justify-center items-center'>
-              <FaMoneyBillWave className='bg-green-700 w-16 h-16 p-4 rounded-lg' />
+              <FaWarehouse className='bg-yellow-400 w-16 h-16 p-4 rounded-lg' />
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Inventario</p>

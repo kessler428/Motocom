@@ -19,8 +19,8 @@ export const getAllClients = () => {
     }
 }
 
-export const createClient = (nombres, apellidos, ruc, email, direccion, telefono) => {
-    return async () => {
+export const createClient = (nombres, apellidos, ruc, email, direccion, telefono, usuario) => {
+    return async (dispatch) => {
         try {
             const resp = await fetchConToken(
                 'cliente',
@@ -35,6 +35,8 @@ export const createClient = (nombres, apellidos, ruc, email, direccion, telefono
                 'POST',
             )
 
+            const data = await resp.json();
+
             if(resp.status === 201) {
                 Swal.fire({
                     title: 'Cliente creado',
@@ -42,11 +44,19 @@ export const createClient = (nombres, apellidos, ruc, email, direccion, telefono
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then((result) => {
-                    if(result.isConfirmed){
+                    if(result.isConfirmed && usuario !== 'tienda') {
                         window.location.href = '/clients';
                     }
+                    dispatch(getAllClients());
                 })
-            }
+            }else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                })
+            }	
             
         } catch (error) {
             console.log(error);

@@ -40,7 +40,7 @@ export const Header = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="w-full flex px-12 absolute flex-row h-16 justify-between lg:justify-end py-2 bg-dark-blue border-none">
+      <div className="w-full flex px-6 absolute flex-row h-16 justify-between lg:justify-end py-2 bg-dark-blue border-none">
         <div className="lg:hidden flex items-center justify-center">
           <button onClick={() => setModal(!modal)}>
             <BiMenu className="text-white h-6 w-6"/>

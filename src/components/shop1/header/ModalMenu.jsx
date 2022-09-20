@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaClipboardList, FaFileInvoiceDollar, FaElementor } from "react-icons/fa";
+import logo from '../../../img/motocom.jpg'
 import { NavLink } from 'react-router-dom';
 
 export const ModalMenu = ({modal, setModal}) => {
@@ -19,6 +20,11 @@ export const ModalMenu = ({modal, setModal}) => {
                 </button>
               </div>
               <div className="flex flex-col gap-3 justify-between mt-4">
+              <div>
+                <NavLink to='/shop/index' className="">
+                  <img className="w-36 mx-auto mb-6 -mt-6" src={logo} alt="" />
+                </NavLink>
+              </div>
                 <div className="flex flex-col items-center justify-center">
                   <NavLink
                     to="/shop/inventory"

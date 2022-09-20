@@ -76,6 +76,16 @@ const AddClient = () => {
                                 />
                             </div>
                             <div className='w-full flex flex-col'>
+                                <label className='font-semibold'>Monto Crediticio</label>
+                                <input
+                                    type="number"
+                                    className='border rounded-lg border-gray-400 py-2 px-3 font-normal text-base'
+                                    placeholder='Agregar un monto crediticio'
+                                    value={datos.apellidos}
+                                    onChange={(e) => setDatos({ ...datos, apellidos: e.target.value })}
+                                />
+                            </div>
+                            <div className='w-full flex flex-col'>
                                 <label className='font-semibold'>Numero Ruc o cedula</label>
                                 <input
                                     type="text"
