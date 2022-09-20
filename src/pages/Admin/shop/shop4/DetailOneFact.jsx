@@ -30,7 +30,7 @@ const DetailOneFact = () => {
         <div className="mx-auto p-5 border w-11/12 shadow-lg rounded-md bg-white">
             <div className="flex flex-row justify-between">
                 <h1 className="text-3xl">Detalle de factura</h1>
-                <NavLink to='/shop_one/inventory' className="bg-blue-600 p-2 rounded-lg text-white font-bold">
+                <NavLink to='/shop_four/inventory' className="bg-blue-600 p-2 rounded-lg text-white font-bold">
                     Regresar
                 </NavLink>
             </div>
