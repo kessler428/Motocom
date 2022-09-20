@@ -8,23 +8,21 @@ import { SideBar } from "../../../components/shop1/SideBar";
 import { getAllInventory, getOneProduct } from "../../../redux/slices/inventory/thunks";
 import { createBill } from "../../../redux/slices/bills/thunks";
 import { setButtonState } from "../../../redux/slices/inventory/inventorySlices";
-import { getAllClients } from "../../../redux/slices/clients/thunks";
+import { getAllClients, getOneClient } from "../../../redux/slices/clients/thunks";
 import { SpinerLoading } from "../../../components/SpinnerLoading";
 import { setIsLoading } from "../../../redux/slices/ui/uiSlices";
 import { fetchConToken } from "../../../helpers/fecth";
+import ModalAddClient from "../../../components/shop1/Bills/ModalAddClient";
+import Swal from "sweetalert2";
 
 const Facturar = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.ui);
-
-  useEffect(() => {
-    dispatch(getAllClients());
-  }, [dispatch])
   
   // Traer informacion de la store del redux
   const { listInventory, oneProduct, buttonState } = useSelector((state) => state.inventory);
   const { Access } = useSelector((state) => state.auth);
-  const { listClients } = useSelector((state) => state.clients);
+  const { listClients, oneClient } = useSelector((state) => state.clients);
   const { precioVenta, precioCompra, stock, tipoStock } = oneProduct;
 
   useEffect(() => {
@@ -47,11 +45,15 @@ const Facturar = () => {
   const [clientes, setClientes] = useState("");
   const [clientesId, setClientesId] = useState("");
 
+  const [descuento, setDescuento] = useState('');
+  const [descuentoValue, setDescuentoValue] = useState(0);
+
+  const [modalAddClient, setModalAddClient] = useState(false);
+
   const [products, setProducts] = useState({
     cantidad: "",
     productId: "",
     productName: "",
-    descuento: 0,
   });
 
   useEffect(() => {
@@ -60,12 +62,16 @@ const Facturar = () => {
 
   // Funcion para cambiar el valor del total
   useEffect(() => {
-    if (products.descuento === 0) {
+    if (descuentoValue === 0) {
       setTotal(subTotal);
-    } else if (products.descuento > 0) {
-      setTotal(subTotal - subTotal * (products.descuento / 100));
+    } else if (descuentoValue > 0) {
+      setTotal(subTotal - subTotal * (descuentoValue / 100));
     }
-  }, [products.descuento, subTotal]);
+  }, [descuentoValue, subTotal]);
+
+  useEffect(() => {
+    dispatch(getAllClients());
+  }, [dispatch, modalAddClient])  
 
   // Carga del precio de venta y del stock del producto seleccionado
   useEffect(() => {
@@ -81,6 +87,8 @@ const Facturar = () => {
       ...products,
       [e.target.name]: e.target.value,
     });
+
+    dispatch(setButtonState(true));
   };
 
   // Funcion para eliminar un producto del carrito
@@ -93,6 +101,8 @@ const Facturar = () => {
     setSubTotal(Number(subTotal) - subtotal);
   };
 
+
+  // Mostrar los clientes y los productos en el select
   const options = listClients.map((item) => {
     return { value: `${item.id}`, label: `${item.nombres} ${item.apellidos} / ${item.ruc}` };
   });
@@ -101,16 +111,19 @@ const Facturar = () => {
     return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno} / ${item.marca}` };
   });
 
+  // Funcion para obtener el id del cliente seleccionado
   const handleClientChange = (e) => {
     setClientesId(e.value);
-    setClientes(e);
+    setClientes(e);   
+    
+    dispatch(getOneClient(e.value));
   };
+  
 
+  // funcion para agregar productos al carrito
   const handleProductChange = (e) => {
     dispatch(setButtonState(false));
     dispatch(getOneProduct(e.value, Access.almacenId));
-
-    console.log(e.value);
 
     setProducts({
       ...products,
@@ -119,6 +132,7 @@ const Facturar = () => {
     });
   }
 
+  // Efecto para obtener el tipo de factura
   useEffect(() => {
     const getTipoFactura = async() => {
       const response = await fetchConToken('catalogo/tipo-factura');
@@ -127,8 +141,18 @@ const Facturar = () => {
     }
     getTipoFactura();
   }, [])
-  
 
+  useEffect(() => {
+    const getDescuentos = async() => {
+      const response = await fetchConToken(`catalogo/descuentos/${Access.almacenId}`);
+      const data = await response.json();
+      
+      setDescuento(data.descuentosValidos);
+    }
+    getDescuentos();
+  }, [Access.almacenId])
+
+  // Validacion para el boton de facturar
   useEffect(() => {
     if (total !== 0 && totalRecibido !== 0 && tipoFac !== "" && clientesId !== "" && tipoFactura !== "") {
       setFacButton(true);
@@ -165,17 +189,21 @@ const Facturar = () => {
             (item) => item.productId === products.productId
           );
           if (validate.includes(true)) {
-            alert("El producto ya existe en la lista");
+            Swal.fire(
+              "Error",
+              "El producto ya se encuentra en el carrito",
+              "error"
+            );
           } else {
             setData([...data, newProduct]);
             setList([...list, product]);
           }
         }
       } else {
-        alert("Ingrese una cantidad y un producto");
+        Swal.fire("Error", "Debe seleccionar un producto", "error");
       }
     } else {
-      alert("No hay suficiente stock");
+      Swal.fire("Error", "No hay stock suficiente", "error");
     }
 
     // sumar el subtotal de los productos
@@ -185,39 +213,83 @@ const Facturar = () => {
 
   // funcion para realizar el post de la factura
   const addFact = () => {
-    const values = {
-      montoPagado: Number(totalRecibido),
-      tipoFacturaId: Number(tipoFac),
-      usuarioId: Access.id,
-      tipoAlmacenId: Access.almacenId,
-      clienteId: Number(clientesId),
-      descuento: Number(products.descuento),
-    };
-
-    const {
-      montoPagado,
-      tipoFacturaId,
-      clienteId,
-      usuarioId,
-      tipoAlmacenId,
-      descuento,
-    } = values;
-
-    dispatch(
-      createBill(
-        total,
+    if(Number(tipoFac) === 1){
+      if(oneClient.crediticio > total) {
+        const values = {
+          montoPagado: Number(totalRecibido),
+          tipoFacturaId: Number(tipoFac),
+          usuarioId: Access.id,
+          tipoAlmacenId: Access.almacenId,
+          clienteId: Number(clientesId),
+          descuento: Number(descuentoValue),
+        };
+    
+        const {
+          montoPagado,
+          tipoFacturaId,
+          clienteId,
+          usuarioId,
+          tipoAlmacenId,
+          descuento,
+        } = values;
+        
+        dispatch(
+          createBill(
+            total,
+            montoPagado,
+            tipoFacturaId,
+            usuarioId,
+            tipoAlmacenId,
+            descuento,
+            subTotal,
+            clienteId,
+            data,
+            Number(tipoFactura),
+          )
+        );
+        dispatch(setIsLoading(true))
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'El cliente no tiene suficiente credito',
+        })
+      }
+    }else{
+      const values = {
+        montoPagado: Number(totalRecibido),
+        tipoFacturaId: Number(tipoFac),
+        usuarioId: Access.id,
+        tipoAlmacenId: Access.almacenId,
+        clienteId: Number(clientesId),
+        descuento: Number(descuentoValue),
+      };
+  
+      const {
         montoPagado,
         tipoFacturaId,
+        clienteId,
         usuarioId,
         tipoAlmacenId,
         descuento,
-        subTotal,
-        clienteId,
-        data,
-        Number(tipoFactura),
-      )
-    );
-    dispatch(setIsLoading(true))
+      } = values;
+      
+      dispatch(
+        createBill(
+          total,
+          montoPagado,
+          tipoFacturaId,
+          usuarioId,
+          tipoAlmacenId,
+          descuento,
+          subTotal,
+          clienteId,
+          data,
+          Number(tipoFactura),
+        )
+      );
+      dispatch(setIsLoading(true))
+    }
   };
 
   return isLoading ? <SpinerLoading /> : (
@@ -234,17 +306,26 @@ const Facturar = () => {
         <div className="mt-10 bg-white p-8 rounded-xl">
           <div>
             <h4 className="text-2xl font-bold mb-6">Seleccionar un cliente</h4>
-            <div className="flex flex-row items-end gap-6">
+            <div className="flex flex-col md:flex-row items-end gap-6 w-full justify-between">
               <div className="flex flex-col w-full">
-                <label>Clientes</label>
+                <label className="font-semibold">Clientes</label>
                 <Select
                   value={ clientes }
                   options={options}
                   onChange={handleClientChange}
                 />
               </div>
+              <div className="w-full md:w-3/12 flex justify-end">
+                <button
+                  onClick={() => setModalAddClient(true)}
+                  className="bg-orange text-white p-2 px-4 rounded-lg hover:bg-hover-orange"
+                >
+                  Agregar Cliente
+                </button>
+              </div>
             </div>
           </div>
+          <ModalAddClient modal={modalAddClient} setModal={setModalAddClient} />
           <div className="mt-8">
             <h4 className="text-2xl font-bold mb-6">Seleccione productos</h4>
             <div className="flex flex-col lg:flex-row gap-4 lg:items-end">
@@ -382,18 +463,22 @@ const Facturar = () => {
                     </div>
                     <div className="flex flex-col mb-2">
                       <label className="text-xl font-semibold">Descuento</label>
-                      <input
-                        type="number"
-                        name="descuento"
-                        className="border-2 rounded-lg p-2 mt-1 w-full"
-                        placeholder="30%"
-                        value={products.descuento}
-                        onChange={handleInputChange}
-                      />
+                      <select
+                        className="border-2 p-2 rounded-lg w-full mt-1"
+                        onChange={(e) => setDescuentoValue(e.target.value)}
+                      >
+                        <option value="none">Seleccione un tipo de pago</option>
+                        {
+                          descuento.map((item) => (
+                            <option key={item.value} value={item.value}>{item.text}</option>
+                          ))
+                        }
+                      </select>
                     </div>
                     <div className="flex flex-col mb-2">
                       <label className="text-xl font-semibold">Total</label>
                       <input
+                        min={0}
                         type="number"
                         name="totalRecibido"
                         className="border-2 rounded-lg p-2 mt-1 w-full"
@@ -422,11 +507,11 @@ const Facturar = () => {
                     </h3>
                     <div className="flex flex-row justify-between border-y-2 py-2">
                       <p className="font-semibold">Subtotal: </p>
-                      <span className="font-light">C${subTotal}</span>
+                      <span className="font-light">C${parseFloat(subTotal).toFixed(2)}</span>
                     </div>
                     <div className="flex flex-row justify-between border-b-2 py-2">
                       <p className="font-semibold">Descuento: </p>
-                      <span className="font-light">{products.descuento}%</span>
+                      <span className="font-light">{descuentoValue}%</span>
                     </div>
                     <div className="flex flex-row justify-between border-b-2 py-2">
                       <p className="font-semibold">Total: </p>

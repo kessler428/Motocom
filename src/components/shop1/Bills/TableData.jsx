@@ -13,6 +13,8 @@ export const TableData = () => {
   const { historyOfBills } = useSelector((state) => state.bill);
   const [searchProduct, setSearchProduct] = useState('');
 
+  console.log(historyOfBills);
+
   const handleClick = (id) => {
     dispatch(getOneBill(id))
   }

@@ -88,26 +88,19 @@ export const getOneBill = (facturaId) => {
   }
 }
 
-export const getOneTicket = (facturaId, tipoFact) => {
-  return async (dispatch) => {
-    try {
-      const resp = await fetchConToken(`factura/historial/${facturaId}`);
-      const body = await resp.json(); 
+export const getOneTicket = async (facturaId, tipoFact) => {
+  const data = await fetchConToken(`factura/historial/${facturaId}`);
+  const body = await data.json();
 
-      if (body.success === true) {
-        dispatch(setOneBill(body.factura));
-        dispatch(setIsLoading(false));
-
-        if(tipoFact === 1){
-          window.location = 'baucher'
-        }else if ( tipoFact === 2 ){
-          window.location = 'ticket'
-        }
-      }
-    } catch (error) {
-      console.log(error);
+  if (body.success === true) {
+    if (tipoFact === '1') {
+      window.location = 'baucher'
+    } else if (tipoFact === '2') {
+      window.location = 'ticket'
     }
   }
+
+  return body.factura;
 }
 
 export const deleteOneBill = (facturaId, id) => {
