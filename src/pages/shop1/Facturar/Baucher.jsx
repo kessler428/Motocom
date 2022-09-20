@@ -2,21 +2,14 @@ import moment from 'moment';
 import 'moment/locale/es';
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import logo from '../../../img/motocom.jpg'
 
 const Baucher = () => {
 
     moment.locale('es');
 
-    const { id } = useParams();
-
-    console.log(id)
-
     const { oneBill } = useSelector((state) => state.bill);
-    const { cliente, tipoFactura, createdAt, detalleFacturas, total, montoPagado, cambio } = oneBill;
-
-    console.log(oneBill);
+    const { id, cliente, tipoFactura, createdAt, detalleFacturas, total, montoPagado, cambio } = oneBill;
 
     return (
         <div className='bg-white h-screen justify-center w-full flex'>
@@ -42,7 +35,6 @@ const Baucher = () => {
                 </div>
                 <div className='w-80 flex flex-row justify-between bg-gray-200 mt-4 font-semibold'>
                     <div className='w-10 text-center'><p>Cant.</p></div>
-                    <div className='w-10 text-center'><p>Piezas</p></div>
                     <div className='w-20 text-center'><p>Código</p></div>
                     <div className='w-20 text-center'><p>Producto</p></div>
                     <div className='w-10 text-center'><p>Precio</p></div>
@@ -52,7 +44,6 @@ const Baucher = () => {
                     detalleFacturas?.map((detalle) => (
                         <div key={detalle.id} className='w-80 flex flex-row justify-between mt-2'>
                             <div className='w-10 text-center text-xs'><p>{detalle.unidades}</p></div>
-                            <div className='w-10 text-center text-xs'><p>{detalle.TipoStock}</p></div>
                             <div className='w-20 text-center text-xs'><p>{detalle.codigoUno}</p></div>
                             <div className='w-20 text-center text-xs'><p>{detalle.almacen}</p></div>
                             <div className='w-10 text-center text-xs'><p>{detalle.precioVenta}</p></div>

@@ -202,7 +202,7 @@ export const App = () => {
               <Ticket/>
             </PrivateRoutes>
           }/>
-          <Route path='baucher/:id' element={
+          <Route path='baucher' element={
             <PrivateRoutes>
               <Baucher/>
             </PrivateRoutes>
