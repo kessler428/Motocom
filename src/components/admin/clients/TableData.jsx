@@ -53,7 +53,7 @@ export const TableData = () => {
       cell: (row) => (
         <div className="flex flex-row">
           <p>C$</p>
-          <p>{row.crediticio}</p>
+          <p>{parseFloat(row.crediticio).toLocaleString('us-Us')}</p>
         </div>
         ),
     },

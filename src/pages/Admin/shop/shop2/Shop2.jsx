@@ -38,7 +38,7 @@ const Shop1 = () => {
                 dineroDelDia === null ? (
                   <p className="text-xl">0</p>
                 ) : (
-                  <p className="text-xl">{parseFloat(dineroDelDia).toFixed(2)}</p>
+                  <p className="text-xl">{parseFloat(dineroDelDia).toLocaleString('us-Us')}</p>
                 )
               }
             </h3>

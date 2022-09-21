@@ -41,7 +41,7 @@ export const TableData = () => {
 
   const columns = [
     {
-      name: "Identificador",
+      name: "Id de credito",
       selector: row => row.id
     },
     {
@@ -50,15 +50,15 @@ export const TableData = () => {
     },
     {
       name: "Deuda Total",
-      selector: row => row.deudaTotal
+      cell: row=> <p>C${parseFloat(row.deudaTotal).toLocaleString('us-Us')}</p>
     },
     {
       name: "Monto Abonado",
-      selector: row => row.dinerAbonado
+      cell: row=> <p>C${parseFloat(row.dinerAbonado).toLocaleString('us-Us')}</p>
     },
     {
       name: "Deuda Restante",
-      cell: row=> <p>{row.deudaTotal - row.dinerAbonado}</p>
+      cell: row=> <p>C${parseFloat(row.deudaTotal - row.dinerAbonado).toLocaleString('us-Us')}</p>
     },
     {
       name: "Fecha",
