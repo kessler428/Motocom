@@ -18,7 +18,9 @@ const Index = () => {
     dispatch(getInfoIndex());
   }, [dispatch]);
 
-  const {dineroCaja, usuarios, sumaProductos} = index;
+  const {dineroCaja, usuarios, sumaProductos, costoCompra, costoVenta, utilidadBruta} = index;
+
+  console.log(index);
 
   return (
     <div className='flex flex-row'>
@@ -54,7 +56,7 @@ const Index = () => {
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Dinero en caja</p>
-              <p>{parseFloat(dineroCaja).toFixed(2)}</p>
+              <p>{parseFloat(dineroCaja).toLocaleString('us-Us')}</p>
             </div>
           </div>
           <div className='bg-dark-blue w-full lg:w-56 h-20 rounded-lg flex flex-row text-white'>
@@ -63,13 +65,27 @@ const Index = () => {
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Inventario</p>
-              <p>{sumaProductos}</p>
+              <p>{parseFloat(sumaProductos).toLocaleString('us-Us')}</p>
             </div>
           </div>
         </div>
         <div className='flex flex-col items-center lg:flex-row lg:gap-8'>
           <SalesChart />
           <DonutChart />
+        </div>
+        <div className='flex flex-col sm:flex-row gap-2 mt-6'>
+          <div className='w-full sm:w-1/3 bg-dark-blue text-white font-semibold flex justify-center items-center rounded-lg flex-col p-4'>
+            <p>C${parseFloat(costoCompra).toLocaleString('us-Us')}</p>
+            <p>Costo</p>
+          </div>
+          <div className='w-full sm:w-1/3 bg-dark-blue text-white font-semibold flex justify-center items-center rounded-lg flex-col p-4'>
+           <p>C${parseFloat(costoVenta).toLocaleString('us-Us')}</p>
+           <p>Costo de ventas</p>
+          </div>
+          <div className='w-full sm:w-1/3 bg-dark-blue text-white font-semibold flex justify-center items-center rounded-lg flex-col p-4'>
+           <p>C${parseFloat(utilidadBruta).toLocaleString('us-Us')}</p>
+           <p>Utilidad bruta</p>
+          </div>
         </div>
         
       </div>

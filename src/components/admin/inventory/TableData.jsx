@@ -60,11 +60,11 @@ export const TableData = () => {
     },
     {
       name: "Precio de compra",
-      selector: row => row.precioCompra
+      cell: row => <p>C${parseFloat(row.precioCompra).toLocaleString('us-Us')}</p>
     },
     {
       name: "Precio de venta",
-      selector: row => row.precioVenta
+      cell: row => <p>C${parseFloat(row.precioVenta).toLocaleString('us-Us')}</p>
     },
     {
       name: "Almacen Principal",

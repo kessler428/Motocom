@@ -43,7 +43,7 @@ const Credits = () => {
                         </div>
                         <div className="flex justify-center">
                             <p className="text-gray-600 font-bold">
-                                No hay productos en stock
+                                No hay creditos
                             </p>
                         </div>
                     </div>
