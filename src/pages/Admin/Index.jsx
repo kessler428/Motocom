@@ -18,7 +18,7 @@ const Index = () => {
     dispatch(getInfoIndex());
   }, [dispatch]);
 
-  const {dineroCaja, usuarios, } = index;
+  const {dineroCaja, usuarios, sumaProductos} = index;
 
   return (
     <div className='flex flex-row'>
@@ -63,7 +63,7 @@ const Index = () => {
             </div>
             <div className='h-14 my-auto flex flex-col justify-between'>
               <p>Inventario</p>
-              <p>0</p>
+              <p>{sumaProductos}</p>
             </div>
           </div>
         </div>

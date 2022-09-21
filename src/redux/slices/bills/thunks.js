@@ -49,6 +49,11 @@ export const createBill = (
         if (bodyFact.success === true) {
           dispatch(getOneTicket(facturaId, tipoFact))
         }
+        else{
+          dispatch(setIsLoading(false))
+        }
+      }else{
+        dispatch(setIsLoading(false))
       }
     } catch (error) {
       console.log(error);
@@ -66,6 +71,8 @@ export const getHistoryOfBills = (id) => {
       if (body.success === true) {
         dispatch(setHistoryOfBills(body.historial));
       }
+
+      dispatch(setIsLoading(false));
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +89,8 @@ export const getOneBill = (facturaId) => {
         dispatch(setOneBill(body.factura));
         window.location = 'detail_of_one_bill'
       }
+
+      dispatch(setIsLoading(false));
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +113,8 @@ export const getOneTicket = (facturaId, tipoFact) => {
           window.location = 'ticket'
         }
       }
+
+      dispatch(setIsLoading(false));
     } catch (error) {
       console.log(error);
     }
