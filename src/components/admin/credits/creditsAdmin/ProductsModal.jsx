@@ -20,12 +20,12 @@ export const ProductsModal = ({ modal, setModal, id }) => {
     modal && (
       <div className="fixed inset-0 bg-dark-blue bg-opacity-70 overflow-y-auto h-full w-full z-50">
         <div className="w-full h-full flex justify-center items-center">
-          <div className="mx-auto p-5 border w-3/4 sm:w-3/4 md:w-2/3 lg:w-1/2 shadow-lg rounded-md bg-dark-blue text-white">
+          <div className="mx-auto p-5 bg-white border w-3/4 sm:w-3/4 md:w-2/3 lg:w-1/2 shadow-lg rounded-md text-dark-blue">
             <div className="flex flex-row justify-between items-center">
-              <h1 className="text-2xl underline">Historial de abonos</h1>
+              <h1 className="text-2xl">Productos Facturados</h1>
               <button
                 onClick={() => setModal(false)}
-                className="bg-gray-400 px-3 rounded-full py-1"
+                className="bg-white px-3 rounded-full py-1 text-dark-blue border-dark-blue border hover:bg-gray-200"
               >
                 X
               </button>

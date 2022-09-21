@@ -10,6 +10,7 @@ const ModalAddClient = ({ modal, setModal }) => {
     nombres: "",
     apellidos: "",
     ruc: "",
+    crediticio: 50000,
     email: "",
     direccion: "",
     telefono: "",
@@ -24,14 +25,15 @@ const ModalAddClient = ({ modal, setModal }) => {
       nombres: datos.nombres,
       apellidos: datos.apellidos,
       ruc: datos.ruc,
+      crediticio: datos.crediticio,
       email: datos.email,
       direccion: datos.direccion,
       telefono: datos.telefono,
     };
 
-    const { nombres, apellidos, ruc, email, direccion, telefono } = data;
+    const { nombres, apellidos, ruc, crediticio, email, direccion, telefono } = data;
 
-    dispatch(createClient(nombres, apellidos, ruc, email, direccion, telefono, usuario));
+    dispatch(createClient(nombres, apellidos, crediticio, ruc, email, direccion, telefono, usuario));
     setModal(!modal);
   };
 

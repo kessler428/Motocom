@@ -7,6 +7,7 @@ import { SideBar } from "../../../components/admin/SideBar";
 import { getAllInventory, getOneProduct } from "../../../redux/slices/inventory/thunks";
 
 const Exchange = () => {
+
   const { listInventory } = useSelector((state) => state.inventory);
 
   const dispatch = useDispatch();
@@ -16,8 +17,6 @@ const Exchange = () => {
     productName: '',
     productId: "",
   });
-
-  console.log(listInventory);
 
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
@@ -59,6 +58,7 @@ const Exchange = () => {
       setError(true);
     }
   };
+  
   return (
     <div className='flex flex-row'>
       <SideBar />
