@@ -160,34 +160,34 @@ export const ModalMenu = ({ modal, setModal }) => {
                     <ul id="dropdown-example" className="py-2 space-y-2">
                       <li>
                         <NavLink
-                          to="/"
+                          to="/shop_one"
                           className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
                         >
-                          Tienda 1
+                          Almacen Principal
                         </NavLink>
                       </li>
                       <li>
                         <NavLink
-                          to="/"
+                          to="/shop_two"
                           className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
                         >
-                          Tienda 2
+                          Camion Marlon
                         </NavLink>
                       </li>
                       <li>
                         <NavLink
-                          to="/"
+                          to="/shop_three"
                           className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
                         >
-                          Tienda 3
+                          Camion Miguel
                         </NavLink>
                       </li>
                       <li>
                         <NavLink
-                          to="/"
+                          to="/shop_four"
                           className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
                         >
-                          Tienda 4
+                          Camion Pokemon
                         </NavLink>
                       </li>
                     </ul>

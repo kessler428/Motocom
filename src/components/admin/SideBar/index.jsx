@@ -150,7 +150,7 @@ export const SideBar = () => {
                         : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
                     }
                   >
-                    Tienda 1
+                    Almacen Principal
                   </NavLink>
                 </li>
                 <li>
@@ -162,7 +162,7 @@ export const SideBar = () => {
                         : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
                     }
                   >
-                    Tienda 2
+                    Camion Marlon
                   </NavLink>
                 </li>
                 <li>
@@ -174,7 +174,7 @@ export const SideBar = () => {
                         : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
                     }
                   >
-                    Tienda 3
+                    Camion Miguel
                   </NavLink>
                 </li>
                 <li>
@@ -186,7 +186,7 @@ export const SideBar = () => {
                         : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue"
                     }
                   >
-                    Tienda 4
+                    Camion Pokemon
                   </NavLink>
                 </li>
               </ul>

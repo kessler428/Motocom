@@ -19,7 +19,7 @@ export const getAllClients = () => {
     }
 }
 
-export const createClient = (nombres, apellidos, ruc, email, direccion, telefono, usuario) => {
+export const createClient = (nombres, apellidos, crediticio, ruc, email, direccion, telefono, usuario) => {
     return async (dispatch) => {
         try {
             const resp = await fetchConToken(
@@ -27,6 +27,7 @@ export const createClient = (nombres, apellidos, ruc, email, direccion, telefono
                 {
                     nombres,
                     apellidos,
+                    crediticio,
                     telefono,
                     email,
                     ruc,
@@ -64,7 +65,7 @@ export const createClient = (nombres, apellidos, ruc, email, direccion, telefono
     }
 }
 
-export const editClient = (id, nombres, apellidos, ruc, email, direccion, telefono) => {
+export const editClient = (id, nombres, apellidos,crediticio, ruc, email, direccion, telefono) => {
     return async () => {
         try {
             const resp = await fetchConToken(
@@ -72,6 +73,7 @@ export const editClient = (id, nombres, apellidos, ruc, email, direccion, telefo
                 {
                     nombres,
                     apellidos,
+                    crediticio,
                     telefono,
                     email,
                     ruc,

@@ -49,6 +49,15 @@ export const TableData = () => {
       selector: (row) => row.ruc,
     },
     {
+      name: "Monto crediticio",
+      cell: (row) => (
+        <div className="flex flex-row">
+          <p>C$</p>
+          <p>{row.crediticio}</p>
+        </div>
+        ),
+    },
+    {
       name: "Correo electrónico",
       selector: (row) => row.email,
     },
