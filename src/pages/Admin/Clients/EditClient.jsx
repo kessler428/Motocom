@@ -13,7 +13,7 @@ const EditClient = () => {
 
   const { oneClient } = useSelector((state) => state.clients);
   const { isLoading } = useSelector((state) => state.ui);
-  const { nombres, apellidos, ruc, direccion, telefono, email } = oneClient;
+  const { nombres, apellidos, ruc, direccion, telefono, email, crediticio } = oneClient;
 
   useEffect(() => {
     dispatch(getOneClient(clientId));
@@ -35,17 +35,19 @@ const EditClient = () => {
       nombres: nombres,
       apellidos: apellidos,
       ruc: ruc,
+      crediticio: crediticio,
       email: email,
       direccion: direccion,
       telefono: telefono,
     });
-  }, [oneClient, apellidos, direccion, email, nombres, ruc, telefono]);
+  }, [oneClient, apellidos, direccion, email, nombres, ruc, telefono, crediticio]);
 
   useEffect(() => {
     if (
       datos.nombres !== nombres ||
       datos.apellidos !== apellidos ||
       datos.ruc !== ruc ||
+      datos.crediticio !== crediticio ||
       datos.email !== email ||
       datos.direccion !== direccion ||
       datos.telefono !== telefono
@@ -54,7 +56,7 @@ const EditClient = () => {
     } else {
       setValidButton(false)
     }
-  }, [datos, apellidos, direccion, email, nombres, ruc, telefono]);
+  }, [datos, apellidos, direccion, email, nombres, ruc, telefono, crediticio]);
   
 
   const handleSubmit = (e) => {
@@ -64,15 +66,16 @@ const EditClient = () => {
       nombres: datos.nombres,
       apellidos: datos.apellidos,
       ruc: datos.ruc,
+      crediticio: datos.crediticio,
       email: datos.email,
       direccion: datos.direccion,
       telefono: datos.telefono,
     };
 
-    const { nombres, apellidos, ruc, email, direccion, telefono } = data;
+    const { nombres, apellidos, ruc, email, direccion, telefono, crediticio } = data;
 
     dispatch(
-      editClient(clientId, nombres, apellidos, ruc, email, direccion, telefono)
+      editClient(clientId, nombres, apellidos,crediticio, ruc, email, direccion, telefono)
     );
   };
 
@@ -129,6 +132,19 @@ const EditClient = () => {
                       }
                     />
                   </div>
+                  <div className="w-full flex flex-col">
+                    <label className="font-semibold">Monto crediticio</label>
+                    <input
+                      type="text"
+                      className="border rounded-lg border-gray-400 py-2 px-3 font-normal text-base"
+                      placeholder="Numero Ruc o cedula"
+                      value={datos.crediticio}
+                      onChange={(e) =>
+                        setDatos({ ...datos, crediticio: e.target.value })
+                      }
+                    />
+                  </div>
+
                   <div className="w-full flex flex-col">
                     <label className="font-semibold">Direccion</label>
                     <input

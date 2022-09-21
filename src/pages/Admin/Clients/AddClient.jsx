@@ -13,6 +13,7 @@ const AddClient = () => {
         nombres: '',
         apellidos: '',
         ruc: '',
+        crediticio: '',
         email: '',
         direccion: '',
         telefono: '',
@@ -28,6 +29,7 @@ const AddClient = () => {
             email: datos.email,
             direccion: datos.direccion,
             telefono: datos.telefono,
+            crediticio: datos.crediticio,
         }
 
         const {
@@ -35,11 +37,12 @@ const AddClient = () => {
             apellidos,
             ruc,
             email,
+            crediticio,
             direccion,
             telefono,
         } = data;
 
-        dispatch(createClient(nombres, apellidos, ruc, email, direccion, telefono))
+        dispatch(createClient(nombres, apellidos, Number(crediticio), ruc, email, direccion, telefono))
         
     }
     

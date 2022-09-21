@@ -59,7 +59,7 @@ export const TableData = () => {
       cell: (row) => (
         <div className="flex justify-start gap-2 w-80">
           <Link
-            to={`/shop_one/detail_of_one_bill/${row.id}`}
+            to={`/shop_four/detail_of_one_bill/${row.id}`}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
           >
             Ver

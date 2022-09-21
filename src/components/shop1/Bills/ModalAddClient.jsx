@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { createClient } from "../../../redux/slices/clients/thunks";
 
 const ModalAddClient = ({ modal, setModal }) => {
@@ -126,13 +125,13 @@ const ModalAddClient = ({ modal, setModal }) => {
                 </div>
               </div>
               <div className="flex justify-end m-8 gap-4">
-                <NavLink
-                  to="/clients"
+                <button
+                  onClick={() => setModal(false)}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
                 >
-                  Regresar
-                </NavLink>
-                <button className="bg-orange hover:bg-hover-orange text-white font-bold py-2 px-4 rounded-lg">
+                  Cancelar
+                </button>
+                <button type="submit" className="bg-orange hover:bg-hover-orange text-white font-bold py-2 px-4 rounded-lg">
                   Agregar
                 </button>
               </div>

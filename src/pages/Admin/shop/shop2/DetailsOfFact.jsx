@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../../../../components/admin/header/Header'
 import { SideBar } from '../../../../components/admin/SideBar'
 import { getHistoryOfBills } from '../../../../redux/slices/bills/thunks';
-import { TableData } from '../../../../components/admin/shop/shop1/TableData';
+import { TableData } from '../../../../components/admin/shop/shop2/TableData';
 
 const DetailsOfFact = () => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { historyOfBills } = useSelector((state) => state.bill);
 
   useEffect(() => {
