@@ -20,8 +20,6 @@ const Index = () => {
 
   const {dineroCaja, usuarios, sumaProductos, costoCompra, costoVenta, utilidadBruta} = index;
 
-  console.log(index);
-
   return (
     <div className='flex flex-row'>
       <SideBar />

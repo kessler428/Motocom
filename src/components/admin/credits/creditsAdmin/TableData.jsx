@@ -76,7 +76,7 @@ export const TableData = () => {
   ]
 
   const filteredItems = listCredits?.filter(
-		item => item.cliente.includes(searchProduct) || item.deudaTotal.includes(searchProduct) ,
+		item => item.cliente.includes(searchProduct)
 	);
 
   const paginationComponentOptions = {
