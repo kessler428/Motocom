@@ -9,6 +9,7 @@ const Baucher = () => {
     moment.locale('es');
 
     const { oneBill } = useSelector((state) => state.bill);
+    const { Access } = useSelector((state) => state.auth);
     const { id, cliente, tipoFactura, createdAt, detalleFacturas, total, montoPagado, cambio } = oneBill;
 
     return (
@@ -35,7 +36,13 @@ const Baucher = () => {
                 </div>
                 <div className='w-80 flex flex-row justify-between bg-gray-200 mt-4 font-semibold'>
                     <div className='w-10 text-center'><p>Cant.</p></div>
-                    <div className='w-20 text-center'><p>Código</p></div>
+                    {
+                        Access.almacenId === 4 ? (
+                            <div className='w-20 text-center'><p>Modelo</p></div>
+                        ) : (
+                            <div className='w-20 text-center'><p>Código</p></div>
+                        )
+                    }
                     <div className='w-20 text-center'><p>Producto</p></div>
                     <div className='w-10 text-center'><p>Precio</p></div>
                     <div className='w-10 text-center'><p>Total</p></div>
@@ -44,7 +51,13 @@ const Baucher = () => {
                     detalleFacturas?.map((detalle) => (
                         <div key={detalle.id} className='w-80 flex flex-row justify-between mt-2'>
                             <div className='w-10 text-center text-xs'><p>{detalle.unidades}</p></div>
-                            <div className='w-20 text-center text-xs'><p>{detalle.codigoUno}</p></div>
+                            {
+                                Access.almacenId === 4 ? (
+                                    <div className='w-20 text-center text-xs'><p>{detalle.modelo}</p></div>
+                                ) : (
+                                    <div className='w-20 text-center text-xs'><p>{detalle.codigoUno}</p></div>
+                                )
+                            }
                             <div className='w-20 text-center text-xs'><p>{detalle.almacen}</p></div>
                             <div className='w-10 text-center text-xs'><p>{detalle.precioVenta}</p></div>
                             <div className='w-10 text-center text-xs'><p>{detalle.precioTotalVenta}</p></div>
