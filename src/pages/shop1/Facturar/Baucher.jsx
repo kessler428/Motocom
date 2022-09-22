@@ -37,7 +37,7 @@ const Baucher = () => {
                 <div className='w-80 flex flex-row justify-between bg-gray-200 mt-4 font-semibold'>
                     <div className='w-10 text-center'><p>Cant.</p></div>
                     {
-                        Access.almacenId === 4 ? (
+                        Access.almacenId === 5 ? (
                             <div className='w-20 text-center'><p>Modelo</p></div>
                         ) : (
                             <div className='w-20 text-center'><p>Código</p></div>
@@ -52,7 +52,7 @@ const Baucher = () => {
                         <div key={detalle.id} className='w-80 flex flex-row justify-between mt-2'>
                             <div className='w-10 text-center text-xs'><p>{detalle.unidades}</p></div>
                             {
-                                Access.almacenId === 4 ? (
+                                Access.almacenId === 5 ? (
                                     <div className='w-20 text-center text-xs'><p>{detalle.modelo}</p></div>
                                 ) : (
                                     <div className='w-20 text-center text-xs'><p>{detalle.codigoUno}</p></div>
