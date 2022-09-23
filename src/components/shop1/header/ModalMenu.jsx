@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaClipboardList, FaFileInvoiceDollar, FaElementor } from "react-icons/fa";
+import { FaClipboardList, FaFileInvoiceDollar, FaElementor, FaCalculator } from "react-icons/fa";
 import logo from '../../../img/motocom.jpg'
 import { NavLink } from 'react-router-dom';
 
@@ -25,6 +25,20 @@ export const ModalMenu = ({modal, setModal}) => {
                   <img className="w-36 mx-auto mb-6 -mt-6" src={logo} alt="" />
                 </NavLink>
               </div>
+                <div className="flex flex-col items-center justify-center">
+                <NavLink
+                  to="/generate_report"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
+                  alt="sideBar"
+                >
+                  <FaCalculator size="18" />
+                  <span className="ml-3">Reporte</span>
+                </NavLink>
+                </div>
                 <div className="flex flex-col items-center justify-center">
                   <NavLink
                     to="/shop/inventory"

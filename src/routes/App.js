@@ -40,6 +40,7 @@ const DetallesFacturas = lazy(() => import('../pages/shop1/Facturar/DetallesFact
 const DetailOneFact = lazy(() => import('../pages/shop1/Facturar/DetailOneFact'))
 const Ticket = lazy(() => import('../pages/shop1/Facturar/Ticket'))
 const Baucher = lazy(() => import('../pages/shop1/Facturar/Baucher'))
+const PrintBaucher = lazy(() => import('../pages/shop1/Facturar/PrintBaucher'))
 
 export const App = () => {
   return (
@@ -192,7 +193,7 @@ export const App = () => {
               <DetallesFacturas/>
             </PrivateRoutes>
           }/>
-          <Route path='detail_of_one_bill' element={
+          <Route path='detail_of_one_bill/:id' element={
             <PrivateRoutes>
               <DetailOneFact/>
             </PrivateRoutes>
@@ -205,6 +206,11 @@ export const App = () => {
           <Route path='baucher' element={
             <PrivateRoutes>
               <Baucher/>
+            </PrivateRoutes>
+          }/>
+          <Route path='print_baucher/:id' element={
+            <PrivateRoutes>
+              <PrintBaucher/>
             </PrivateRoutes>
           }/>
 

@@ -25,7 +25,7 @@ const DetailOneFact = () => {
   const { cliente, tipoFactura, createdAt, detalleFacturas,  total, montoPagado, cambio } = oneBill;
 
   return  (
-    <div className="fixed inset-0 bg-gray-400 bg-opacity-70 overflow-y-auto h-full w-full z-50">
+    <div className="inset-0 bg-gray-400 py-8 bg-opacity-70 overflow-y-auto h-full w-full">
       <div className="w-full h-full flex justify-center items-center">
         <div className="mx-auto p-5 border w-11/12 shadow-lg rounded-md bg-white">
             <div className="flex flex-row justify-between">
@@ -90,10 +90,10 @@ const DetailOneFact = () => {
                   <p>{detalle.modelo}</p>
                 </div>
                 <div className="flex flex-row w-1/6 justify-center text-center">
-                  <p>{detalle.precioVenta}</p>
+                  <p>C${parseFloat(detalle.precioVenta).toLocaleString('us-Us')}</p>
                 </div>
                 <div className="flex flex-row w-1/6 justify-center text-center">
-                  <p>{detalle.precioVenta * detalle.unidades}</p>
+                  <p>C${parseFloat(detalle.precioVenta * detalle.unidades).toLocaleString('us-Us')}</p>
                 </div>
               </div>
             ))}
@@ -105,15 +105,15 @@ const DetailOneFact = () => {
                     </h3>
                     <div className="flex flex-row justify-between border-y-2 py-2">
                         <p className="font-semibold">Total: </p>
-                        <span className="font-light">C${total}</span>
+                        <span className="font-light">C${parseFloat(total).toLocaleString('us-Us')}</span>
                     </div>
                     <div className="flex flex-row justify-between border-b-2 py-2">
                         <p className="font-semibold">Total pagado: </p>
-                        <span className="font-light">{montoPagado}</span>
+                        <span className="font-light">C${parseFloat(montoPagado).toLocaleString('us-Us')}</span>
                     </div>
                     <div className="py-2 flex flex-row justify-between">
                         <p className="font-semibold">Vuelto: </p>
-                        <span className="font-light">C${cambio}</span>
+                        <span className="font-light">C${parseFloat(cambio).toLocaleString('us-Us')}</span>
                     </div>
                 </div>
                 </div>

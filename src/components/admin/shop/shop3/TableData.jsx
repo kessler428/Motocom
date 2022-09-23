@@ -1,15 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux'
-import DataTable from 'react-data-table-component'
 import { useState } from 'react';
-import { GridSearchBar } from '../../GridSearch';
-import { deleteOneBill } from '../../../../redux/slices/bills/thunks';
-import moment from 'moment';
+
+// Librerias
 import 'moment/locale/es';
-import { Link } from 'react-router-dom';
+import moment from 'moment';
 import Swal from 'sweetalert2';
-import { setIsLoading } from '../../../../redux/slices/ui/uiSlices';
+import { Link } from 'react-router-dom';
+import DataTable from 'react-data-table-component'
+import { FaEye, FaPrint, FaTrash } from 'react-icons/fa';
+
+// Componentes
+import { GridSearchBar } from '../../GridSearch';
 import { SpinerLoading } from '../../../SpinnerLoading';
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteOneBill } from '../../../../redux/slices/bills/thunks';
+import { setIsLoading } from '../../../../redux/slices/ui/uiSlices';
 
 export const TableData = () => {
 
@@ -62,13 +68,18 @@ export const TableData = () => {
             to={`/shop_three/detail_of_one_bill/${row.id}`}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
           >
-            Ver
+            <FaEye />
+          </Link>
+          <Link to={`/print_baucher/${row.id}`}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded"
+          >
+            <FaPrint />
           </Link>
           <button
             onClick={() => deleteBill(row.id)}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded"
           >
-            Eliminar
+            <FaTrash />
           </button>
         </div>
       ),

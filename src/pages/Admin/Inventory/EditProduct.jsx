@@ -59,7 +59,10 @@ const EditProduct = () => {
     precioVenta: '',
     precioCompra: '',
     notas: '',
-    stock: '',
+    stock1: '',
+    stock2: '',
+    stock3: '',
+    stock4: '',
     typeStockId: '',
   });
   
@@ -74,7 +77,10 @@ const EditProduct = () => {
       precioVenta: precioVenta,
       precioCompra: precioCompra,
       notas: notas,
-      stock: stock?.[0].stock,
+      stock1: stock?.[0].stock,
+      stock2: stock?.[1].stock,
+      stock3: stock?.[2].stock,
+      stock4: stock?.[3].stock,
       typeStockId: tipoStockId,
     })
   }, [codigoDos, codigoUno, marca, modelo, nombreArticulo, notas, oneProduct, precioCompra, precioVenta, stock, tipoStockId])
@@ -96,7 +102,10 @@ const EditProduct = () => {
       datos.modelo !== modelo ||
       datos.precioVenta !== precioVenta ||
       datos.precioCompra !== precioCompra ||
-      datos.stock !== stock?.[0].stock ||
+      datos.stock1 !== stock?.[0].stock ||
+      datos.stock2 !== stock?.[1].stock ||
+      datos.stock3 !== stock?.[2].stock ||
+      datos.stock4 !== stock?.[3].stock ||
       datos.notas !== notas ||
       datos.typeStockId !== tipoStockId
     ) {
@@ -131,7 +140,10 @@ const EditProduct = () => {
       precioVenta: Number(datos.precioVenta),
       precioCompra: Number(datos.precioCompra),
       notas: datos.notas,
-      stock: Number(datos.stock),
+      stock1: Number(datos.stock1),
+      stock2: Number(datos.stock2),
+      stock3: Number(datos.stock3),
+      stock4: Number(datos.stock4),
       tipoStockId: Number(datos.typeStockId),
     };
 
@@ -144,9 +156,31 @@ const EditProduct = () => {
       precioVenta,
       precioCompra,
       notas,
-      stock,
+      stock1,
+      stock2,
+      stock3,
+      stock4,
       tipoStockId,
     } = values;
+
+    const stocks = [
+      {
+        stock: stock1,
+        tipoAlmacenId: 2,
+      },
+      {
+        stock: stock2,
+        tipoAlmacenId: 3,
+      },
+      {
+        stock: stock3,
+        tipoAlmacenId: 4,
+      },
+      {
+        stock: stock4,
+        tipoAlmacenId: 5,
+      },
+    ];
 
     dispatch(
       editProducts(
@@ -159,7 +193,7 @@ const EditProduct = () => {
         precioVenta,
         precioCompra,
         notas,
-        stock,
+        stocks,
         tipoStockId
       )
     );
@@ -271,13 +305,49 @@ const EditProduct = () => {
             </div>
             <div className="w-full">
               <label className="flex flex-col my-2 text-lg">
-                Stock
+                Stock Almacen Principal
                 <input
                   min={0}
                   type="number"
-                  name="stock"
+                  name="stock1"
                   onChange={handleChange}
-                  value={datos.stock}
+                  value={datos.stock1}
+                  className="border rounded-lg border-gray-400 py-2 px-3 font-normal text-base"
+                  required
+                />
+              </label>
+              <label className="flex flex-col my-2 text-lg">
+                Stock Camion Marlon
+                <input
+                  min={0}
+                  type="number"
+                  name="stock2"
+                  onChange={handleChange}
+                  value={datos.stock2}
+                  className="border rounded-lg border-gray-400 py-2 px-3 font-normal text-base"
+                  required
+                />
+              </label>
+              <label className="flex flex-col my-2 text-lg">
+                Stock Camion Miguel
+                <input
+                  min={0}
+                  type="number"
+                  name="stock3"
+                  onChange={handleChange}
+                  value={datos.stock3}
+                  className="border rounded-lg border-gray-400 py-2 px-3 font-normal text-base"
+                  required
+                />
+              </label>
+              <label className="flex flex-col my-2 text-lg">
+                Stock Camion Pokemon
+                <input
+                  min={0}
+                  type="number"
+                  name="stock4"
+                  onChange={handleChange}
+                  value={datos.stock4}
                   className="border rounded-lg border-gray-400 py-2 px-3 font-normal text-base"
                   required
                 />

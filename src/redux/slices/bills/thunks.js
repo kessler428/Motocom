@@ -105,12 +105,13 @@ export const getOneTicket = (facturaId, tipoFact) => {
 
       if (body.success === true) {
         dispatch(setOneBill(body.factura));
-        dispatch(setIsLoading(false));
-
+        
         if(tipoFact === 1){
           window.location = 'baucher'
+          dispatch(setIsLoading(false));
         }else if ( tipoFact === 2 ){
           window.location = 'ticket'
+          dispatch(setIsLoading(false));
         }
       }
 
