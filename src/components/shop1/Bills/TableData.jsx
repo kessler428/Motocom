@@ -1,21 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import DataTable from 'react-data-table-component'
 import { useState } from 'react';
 import { GridSearchBar } from '../GridSearch';
-import { getOneBill } from '../../../redux/slices/bills/thunks';
 import moment from 'moment';
 import 'moment/locale/es';
-
+import { Link } from 'react-router-dom';
 
 export const TableData = () => {
-
-  const dispatch = useDispatch();
   const { historyOfBills } = useSelector((state) => state.bill);
   const [searchProduct, setSearchProduct] = useState('');
-
-  const handleClick = (id) => {
-    dispatch(getOneBill(id))
-  }
 
   moment.locale('es');
 
@@ -34,7 +27,7 @@ export const TableData = () => {
     },
     {
       name: "Total",
-      selector: row => row.total
+      cell: row => <p>C${parseFloat(row.total).toLocaleString('us-Us')}</p>
     },
     {
       name: "Fecha",
@@ -43,12 +36,18 @@ export const TableData = () => {
     {
     name: "Acciones",
         cell: row =>
-        <button 
-          className='hover:underline p-3 rounded-full text-blue-600'
-          onClick={() => handleClick(row.id)}
-        >
-          Ver Factura
-        </button>
+        <div className="flex justify-start gap-2 w-80">
+          <Link to={`/detail_of_one_bill/${row.id}`}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
+          >
+            Ver
+          </Link>
+          <Link to={`/print_baucher/${row.id}`}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded"
+          >
+            Imprimir
+          </Link>
+        </div>
     },
   ]
 

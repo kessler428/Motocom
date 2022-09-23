@@ -1,19 +1,38 @@
 import moment from 'moment';
 import 'moment/locale/es';
 import React from 'react'
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { SpinerLoading } from '../../../components/SpinnerLoading';
+import { fetchConToken } from '../../../helpers/fecth';
 import logo from '../../../img/motocom.jpg'
 
 const Baucher = () => {
 
     moment.locale('es');
 
-    const { oneBill } = useSelector((state) => state.bill);
+    const { id } = useParams();
     const { Access } = useSelector((state) => state.auth);
-    const { id, cliente, tipoFactura, createdAt, detalleFacturas, total, montoPagado, cambio } = oneBill;
 
-    return (
-        <div className='bg-white h-screen justify-center w-full flex'>
+    const [oneBill, setOneBill] = useState('')
+
+    useEffect(() => {
+        const getBaucher = async () => {
+            const resp = await fetchConToken(`factura/historial/${id}`);
+            const data = await resp.json();
+
+            setOneBill(data.factura);
+        }
+        getBaucher();
+    }, [id])
+    
+
+    const {createdAt, tipoFactura, cliente, detalleFacturas, total, montoPagado, cambio} = oneBill;
+
+    return oneBill === '' ? <SpinerLoading /> : (
+        <div className='bg-white flex'>
             <div key={id} className='w-80 flex flex-col justify-center items-center text-sm bg-white'>
                 <div>
                     <img className='w-28' src={logo} alt="" />

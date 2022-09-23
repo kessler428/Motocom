@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsLoading } from '../../../redux/slices/ui/uiSlices'
+import { generateReports } from '../../../redux/slices/reports/thunks'
+
+// Componentes
 import { SideBar } from '../../../components/admin/SideBar'
 import { Header } from '../../../components/admin/header/Header'
-import { useDispatch } from 'react-redux'
-import { generateReports } from '../../../redux/slices/reports/thunks'
-import { useNavigate } from 'react-router-dom'
-import { setIsLoading } from '../../../redux/slices/ui/uiSlices'
+import { SideBar as SideBarUser } from "../../../components/shop1/SideBar";
+import { Header as HeaderUser } from "../../../components/shop1/header/Header";
 
 const GenerateReport = () => {
 
-    const dispatch = useDispatch()
-    const Navigate = useNavigate()
+    const dispatch = useDispatch();
+    const Navigate = useNavigate();
+
+    const { Access } = useSelector((state) => state.auth);
 
     const [data, setData] = useState({
         startDate: '',
@@ -30,25 +38,33 @@ const GenerateReport = () => {
         const values = {
             startDate: data.startDate,
             finalDate: data.finalDate,
-            typeOfReport: Number(data.typeOfReport)
         }
 
         const {
             startDate,
             finalDate,
-            typeOfReport
         } = values
 
-        dispatch(generateReports(startDate, finalDate, typeOfReport ))
+        dispatch(generateReports(Access.almacenId, startDate, finalDate ))
         dispatch(setIsLoading(true))
 
-        Navigate('/generate_report/report')
+        Navigate('report')
     }
 
     return (
         <div className='flex flex-row'>
-            <SideBar/>
-            <Header/>
+            {Access.rol === "Vendedor" ? (
+                    <>
+                        <SideBarUser />
+                        <HeaderUser />
+                    </>
+                ) : (
+                    <>
+                        <SideBar />
+                        <Header />
+                    </>
+                )
+            }
     
             <div className="mx-auto w-11/12 lg:pl-56 py-24">
                 <form 
@@ -56,10 +72,10 @@ const GenerateReport = () => {
                     onSubmit={onsubmit}
                 >
                     <div className='text-4xl pb-6 font-bold'>
-                        <h1>Generar reporte</h1>
+                        <h1>Generar reporte de ventas</h1>
                     </div>
                     <div className='flex flex-col sm:flex-row gap-2 font-semibold mt-2'>
-                        <div className='w-full sm:w-1/3'>
+                        <div className='w-full sm:w-1/2'>
                             <label className='flex flex-col'>Fecha de inicio
                                 <input 
                                     className='border rounded-lg border-black py-1 px-2 font-normal my-2 w-full' 
@@ -71,7 +87,7 @@ const GenerateReport = () => {
                                 />
                             </label>
                         </div>
-                        <div className='w-full sm:w-1/3'>
+                        <div className='w-full sm:w-1/2'>
                             <label className='flex flex-col'>Fecha final
                                 <input 
                                     className='border rounded-lg border-black py-1 px-2 font-normal my-2 w-full' 
@@ -82,23 +98,6 @@ const GenerateReport = () => {
                                     required
                                 />
                             </label>
-                        </div>
-                        <div className='w-full sm:w-1/3'>
-                            <label className='flex flex-col'>Tipo de reporte</label>
-                            <select 
-                                name="typeOfReport" 
-                                id="typeOfReport" 
-                                value={ data.typeOfReport }
-                                onChange={ handleInputChange }
-                                className='border rounded-lg w-full border-black py-1 px-2 font-normal my-2'
-                                required
-                            >
-                                <option value="none">Seleccione una opcion</option>
-                                <option value="1">Ventas de Contado</option>
-                                <option value="2">Ventas de Credito</option>
-                                <option value="3">Ventas de Tarjeta / Transferencia</option>
-                                <option value="0">Ventas Totales</option>
-                            </select>
                         </div>
                     </div>
                     <div className='flex justify-end my-6'>

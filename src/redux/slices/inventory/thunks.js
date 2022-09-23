@@ -140,7 +140,7 @@ export const editProducts = (
     precioVenta,
     precioCompra,
     notas,
-    stock,
+    stocks,
     tipoStockId
     ) => { 
     return async (dispatch) => {
@@ -158,7 +158,7 @@ export const editProducts = (
                     precioRutaUno: 0,
                     precioRutaDos: 0,
                     notas,
-                    stock,
+                    stocks,
                     tipoStockId
                 },
             'PUT'
