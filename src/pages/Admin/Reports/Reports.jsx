@@ -4,11 +4,14 @@ import { SideBar } from '../../../components/admin/SideBar'
 import { useSelector } from 'react-redux'
 import { SpinerLoading } from '../../../components/SpinnerLoading';
 import { NavLink } from 'react-router-dom';
+import { SideBar as SideBarUser } from "../../../components/shop1/SideBar";
+import { Header as HeaderUser } from "../../../components/shop1/header/Header";
 
 const Reports = () => {
 
     const { listReports } = useSelector((state) => state.reports)
     const { isLoading } = useSelector((state) => state.ui)
+    const { Access } = useSelector((state) => state.auth);
 
     const { contado, abonados, credito } = listReports;
 
@@ -17,8 +20,18 @@ const Reports = () => {
             {
                 isLoading ? <SpinerLoading /> : (
                     <>
-                        <SideBar/>
-                        <Header/>
+                        {Access.rol === "Vendedor" ? (
+                                <>
+                                    <SideBarUser />
+                                    <HeaderUser />
+                                </>
+                            ) : (
+                                <>
+                                    <SideBar />
+                                    <Header />
+                                </>
+                            )
+                        }
 
                         <div className="mx-auto w-11/12 lg:pl-56 py-24">
                             <div className='w-full flex flex-row justify-between'>
