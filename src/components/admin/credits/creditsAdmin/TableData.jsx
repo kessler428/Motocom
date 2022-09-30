@@ -46,7 +46,7 @@ export const TableData = () => {
     },
     {
       name: "Nombre",
-      selector: row => row.cliente
+      selector: row => row.nombreCompleto
     },
     {
       name: "Deuda Total",
@@ -54,11 +54,11 @@ export const TableData = () => {
     },
     {
       name: "Monto Abonado",
-      cell: row=> <p>C${parseFloat(row.dinerAbonado).toLocaleString('us-Us')}</p>
+      cell: row=> <p>C${parseFloat(row.montoAbonado).toLocaleString('us-Us')}</p>
     },
     {
       name: "Deuda Restante",
-      cell: row=> <p>C${parseFloat(row.deudaTotal - row.dinerAbonado).toLocaleString('us-Us')}</p>
+      cell: row=> <p>C${parseFloat(row.deudaTotal - row.montoAbonado).toLocaleString('us-Us')}</p>
     },
     {
       name: "Fecha",
@@ -76,7 +76,7 @@ export const TableData = () => {
   ]
 
   const filteredItems = listCredits?.filter(
-		item => item.cliente.includes(searchProduct)
+		item => item.nombreCompleto.includes(searchProduct)
 	);
 
   const paginationComponentOptions = {

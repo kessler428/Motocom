@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsLoading } from '../../../redux/slices/ui/uiSlices'
-import { generateReports } from '../../../redux/slices/reports/thunks'
+import { generateReports, generateReportsAdmin } from '../../../redux/slices/reports/thunks'
 
 // Componentes
 import { SideBar } from '../../../components/admin/SideBar'
@@ -22,6 +22,7 @@ const GenerateReport = () => {
     const [data, setData] = useState({
         startDate: '',
         finalDate: '',
+        almacenId: '',
         typeOfReport: ''
     })
 
@@ -38,14 +39,23 @@ const GenerateReport = () => {
         const values = {
             startDate: data.startDate,
             finalDate: data.finalDate,
+            almacenId: data.almacenId,
+            tipoFactura: data.typeOfReport
         }
 
         const {
             startDate,
             finalDate,
+            almacenId,
+            tipoFactura
         } = values
 
-        dispatch(generateReports(Access.almacenId, startDate, finalDate ))
+        if(Access.rol === 'Vendedor'){
+            dispatch(generateReports(Access.almacenId, startDate, finalDate ))
+        }else{
+            dispatch(generateReportsAdmin(startDate, finalDate, almacenId, tipoFactura))
+        }
+
         dispatch(setIsLoading(true))
 
         Navigate('report')
@@ -99,6 +109,45 @@ const GenerateReport = () => {
                                 />
                             </label>
                         </div>
+                        {Access.rol === 'Administrador' && (
+                            <>
+                                <div className='w-full sm:w-1/2'>
+                                    <label className='flex flex-col'>Almacen
+                                            <select
+                                                className='border rounded-lg border-black py-1 px-2 font-normal my-2 w-full'
+                                                name='almacenId'
+                                                value={data.almacenId}
+                                                onChange={ handleInputChange}
+                                                required
+                                            >
+                                                <option value='none'>Seleccione un almacen</option>
+                                                <option value='2'>Almacen Principal</option>
+                                                <option value='3'>Camion Marlon</option>
+                                                <option value='4'>Camion Miguel</option>
+                                                <option value='5'>Camion Pokemon</option>
+                                                <option value='0'>Todos los puntos de ventas</option>
+                                            </select>
+                                    </label>
+                                </div>
+                                <div className='w-full sm:w-1/2'>
+                                    <label className='flex flex-col'>Tipo de reporte
+                                            <select
+                                                className='border rounded-lg border-black py-1 px-2 font-normal my-2 w-full'
+                                                name='typeOfReport'
+                                                value={data.typeOfReport}
+                                                onChange={ handleInputChange}
+                                                required
+                                            >
+                                                <option value='none'>Seleccione un tipo de reporte</option>
+                                                <option value='1'>credito</option>
+                                                <option value='2'>contado</option>
+                                                <option value='3'>Tarjeta</option>
+                                                <option value='0'>Total de ventas</option>
+                                            </select>
+                                    </label>
+                                </div>
+                            </>
+                        )}
                     </div>
                     <div className='flex justify-end my-6'>
                         <button className='bg-orange hover:bg-hover-orange px-4 py-2 rounded-lg text-white font-bold'>
