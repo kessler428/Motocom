@@ -18,5 +18,22 @@ export const generateReports = (id, startDate, finalDate) => {
             console.log(error);
         }
     };
+};
+
+export const generateReportsAdmin = (startDate, finalDate, id, tipoFactura) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken(
+                `reportes/total-ventas?fechaInicio=${startDate}&fechaFin=${finalDate}&almacenId=${id}&tipoFactura=${tipoFactura}`
+            );
+            const body = await resp.json();
+    
+            if (resp.status === 200) {
+                dispatch(setListReports(body));
+                dispatch(setIsLoading(false))
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
-;

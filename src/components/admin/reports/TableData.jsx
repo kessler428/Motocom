@@ -1,44 +1,37 @@
 import { useSelector } from 'react-redux'
-
 import DataTable from 'react-data-table-component'
-import { GridSearchBar } from '../GridSearch';
-import { useState } from 'react';
-
+import moment from 'moment';
+import 'moment/locale/es';
 export const TableData = () => {
 
+  moment.locale('es');
   const { listReports } = useSelector((state) => state.reports);
-  const [searchProduct, setSearchProduct] = useState('');
-
   const columns = [
     {
       name: "Unidades",
-      selector: row => row.unidades
+      selector: row => row.cantidad
     },
     {
       name: "Producto",
-      selector: row => row.nombre_articulo
+      selector: row => row.producto
     },
     {
       name: "Precio de compra",
-      selector: row => row.total_precio_compra
+      cell: row => <p>C${parseFloat(row.precioCompra).toLocaleString('us-Us')}</p>
     },
     {
       name: "Precio de venta",
-      selector: row => row.total_precio_venta
+      cell: row => <p>C${parseFloat(row.precioVenta).toLocaleString('us-Us')}</p>
     },
     {
       name: "Ganancias",
-      selector: row => row.ganancias
+      cell: row => <p>C${parseFloat(row.ganancias).toLocaleString('us-Us')}</p>
     },
     {
       name: "Fecha",
-      selector: row => row.created_at
+      cell: row => <p>{moment(row.createdAt).format('LLL')}</p>
     },
   ]
-
-  const filteredItems = listReports.products.filter(
-		item => item.nombre_articulo.includes(searchProduct)
-	);
 
   const paginationComponentOptions = {
     rowsPerPageText: 'Filas por página',
@@ -48,14 +41,13 @@ export const TableData = () => {
   };
   
   return (
-    <>
-      <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
+    <div className='mt-8'>
       <DataTable
        columns={columns}
-       data={ filteredItems }
+       data={ listReports.productos }
        pagination
        paginationComponentOptions={paginationComponentOptions}
       />
-    </>
+    </div>
   );
 };

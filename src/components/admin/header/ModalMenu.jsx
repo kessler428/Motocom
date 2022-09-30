@@ -39,10 +39,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   <NavLink
                     to="/generate_report"
                     className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
-                    }
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
                     alt="sideBar"
                   >
                     <FaCalculator size="18 " />
@@ -53,10 +53,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   <NavLink
                     to="/inventory"
                     className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
-                    }
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
                     alt="sideBar"
                   >
                     <FaTh size="18 " />
@@ -69,10 +69,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   <NavLink
                     to="/clients"
                     className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
-                    }
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
                     alt="sideBar"
                   >
                     <FaUsers size="18" />
@@ -85,10 +85,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   <NavLink
                     to="/credits"
                     className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
-                    }
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
                     alt="sideBar"
                   >
                     <FaMoneyBillWave size="18" />
@@ -101,10 +101,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   <NavLink
                     to="/exchange"
                     className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
-                    }
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
                     alt="sideBar"
                   >
                     <FaTelegramPlane size="18" />
@@ -117,10 +117,10 @@ export const ModalMenu = ({ modal, setModal }) => {
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
-                      isActive
-                        ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white hover:bg-gray-100 w-full"
-                        : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 w-full"
-                    }
+                    isActive
+                      ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                      : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                  }
                     alt="sideBar"
                   >
                     <FaTools size="18" />
@@ -129,7 +129,7 @@ export const ModalMenu = ({ modal, setModal }) => {
                     </span>
                   </NavLink>
                 </div>
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col ">
                   <button
                     type="button"
                     onClick={() => setDropDown(!dropDown)}
@@ -161,7 +161,11 @@ export const ModalMenu = ({ modal, setModal }) => {
                       <li>
                         <NavLink
                           to="/shop_one"
-                          className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                              : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                          }
                         >
                           Almacen Principal
                         </NavLink>
@@ -169,7 +173,11 @@ export const ModalMenu = ({ modal, setModal }) => {
                       <li>
                         <NavLink
                           to="/shop_two"
-                          className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                              : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                          }
                         >
                           Camion Marlon
                         </NavLink>
@@ -177,7 +185,11 @@ export const ModalMenu = ({ modal, setModal }) => {
                       <li>
                         <NavLink
                           to="/shop_three"
-                          className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                              : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                          }
                         >
                           Camion Miguel
                         </NavLink>
@@ -185,7 +197,11 @@ export const ModalMenu = ({ modal, setModal }) => {
                       <li>
                         <NavLink
                           to="/shop_four"
-                          className="flex items-center p-2 pl-11 w-full text-base font-normal rounded-lg transition duration-75 group hover:bg-gray-100 text-white dark:hover:bg-gray-700"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "flex items-center p-2 text-base font-normal bg-orange rounded-lg text-white w-full"
+                              : "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-100 hover:text-dark-blue w-full"
+                          }
                         >
                           Camion Pokemon
                         </NavLink>
