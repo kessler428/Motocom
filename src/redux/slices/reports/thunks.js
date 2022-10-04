@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { fetchConToken } from "../../../helpers/fecth";
 import { setIsLoading } from "../ui/uiSlices";
 import { setListReports } from "./reportSlices";
@@ -12,6 +13,9 @@ export const generateReports = (id, startDate, finalDate) => {
     
             if (resp.status === 200) {
                 dispatch(setListReports(body));
+                dispatch(setIsLoading(false))
+            }else{
+                Swal.fire('Error', body.msg, 'error')
                 dispatch(setIsLoading(false))
             }
         } catch (error) {
@@ -30,6 +34,9 @@ export const generateReportsAdmin = (startDate, finalDate, id, tipoFactura) => {
     
             if (resp.status === 200) {
                 dispatch(setListReports(body));
+                dispatch(setIsLoading(false))
+            }else{
+                Swal.fire('Error', body.msg, 'error')
                 dispatch(setIsLoading(false))
             }
         } catch (error) {

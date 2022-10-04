@@ -57,8 +57,11 @@ const GenerateReport = () => {
         }
 
         dispatch(setIsLoading(true))
-
-        Navigate('report')
+        if(tipoFactura === '0'){
+            Navigate('report_total_sales')
+        }else{
+            Navigate('report')
+        }
     }
 
     return (
