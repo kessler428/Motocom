@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { fetchConToken } from "../../../helpers/fecth";
 import { setIsLoading } from "../ui/uiSlices";
 import { setHistoryOfBills, setOneBill } from "./billsSlice";
@@ -130,6 +131,9 @@ export const deleteOneBill = (facturaId, id) => {
 
       if (body.success === true) {
         dispatch(getHistoryOfBills(id));
+        dispatch(setIsLoading(false));
+      } else {
+        Swal.fire("Error", body.message, "error");
         dispatch(setIsLoading(false));
       }
     } catch (error) {

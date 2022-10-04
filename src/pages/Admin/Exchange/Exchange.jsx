@@ -16,8 +16,10 @@ const Exchange = () => {
     cantidad: "",
     productName: '',
     productId: "",
+    codigoUno: "",
   });
 
+  const [tienda, setTienda] = useState(0);
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
 
@@ -37,7 +39,7 @@ const Exchange = () => {
   };
 
   const options = listInventory.map((item) => {
-    return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno} / ${item.marca}` };
+    return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno}`, codigo:`${item.codigoUno}` };
   });
 
   const handleProductChange = (e) => {
@@ -47,8 +49,12 @@ const Exchange = () => {
       ...products,
       productId: e.value,
       productName: e.label,
+      codigoUno: e.codigo,
     });
   }
+
+  console.log('data', data);
+  console.log('tienda', tienda);
 
   const addProducts = (products) => {
     if (products.cantidad !== "" && products.productId !== "") {
@@ -58,6 +64,8 @@ const Exchange = () => {
       setError(true);
     }
   };
+
+  console.log(products);
   
   return (
     <div className='flex flex-row'>
@@ -118,10 +126,10 @@ const Exchange = () => {
                       <p>Unidades</p>
                     </div>
                     <div className="w-1/3 text-center">
-                      <p>Producto</p>
+                      <p>Codigo</p>
                     </div>
                     <div className="w-1/3 text-center">
-                      <p>Modelo</p>
+                      <p>Producto</p>
                     </div>
                   </div>
                   {showTable}
@@ -132,15 +140,15 @@ const Exchange = () => {
                       Tiendas
                     </label>
                     <select
-                      name="productId"
-                      id="productId"
-                      onChange={handleInputChange}
+                      name="tienda"
+                      id="tienda"
+                      onChange={(e) => setTienda(e.target.value)}
                       className="border-2 rounded-lg p-2 mt-1 w-full"
                     >
                       <option value="none">Seleccione una tienda</option>
-                      <option value="1">Tienda 2</option>
-                      <option value="2">Tienda 3</option>
-                      <option value="3">Tienda 4</option>
+                      <option value="3">Camion Marlon</option>
+                      <option value="4">Camion Miguel</option>
+                      <option value="5">Camion Pokemon</option>
                     </select>
                   </div>
                   <button className="bg-orange hover:bg-hover-orange text-white font-bold py-[10px] px-4 rounded-lg">
