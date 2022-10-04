@@ -13,7 +13,7 @@ const Shop1 = () => {
   }, [dispatch]);
 
   const { index } = useSelector((state) => state.shop);
-  const { dineroDelDia, facturasDelDia } = index;
+  const { dineroDelDia, facturasDelDia, inversion } = index;
 
   return (
     <>
@@ -38,7 +38,7 @@ const Shop1 = () => {
                 dineroDelDia === null ? (
                   <p className="text-xl">0</p>
                 ) : (
-                  <p className="text-xl">{parseFloat(dineroDelDia).toLocaleString('us-Us')}</p>
+                  <p className="text-xl">C$ {parseFloat(dineroDelDia).toLocaleString('us-Us')}</p>
                 )
               }
             </h3>
@@ -47,7 +47,7 @@ const Shop1 = () => {
             className="flex justify-between flex-col text-start w-80 border-4 border-teal-700 h-28 bg-teal-700 p-4 rounded-lg"
           >
             <h3 className="text-2xl font-bold ">Inversion</h3>
-            <p>Nueva factura</p>
+            <p className="text-xl">C$ {parseFloat(inversion).toLocaleString('us-Us')}</p>
           </div>
         </div>
       </div>

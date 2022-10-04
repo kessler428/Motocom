@@ -4,7 +4,7 @@ import Select from "react-select";
 import { Table } from "../../../components/admin/exchange/Table";
 import { Header } from "../../../components/admin/header/Header";
 import { SideBar } from "../../../components/admin/SideBar";
-import { getAllInventory, getOneProduct } from "../../../redux/slices/inventory/thunks";
+import { exchangeProduct, getAllInventory, getOneProduct } from "../../../redux/slices/inventory/thunks";
 
 const Exchange = () => {
 
@@ -13,20 +13,19 @@ const Exchange = () => {
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState({
-    cantidad: "",
+    stock: "",
     productName: '',
-    productId: "",
+    id: "",
+    codigoUno: "",
   });
 
+  const [tienda, setTienda] = useState(0);
   const [data, setData] = useState([]);
+  const [productos, setProductos] = useState([]);
   const [error, setError] = useState(false);
-
-  const showTable = data.map((item) => {
-    return <Table {...item} />;
-  });
-
+  
   useEffect(() => {
-    dispatch(getAllInventory(2));
+    dispatch(getAllInventory(3));
   }, [dispatch]);
 
   const handleInputChange = (e) => {
@@ -37,7 +36,7 @@ const Exchange = () => {
   };
 
   const options = listInventory.map((item) => {
-    return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno} / ${item.marca}` };
+    return { value: `${item.id}`, label: `${item.nombreArticulo} / ${item.codigoUno}`, nombre:`${item.nombreArticulo}`, codigo:`${item.codigoUno}` };
   });
 
   const handleProductChange = (e) => {
@@ -45,18 +44,39 @@ const Exchange = () => {
 
     setProducts({
       ...products,
-      productId: e.value,
-      productName: e.label,
+      id: e.value,
+      productName: e.nombre,
+      codigoUno: e.codigo,
     });
   }
 
   const addProducts = (products) => {
-    if (products.cantidad !== "" && products.productId !== "") {
+    if (products.stock !== "" && products.id !== "") {
       setData([...data, products]);
+      setProductos([...productos, products]);
       setError(false);
     } else {
       setError(true);
     }
+  };
+
+  const deleteProduct = (id) => {
+    const newData = data.filter((item) => item.id !== id);
+    setData(newData);
+    setProductos(newData);
+  };
+
+  const sendProducts = (e) => {
+    const products = [];
+
+    productos.forEach((item) => {
+      products.push({
+        id: Number(item.id),
+        stock: Number(item.stock),
+      });
+    });
+
+    dispatch(exchangeProduct( Number(tienda), productos));
   };
   
   return (
@@ -86,17 +106,17 @@ const Exchange = () => {
                 Unidades
                 <input
                   type="number"
-                  name="cantidad"
-                  value={products.cantidad}
+                  name="stock"
+                  value={products.stock}
                   onChange={handleInputChange}
                   className="border-2 rounded-lg p-2 mt-1"
                 />
               </label>
             </div>
-            <div className="">
+            <div className="w-full md:w-40">
               <button
                 onClick={() => addProducts(products)}
-                className="bg-orange hover:bg-hover-orange text-white font-bold py-[10px] px-4 rounded-lg"
+                className="bg-orange hover:bg-hover-orange text-white font-bold py-[10px] px-4 rounded-lg w-full"
               >
                 Agregar
               </button>
@@ -113,18 +133,21 @@ const Exchange = () => {
             {data.length > 0 && (
               <>
                 <div className="border-2 rounded-xl p-2">
-                  <div className="flex flex-row gap-4 text-lg font-bold">
-                    <div className="w-1/3 text-center">
+                  <div className="hidden md:flex flex-row gap-4 mb-4 text-lg font-bold">
+                    <div className="w-1/4 text-center">
                       <p>Unidades</p>
                     </div>
-                    <div className="w-1/3 text-center">
+                    <div className="w-1/4 text-center">
+                      <p>Codigo</p>
+                    </div>
+                    <div className="w-1/4 text-center">
                       <p>Producto</p>
                     </div>
-                    <div className="w-1/3 text-center">
-                      <p>Modelo</p>
+                    <div className="w-1/4 text-center">
+                      <p>Accion</p>
                     </div>
                   </div>
-                  {showTable}
+                  <Table data={data} deleteProduct={deleteProduct} />
                 </div>
                 <div className="flex flex-col md:flex-row md:items-end md:justify-end mt-10 gap-8">
                   <div className="w-full">
@@ -132,18 +155,18 @@ const Exchange = () => {
                       Tiendas
                     </label>
                     <select
-                      name="productId"
-                      id="productId"
-                      onChange={handleInputChange}
+                      name="tienda"
+                      id="tienda"
+                      onChange={(e) => setTienda(e.target.value)}
                       className="border-2 rounded-lg p-2 mt-1 w-full"
                     >
                       <option value="none">Seleccione una tienda</option>
-                      <option value="1">Tienda 2</option>
-                      <option value="2">Tienda 3</option>
-                      <option value="3">Tienda 4</option>
+                      <option value="3">Camion Marlon</option>
+                      <option value="4">Camion Miguel</option>
+                      <option value="5">Camion Pokemon</option>
                     </select>
                   </div>
-                  <button className="bg-orange hover:bg-hover-orange text-white font-bold py-[10px] px-4 rounded-lg">
+                  <button onClick={sendProducts} className="bg-orange hover:bg-hover-orange text-white font-bold py-[10px] px-4 rounded-lg">
                     Enviar
                   </button>
                 </div>

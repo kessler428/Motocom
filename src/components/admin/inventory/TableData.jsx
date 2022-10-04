@@ -102,7 +102,7 @@ export const TableData = () => {
     selectAllRowsItem: true,
     selectAllRowsItemText: 'Todos',
   };
-  
+
   return (
     <>
       <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>

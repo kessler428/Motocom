@@ -218,3 +218,31 @@ export const getCatalogStock = () => {
         }
     }
 }
+
+export const exchangeProduct = (tipoAlmacenId, products) => {
+    return async (dispatch) => {
+        try {
+            const resp = await fetchConToken(
+                `almacen/product`,
+                {
+                    tipoAlmacenId,
+                    products
+                },
+                "PUT"
+            );
+
+            const body = await resp.json();
+    
+            if (resp.status === 200) {
+                Swal.fire('Exitó', body.msg, 'success')
+                dispatch(setIsLoading(false))
+                window.reload();
+            }else{
+                Swal.fire('Error', body.msg, 'error')
+                dispatch(setIsLoading(false))
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
