@@ -13,6 +13,7 @@ const AddProduct = lazy(() => import('../pages/Admin/Inventory/AddProduct'))
 const EditProduct = lazy(() => import('../pages/Admin/Inventory/EditProduct'))
 const GenerateReport = lazy(() => import('../pages/Admin/Reports/GenerateReport'))
 const Reports = lazy(() => import('../pages/Admin/Reports/Reports'))
+const ReportTotalSales = lazy(() => import('../pages/Admin/Reports/ReportTotalSales'))
 const Credits = lazy(() => import('../pages/Admin/Credits/Credits'))
 const ClosedCredits = lazy(() => import('../pages/Admin/Credits/ClosedCredits'))
 const Exchange = lazy(() => import('../pages/Admin/Exchange/Exchange'))
@@ -79,6 +80,11 @@ export const App = () => {
           <Route path='generate_report/report' element={
             <PrivateRoutes>
               <Reports/> 
+            </PrivateRoutes>
+          }/>
+          <Route path='generate_report/report_total_sales' element={
+            <PrivateRoutes>
+              <ReportTotalSales /> 
             </PrivateRoutes>
           }/>
           <Route path='credits' element={

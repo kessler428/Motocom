@@ -1,11 +1,11 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { fetchConToken } from "../../../../helpers/fecth";
 
 export const ProductsModal = ({ modal, setModal, id }) => {
 
   const [products, setProducts] = useState('')
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -14,13 +14,13 @@ export const ProductsModal = ({ modal, setModal, id }) => {
       setProducts(data.productos)
     }
     getProducts();
-  }, [id])
+  }, [dispatch, id])
 
   return (
     modal && (
-      <div className="fixed inset-0 bg-dark-blue bg-opacity-70 overflow-y-auto h-full w-full z-50">
-        <div className="w-full h-full flex justify-center items-center">
-          <div className="mx-auto p-5 bg-white border w-3/4 sm:w-3/4 md:w-2/3 lg:w-1/2 shadow-lg rounded-md text-dark-blue">
+      <div className="fixed inset-0 bg-dark-blue bg-opacity-70 h-full w-full overflow-y-auto z-50">
+        <div className="flex justify-center items-center my-20">
+          <div className="mx-auto p-5 bg-white border w-3/4 sm:w-3/4 md:w-2/3 lg:w-3/5 shadow-lg rounded-md text-dark-blue">
             <div className="flex flex-row justify-between items-center">
               <h1 className="text-2xl">Productos Facturados</h1>
               <button
@@ -53,7 +53,7 @@ export const ProductsModal = ({ modal, setModal, id }) => {
               </tbody>
             </table>
             <div className="mt-8 sm:hidden">
-            {
+                {
                   products && products.map((payment) => (
                     <div className="flex flex-col border p-3 rounded-lg mt-2" key={payment.id}>
                         <div className="flex flex-row justify-between">
