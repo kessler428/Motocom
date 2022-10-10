@@ -1,7 +1,7 @@
 // import { PaginationInventory } from "./Pagination";
 import { useDispatch, useSelector } from 'react-redux'
 
-import DataTable from 'react-data-table-component'
+import DataTable from 'react-data-table-component';
 import { useState } from 'react';
 import { GridSearchBar } from '../GridSearch';
 
