@@ -11,7 +11,7 @@ import {
 export const getAllInventory = (id) => {
     return async (dispatch) => {
         try {
-            const resp = await fetchConToken(`almacen?tipoAlmacenId=${id}&stockValidos=1`);
+            const resp = await fetchConToken(`almacen?tipoAlmacenId=${id}`);
             const body = await resp.json();
     
             if (resp.status === 200) {
@@ -221,6 +221,7 @@ export const getCatalogStock = () => {
 
 export const exchangeProduct = (tipoAlmacenId, products) => {
     return async (dispatch) => {
+        console.log(products);
         try {
             const resp = await fetchConToken(
                 `almacen/product`,

@@ -25,7 +25,7 @@ const Exchange = () => {
   const [error, setError] = useState(false);
   
   useEffect(() => {
-    dispatch(getAllInventory(3));
+    dispatch(getAllInventory(2));
   }, [dispatch]);
 
   const handleInputChange = (e) => {
