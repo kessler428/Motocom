@@ -13,13 +13,13 @@ const Exchange = () => {
   const dispatch = useDispatch();
 
   const [products, setProducts] = useState({
-    stock: "",
+    stock: 0,
     productName: '',
-    id: "",
+    id: 0,
     codigoUno: "",
   });
 
-  const [tienda, setTienda] = useState(0);
+  const [tienda, setTienda] = useState('');
   const [data, setData] = useState([]);
   const [productos, setProductos] = useState([]);
   const [error, setError] = useState(false);
@@ -157,6 +157,7 @@ const Exchange = () => {
                     <select
                       name="tienda"
                       id="tienda"
+                      value={tienda}
                       onChange={(e) => setTienda(e.target.value)}
                       className="border-2 rounded-lg p-2 mt-1 w-full"
                     >
