@@ -26,6 +26,7 @@ const DetailsOneFact = lazy(() => import('../pages/Admin/shop/shop1/DetailOneFac
 const Shop2 = lazy(() => import('../pages/Admin/shop/shop2/Shop2'))
 const Shop2Inventory = lazy(() => import('../pages/Admin/shop/shop2/DetailsOfFact'))
 const DetailsOneFact2 = lazy(() => import('../pages/Admin/shop/shop2/DetailOneFact'))
+const InventoryOfShops = lazy(() => import('../pages/Admin/shop/shop2/InventoryShop2'))
 const Shop3 = lazy(() => import('../pages/Admin/shop/shop3/Shop3'))
 const Shop3Inventory = lazy(() => import('../pages/Admin/shop/shop3/DetailsOfFact'))
 const DetailsOneFact3 = lazy(() => import('../pages/Admin/shop/shop3/DetailOneFact'))
@@ -145,6 +146,11 @@ export const App = () => {
           <Route path='shop_two/detail_of_one_bill/:id' element={
             <PrivateRoutes>
               <DetailsOneFact2 />
+            </PrivateRoutes> 
+          }/>
+          <Route path='shop_two/inventory/:id' element={
+            <PrivateRoutes>
+              <InventoryOfShops />
             </PrivateRoutes> 
           }/>
           <Route path='shop_three' element={

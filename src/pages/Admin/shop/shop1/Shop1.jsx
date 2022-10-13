@@ -26,6 +26,13 @@ const Shop1 = () => {
         </h1>
         <div className="flex flex-wrap gap-8 my-10 text-white">
           <NavLink
+            to={`inventory/2`}
+            className="flex justify-between flex-col text-start w-56 border-4 border-green-700 h-28 bg-green-700 p-4 rounded-lg"
+          >
+            <h3 className="text-xl font-bold">Inventario</h3>
+            <p className="text-lg">Ver inventario</p>
+          </NavLink>
+          <NavLink
             to="inventory"
             className="flex justify-between flex-col text-start w-80 border-4 border-yellow-500 h-28 bg-yellow-400 p-4 rounded-lg hover:bg-yellow-500"
           >
