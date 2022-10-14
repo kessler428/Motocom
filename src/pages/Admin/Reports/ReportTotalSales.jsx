@@ -1,72 +1,15 @@
-import moment from 'moment';
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import { SpinerLoading } from '../../../components/SpinnerLoading'
-import DataTable from 'react-data-table-component'
 import 'moment/locale/es';
-import { ProductsModal } from '../../../components/admin/credits/creditsAdmin/ProductsModal';
-import { useState } from 'react';
+import { TableContado } from '../../../components/admin/reports/TableContado';
+import { TableCredits } from '../../../components/admin/reports/TableCredits';
+import { TableTarjeta } from '../../../components/admin/reports/TableTarjeta';
 
 const ReportTotalSales = () => {
     const { isLoading } = useSelector((state) => state.ui);
-    const { listReports } = useSelector((state) => state.reports)
-    const { reporte } = listReports;
-
-    const [modal, setModal] = useState(false);
-    const [id, setId] = useState('')
-
-    const viewProducts = (id) => {
-        setModal(true);
-        setId(id);
-    }
-    
-    moment.locale('es');
-
-    const columns = [
-        {
-          name: "No. Factura",
-          selector: row => row.id
-        },
-        {
-          name: "Cliente",
-          selector: row => row.cliente
-        },
-        {
-          name: "Tipo de venta",
-          selector: row => row.tipoFactura
-        },
-        {
-          name: "Subtotal",
-          cell: row => <p>C${parseFloat(row.subTotal).toLocaleString('us-Us')}</p>
-        },
-        {
-          name: "Descuento",
-          cell: row => <p>{row.descuento}%</p>
-        },
-        {
-          name: "Total",
-          cell: row => <p>C${parseFloat(row.total).toLocaleString('us-Us')}</p>
-        },
-        {
-            name: "Acciones",
-            cell: row =>
-            <button
-                onClick={() => viewProducts(row.id)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"
-            >
-                Ver Factura
-            </button>
-        }
-    ]
-    
-    const paginationComponentOptions = {
-        rowsPerPageText: 'Filas por página',
-        rangeSeparatorText: 'de',
-        selectAllRowsItem: true,
-        selectAllRowsItemText: 'Todos',
-    };
-    
+    const { listReports } = useSelector((state) => state.reports)  
 
     return isLoading ? <SpinerLoading /> : (
         <>
@@ -80,16 +23,35 @@ const ReportTotalSales = () => {
                     </NavLink>
                 </div>
                 <div>
-                    <h3 className='text-xl my-6'>Tipo de reporte: {reporte}</h3>
-                    <DataTable
-                        columns={columns}
-                        data={ listReports.facturas}
-                        pagination
-                        paginationComponentOptions={paginationComponentOptions}
-                    />
+                    <TableContado />
+                    <TableCredits />
+                    <TableTarjeta />
+                </div>
+                <div className='mt-8 flex flex-col sm:flex-row justify-between gap-8'>
+                    <div className='bg-green-700 text-white rounded-lg font-semibold p-2 w-full sm:w-1/3 text-center'>
+                        <h1 className="text-xl font-semibold">Abonos</h1>
+                        {
+                            listReports.data.credito.sumaAbonos > 0 ? (
+                                <p className="font-semibold mt-2">
+                                    Total de abonos: C${listReports.data.credito.sumaAbonos}
+                                </p>
+                            ) : (
+                                <p className="font-semibold mt-2">
+                                    No hay abonos
+                                </p>
+                            )
+                        }
+                    </div>
+                    <div className='bg-green-700 text-white rounded-lg font-semibold p-2 w-full sm:w-1/3 text-center'>
+                        <h1 className="text-xl font-semibold">Ventas de contado mas abonos:</h1>
+                        <p className="font-semibold mt-2">C${parseFloat(listReports.data.contado.sumaTotal + listReports.data.credito.sumaAbonos).toLocaleString('us-Us')}</p>
+                    </div>
+                    <div className='bg-green-700 text-white rounded-lg font-semibold p-2 w-full sm:w-1/3 text-center'>
+                        <h1 className="text-xl font-semibold">Total Ventas:</h1>
+                        <p className="font-semibold mt-2">C${parseFloat(listReports.data.contado.sumaTotal + listReports.data.credito.sumaTotal + listReports.data.tarjeta.sumaTotal).toLocaleString('us-Us')}</p>
+                    </div>
                 </div>
             </div>
-            <ProductsModal id={id} modal={modal} setModal={setModal} />
         </>
     )
 }

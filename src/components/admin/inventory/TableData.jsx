@@ -11,11 +11,14 @@ import { deleteProductById } from '../../../redux/slices/inventory/thunks';
 import Swal from 'sweetalert2';
 import { setIsLoading } from '../../../redux/slices/ui/uiSlices';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 export const TableData = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
+
+  const [data, setData] = useState([]);
 
   const { listInventory } = useSelector((state) => state.inventory);
   const [searchProduct, setSearchProduct] = useState('');
@@ -41,56 +44,64 @@ export const TableData = () => {
     Navigate(`edit_product/${id}`);
   }
 
-  const columns = [
-    {
-      name: "Nombre",
-      selector: row => row.nombreArticulo
-    },
-    {
-      name: "Codigo 1",
-      selector: row => row.codigoUno
-    },
-    {
-      name: "Marca",
-      selector: row => row.marca
-    },
-    {
-      name: "Modelo",
-      selector: row => row.modelo
-    },
-    {
-      name: "Precio de compra",
-      cell: row => <p>C${parseFloat(row.precioCompra).toLocaleString('us-Us')}</p>
-    },
-    {
-      name: "Precio de venta",
-      cell: row => <p>C${parseFloat(row.precioVenta).toLocaleString('us-Us')}</p>
-    },
-    {
-      name: "Almacen Principal",
-      selector: row => row.stock?.[0].stock
-    },
-    {
-      name: "Camion Marlon",
-      selector: row => row.stock?.[1].stock
-    },
-    {
-      name: "Camion Miguel",
-      selector: row => row.stock?.[2].stock
-    },
-    {
-      name: "Camion Pokemon",
-      selector: row => row.stock?.[3].stock
-    },
-    {
-      name: "Acciones",
-      cell: row =>
-        <div className='flex flex-row gap-4 justify-start w-80'>
-          <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => editProduct(row.id) }><FaPencilAlt className='w-5 h-5'/></button>
-          <button className='text-red-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => deleteProduct(row.id) }><RiDeleteBin5Line className='w-5 h-5'/></button>
-        </div>
-    },
-  ]
+  useEffect(() => {
+    if(listInventory.length > 0) {
+      const columns = [
+        {
+          name: "Nombre",
+          selector: row => row.nombreArticulo
+        },
+        {
+          name: "Codigo 1",
+          selector: row => row.codigoUno
+        },
+        {
+          name: "Marca",
+          selector: row => row.marca
+        },
+        {
+          name: "Modelo",
+          selector: row => row.modelo
+        },
+        {
+          name: "Precio de compra",
+          cell: row => <p>C${parseFloat(row.precioCompra).toLocaleString('us-Us')}</p>
+        },
+        {
+          name: "Precio de venta",
+          cell: row => <p>C${parseFloat(row.precioVenta).toLocaleString('us-Us')}</p>
+        },
+        {
+          name: "Almacen Principal",
+          selector: row => row.stock?.[0].stock
+        },
+        {
+          name: "Camion Marlon",
+          selector: row => row.stock?.[1].stock
+        },
+        {
+          name: "Camion Miguel",
+          selector: row => row.stock?.[2].stock
+        },
+        {
+          name: "Camion Pokemon",
+          selector: row => row.stock?.[3].stock
+        },
+        {
+          name: "Acciones",
+          cell: row =>
+            <div className='flex flex-row gap-4 justify-start w-80'>
+              <button className='text-yellow-400 hover:bg-gray-200 p-3 rounded-full' onClick={ () => editProduct(row.id) }><FaPencilAlt className='w-5 h-5'/></button>
+              <button className='text-red-700 hover:bg-gray-200 p-3 rounded-full' onClick={ () => deleteProduct(row.id) }><RiDeleteBin5Line className='w-5 h-5'/></button>
+            </div>
+        },
+      ]
+
+      setData(columns);
+    }
+  }, [listInventory])
+  
+
 
   const filteredItems = listInventory.filter(
 		item => item.nombreArticulo.includes(searchProduct) || item.codigoUno.includes(searchProduct) || item.modelo.includes(searchProduct),
@@ -108,7 +119,7 @@ export const TableData = () => {
       <GridSearchBar searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
 
       <DataTable
-      columns={columns}
+      columns={data}
       data={ filteredItems }
       pagination
       paginationComponentOptions={paginationComponentOptions}
