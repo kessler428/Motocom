@@ -67,11 +67,11 @@ export const TableTarjeta = () => {
       <h1 className='text-lg my-4 font-semibold'>Facturas de Tarjeta</h1>
       <DataTable
        columns={columns}
-       data={ listReports.data.tarjeta.data }
+       data={ listReports?.data?.tarjeta?.data }
        pagination
        paginationComponentOptions={paginationComponentOptions}
       />
-      <p className='mt-4 text-blue-600 font-semibold'>Total en ventas de tarjeta: C${parseFloat(listReports.data.tarjeta.sumaTotal).toLocaleString('us-Us')}</p>
+      <p className='mt-4 text-blue-600 font-semibold'>Total en ventas de tarjeta: C${parseFloat(listReports?.data?.tarjeta?.sumaTotal).toLocaleString('us-Us')}</p>
       <ProductsModal id={id} modal={modal} setModal={setModal} />
     </div>
   );

@@ -67,11 +67,11 @@ export const TableCredits = () => {
         <h1 className='text-lg my-4 font-semibold'>Facturas de Creditó</h1>
       <DataTable
        columns={columns}
-       data={ listReports.data.credito.data }
+       data={ listReports?.data?.credito?.data }
        pagination
        paginationComponentOptions={paginationComponentOptions}
       />
-      <p className='mt-4 text-blue-600 font-semibold'>Total en ventas de creditó: C${parseFloat(listReports.data.credito.sumaTotal).toLocaleString('us-Us')}</p>
+      <p className='mt-4 text-blue-600 font-semibold'>Total en ventas de creditó: C${parseFloat(listReports?.data?.credito?.sumaTotal).toLocaleString('us-Us')}</p>
       <ProductsModal id={id} modal={modal} setModal={setModal} />
     </div>
   );

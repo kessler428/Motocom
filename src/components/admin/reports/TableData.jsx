@@ -45,7 +45,7 @@ export const TableData = () => {
     <div className='mt-8'>
       <DataTable
        columns={columns}
-       data={ listReports.productos }
+       data={ listReports?.productos }
        pagination
        paginationComponentOptions={paginationComponentOptions}
       />
