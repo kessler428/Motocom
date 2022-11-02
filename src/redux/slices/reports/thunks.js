@@ -31,6 +31,8 @@ export const generateReportsAdmin = (startDate, finalDate, id, tipoFactura) => {
                 `reportes/total-ventas?fechaInicio=${startDate}&fechaFin=${finalDate}&almacenId=${id}&tipoFactura=${tipoFactura}`
             );
             const body = await resp.json();
+
+            console.log(body)
     
             if (resp.status === 200) {
                 dispatch(setListReports(body));
